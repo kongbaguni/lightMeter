@@ -9,7 +9,6 @@ import AVFoundation
 import SwiftUI
 import CoreImage.CIFilterBuiltins
 
-
 class LightMeterCameraManager: NSObject, ObservableObject {
     enum Area: String {
         case spot = "spot"
@@ -96,6 +95,24 @@ class LightMeterCameraManager: NSObject, ObservableObject {
     func stopSession() {
         session.stopRunning()
     }
+    
+    
+
+    func calculateShutterSpeed(ev: Double, iso: Double, aperture: Double) -> Double {
+        let evWithIso = ev + log2(iso / 100)
+        let shutterSpeed = pow(aperture, 2) / pow(2.0, evWithIso)
+        return shutterSpeed
+    }
+    
+    func aperture(ev: Double, iso: Double, shutter: Double) -> Double {
+        let evWithISO = ev + log2(iso / 100)
+        return sqrt(shutter * pow(2.0, evWithISO))
+    }
+    
+    func shutterSpeed(ev: Double, iso: Double, aperture: Double) -> Double {
+        let evWithISO = ev + log2(iso / 100)
+        return pow(aperture, 2) / pow(2.0, evWithISO)
+    }
 }
 
 extension LightMeterCameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
@@ -107,10 +124,12 @@ extension LightMeterCameraManager: AVCaptureVideoDataOutputSampleBufferDelegate 
         let avgBrightness = ciImage.averageBrightness(area:self.captureArea)
 
         DispatchQueue.main.async {[weak self] in
+
             if let value = self?.avgBrightnessToEV(avgBrightness) {
                 self?.lightMeterDidChange(value)
             }
         }
+        
 
         CVPixelBufferUnlockBaseAddress(imageBuffer, .readOnly)
     }
@@ -126,8 +145,6 @@ extension CIImage {
     static let context:CIContext = .init()
     /// 이미지의 평균 밝기 (0.0 ~ 1.0)를 계산합니다.
     func averageBrightness(area:LightMeterCameraManager.Area) -> Double {
-        
-        
         // 1. CIAreaAverage 필터로 평균 색상 계산
         let extent = self.extent
         let filter = CIFilter.areaAverage()
@@ -158,4 +175,5 @@ extension CIImage {
         let brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b
         return brightness
     }
+    
 }

@@ -11,13 +11,15 @@ struct ContentView: View {
     @State var cameraManager:LightMeterCameraManager? = nil
     @State var lightMetterValue: Double = 0.0
     @State var isRunning: Bool = false
+    @State var controlerEv:Double = 0.0
     
     @AppStorage("area") var area:LightMeterCameraManager.Area = .spot
     
     var body: some View {
         VStack {
+            AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: area)
             Text("\(lightMetterValue)")
-            
+            Text("\(controlerEv)")
             Button {
                 isRunning.toggle()
                 if isRunning {
@@ -53,6 +55,9 @@ struct ContentView: View {
                 }.disabled(area == .multi)
                 
             }
+            
+            ControllerView(ev:$controlerEv)
+
         }
         .onAppear {
             cameraManager = LightMeterCameraManager { value in

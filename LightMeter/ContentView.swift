@@ -22,17 +22,6 @@ struct ContentView: View {
             LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
             Text("\(lightMetterValue)")
             Text("\(controlerEv ?? 0.0)")
-            Button {
-                isRunning.toggle()
-                if isRunning {
-                    cameraManager?.startSession()
-                } else {
-                    cameraManager?.stopSession()
-                }
-                
-            } label: {
-                Text( isRunning ? "stop" : "start")
-            }
             
             HStack {
                 Button {
@@ -59,6 +48,26 @@ struct ContentView: View {
             }
             
             ControllerView(ev:$controlerEv)
+            
+            Button {
+                isRunning.toggle()
+                if isRunning {
+                    cameraManager?.startSession()
+                } else {
+                    cameraManager?.stopSession()
+                }
+                
+            } label: {
+                Group {
+                    isRunning
+                    ? Image(systemName: "stop")
+                        .resizable()
+                    : Image(systemName: "play")
+                        .resizable()
+                }
+                .scaledToFit()
+                .frame(width:50)
+            }
 
         }
         .onAppear {

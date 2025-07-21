@@ -32,22 +32,20 @@ struct ControllerView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
+        HStack {
+            VStack(alignment: .leading) {
                 Text("ISO")
                 SlideDialView(items: Models.ISO.items, currentValue: $iso)
-            }
-            
-            HStack {
+                
                 Text("Aperture")
                 SlideDialView(items: Models.Aperture.items, currentValue: $aperture)
-            }
-            
-            HStack {
+                
                 Text("ShutterSpeed")
-                SlideDialView(items: Models.ShutterSpeed.items, currentValue: $shutterSpeed)                
+                SlideDialView(items: Models.ShutterSpeed.items, currentValue: $shutterSpeed)
             }
+            Spacer()
         }
+        .padding(10)
         .onChange(of: iso) { oldValue, newValue in
             calculateEV()
         }

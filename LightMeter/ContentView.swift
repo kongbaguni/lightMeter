@@ -26,7 +26,10 @@ struct ContentView: View {
                         }
                 }
             }
-            
+            #if DEBUG
+            Text("\(lightMetterValue)")
+            Text("\(controlerEv ?? 0.0)")
+            #endif
             
             HStack {
                 Button {

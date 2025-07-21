@@ -69,22 +69,29 @@ class LightMeterCameraManager: NSObject, ObservableObject {
                 videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "sampleBuffer"))
             }
             session.commitConfiguration()
-            DispatchQueue.global().async { [weak session] in 
-                session?.startRunning()
-            }
             
             try device.lockForConfiguration()
             if device.isExposureModeSupported(.custom) {
-                let iso = device.activeFormat.minISO
-                let duration = CMTimeMake(value: 1, timescale: 1000)
-                
-                device.setExposureModeCustom(duration: duration, iso: iso, completionHandler: nil)
+                let desiredISO: Float = 100   // 원하는 ISO 값
+                 let minISO = desiredISO
+                 let maxISO = desiredISO
+                 let clampedISO = min(max(desiredISO, minISO), maxISO)
+                 
+                 // 원하는 노출시간 (예: 1/500초)
+                 let desiredDuration = CMTimeMake(value: 1, timescale: 1000)
+                 let minDuration = desiredDuration
+                 let maxDuration = desiredDuration
+                 let clampedDuration = CMTimeMaximum(minDuration, CMTimeMinimum(desiredDuration, maxDuration))
+                 
+                 device.setExposureModeCustom(duration: clampedDuration, iso: clampedISO, completionHandler: nil)
             }
             
-            if device.isExposureModeSupported(.locked) {
-                device.exposureMode = .locked
-            }
             device.unlockForConfiguration()
+            
+            DispatchQueue.global().async { [weak session] in
+                session?.startRunning()
+            }
+
         } catch {
             Log.debug("Camera init failed: \(error)")
         }
@@ -143,23 +150,22 @@ extension LightMeterCameraManager: AVCaptureVideoDataOutputSampleBufferDelegate 
 
 extension CIImage {
     static let context:CIContext = .init()
-    static var outputImage:CIImage? = nil
+    static let filter = CIFilter.areaAverage()
     /// 이미지의 평균 밝기 (0.0 ~ 1.0)를 계산합니다.
     func averageBrightness(area:LightMeterCameraManager.Area) -> Double {
         // 1. CIAreaAverage 필터로 평균 색상 계산
         let extent = self.extent
-        let filter = CIFilter.areaAverage()
+        let filter = CIImage.filter
         filter.inputImage = self
         let rect1 = CGRect(x: extent.origin.x, y: extent.origin.y, width: extent.size.width, height: extent.size.height)
         let rect2 = CIVector(cgRect: area.value.rect(for: rect1)).cgRectValue
         Log.debug("targetRect:", rect2)
         filter.extent = rect2
-        CIImage.outputImage = filter.outputImage
-        
-        guard let outputImage = CIImage.outputImage else {
+        guard let outputImage = filter.outputImage else {
             return 0.0
         }
         
+                
         // 2. 1x1 픽셀 RGBA 데이터 추출
         var bitmap = [UInt8](repeating: 0, count: 4)
         CIImage.context.render(outputImage,

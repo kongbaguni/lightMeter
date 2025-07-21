@@ -9,14 +9,18 @@ import SwiftUI
 
 struct LightMetterIndicatorView: View {
     let ev:Double
-    let settingEv:Double
+    let settingEv:Double?
     
     enum Status {
         case less
         case current
         case more
+        case off
     }
-    var status:Status {        
+    var status:Status {
+        guard let settingEv = settingEv else {
+            return .off
+        }
         let centerRange = settingEv - 0.1 ..< settingEv + 0.1
         if centerRange.contains(ev) {
             return .current
@@ -33,6 +37,10 @@ struct LightMetterIndicatorView: View {
         HStack {
             Group {
                 switch status {
+                case .off:
+                    Image(systemName: "arrowtriangle.forward")
+                    Image(systemName: "circle")
+                    Image(systemName: "arrowtriangle.left")
                 case .less:
                     Image(systemName: "arrowtriangle.forward.fill")
                     Image(systemName: "circle")

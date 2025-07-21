@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ControllerView: View {
-    @Binding var ev:Double
+    @Binding var ev:Double?
     
     @State var iso:Double = 0 {
         didSet {
@@ -26,12 +26,9 @@ struct ControllerView: View {
         }
     }
     
-    func calculateEV(aperture: Double, shutter: Double, iso: Double) -> Double {
-        if iso == 0 {
-            return 0
-        }
-        if shutter == 0 {
-            return 0
+    func calculateEV(aperture: Double, shutter: Double, iso: Double) -> Double? {
+        if iso == 0 || shutter == 0 || aperture == 0 {
+            return nil
         }
         let evBase = log2(pow(aperture, 2) / shutter)
         let isoCompensation = log2(iso / 100)

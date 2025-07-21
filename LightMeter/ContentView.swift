@@ -11,7 +11,7 @@ struct ContentView: View {
     @State var cameraManager:LightMeterCameraManager? = nil
     @State var lightMetterValue: Double = 0.0
     @State var isRunning: Bool = false
-    @State var controlerEv:Double = 0.0
+    @State var controlerEv:Double? = nil
     
     @AppStorage("area") var area:LightMeterCameraManager.Area = .spot
     
@@ -21,7 +21,7 @@ struct ContentView: View {
             
             LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
             Text("\(lightMetterValue)")
-            Text("\(controlerEv)")
+            Text("\(controlerEv ?? 0.0)")
             Button {
                 isRunning.toggle()
                 if isRunning {

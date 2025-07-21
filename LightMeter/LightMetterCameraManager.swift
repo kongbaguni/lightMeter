@@ -143,6 +143,7 @@ extension LightMeterCameraManager: AVCaptureVideoDataOutputSampleBufferDelegate 
 
 extension CIImage {
     static let context:CIContext = .init()
+    static var outputImage:CIImage? = nil
     /// 이미지의 평균 밝기 (0.0 ~ 1.0)를 계산합니다.
     func averageBrightness(area:LightMeterCameraManager.Area) -> Double {
         // 1. CIAreaAverage 필터로 평균 색상 계산
@@ -153,10 +154,12 @@ extension CIImage {
         let rect2 = CIVector(cgRect: area.value.rect(for: rect1)).cgRectValue
         Log.debug("targetRect:", rect2)
         filter.extent = rect2
-        guard let outputImage = filter.outputImage else {
+        CIImage.outputImage = filter.outputImage
+        
+        guard let outputImage = CIImage.outputImage else {
             return 0.0
         }
-
+        
         // 2. 1x1 픽셀 RGBA 데이터 추출
         var bitmap = [UInt8](repeating: 0, count: 4)
         CIImage.context.render(outputImage,

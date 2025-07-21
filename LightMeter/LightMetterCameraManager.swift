@@ -30,7 +30,7 @@ class LightMeterCameraManager: NSObject, ObservableObject {
         }
     }
     
-    private let session = AVCaptureSession()
+    let session = AVCaptureSession()
     private let videoOutput = AVCaptureVideoDataOutput()
     
     let lightMeterDidChange:(Double)->Void 

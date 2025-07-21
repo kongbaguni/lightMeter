@@ -7,9 +7,38 @@
 
 import SwiftUI
 
+import AVFoundation
+
+struct CameraPreview: UIViewRepresentable {
+    class VideoPreviewView: UIView {
+        override class var layerClass: AnyClass {
+            AVCaptureVideoPreviewLayer.self
+        }
+        
+        var previewLayer: AVCaptureVideoPreviewLayer {
+            layer as! AVCaptureVideoPreviewLayer
+        }
+    }
+    
+    @ObservedObject var manager: LightMeterCameraManager
+    
+    func makeUIView(context: Context) -> VideoPreviewView {
+        let view = VideoPreviewView()
+        view.previewLayer.session = manager.session
+        view.previewLayer.videoGravity = .resizeAspectFill
+        return view
+    }
+    
+    func updateUIView(_ uiView: VideoPreviewView, context: Context) {
+        // Nothing to update
+    }
+}
+
 struct AreaView: View {
     let size:CGSize
     let area:LightMeterCameraManager.Area
+    @ObservedObject var manager: LightMeterCameraManager
+    
     @State var imageView:Image = .init(systemName: "photo")
         
     var centerSize : CGSize {
@@ -26,16 +55,15 @@ struct AreaView: View {
             return Text("Multi")
         }
     }
+    
     var body: some View {
-        ZStack {
-            imageView
-                .resizable()
-                .scaledToFit()
+        ZStack {            
+            CameraPreview(manager: manager)
                 .frame(width: size.width, height: size.height)
-            title
-                .background {
+            
+                .overlay {
                     RoundedRectangle(cornerRadius: 0)
-                        .fill(Color.yellow)
+                        .stroke(Color.yellow, lineWidth: 2)
                         .frame(width: centerSize.width, height: centerSize.height)
                 }
                 .frame(width: size.width, height: size.height)
@@ -50,11 +78,17 @@ struct AreaView: View {
 
 #Preview {
     VStack {
-        AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: .spot)
+        AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: .spot, manager: .init(lightMeterDidChange: { value in
+            
+        }))
         
-        AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: .center)
+        AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: .center, manager: .init(lightMeterDidChange: { value in
+            
+        }))
 
-        AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: .multi)
+        AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: .multi, manager: .init(lightMeterDidChange: { value in
+            
+        }))
 
     }
 }

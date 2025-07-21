@@ -17,11 +17,16 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: area)
+            if let manager = cameraManager {
+                ZStack {
+                    AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: area, manager: manager)
+                        if lightMetterValue > 0 {
+                            LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
+                                .padding(10)
+                        }
+                }
+            }
             
-            LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
-            Text("\(lightMetterValue)")
-            Text("\(controlerEv ?? 0.0)")
             
             HStack {
                 Button {

@@ -86,7 +86,7 @@ class LightMeterCameraManager: NSObject, ObservableObject {
             }
             device.unlockForConfiguration()
         } catch {
-            print("Camera init failed: \(error)")
+            Log.debug("Camera init failed: \(error)")
         }
         
 
@@ -151,7 +151,7 @@ extension CIImage {
         filter.inputImage = self
         let rect1 = CGRect(x: extent.origin.x, y: extent.origin.y, width: extent.size.width, height: extent.size.height)
         let rect2 = CIVector(cgRect: area.value.rect(for: rect1)).cgRectValue
-        print("targetRect:", rect2)
+        Log.debug("targetRect:", rect2)
         filter.extent = rect2
         guard let outputImage = filter.outputImage else {
             return 0.0
@@ -170,7 +170,7 @@ extension CIImage {
         let g = Double(bitmap[1]) / 255.0
         let b = Double(bitmap[2]) / 255.0
 
-        print(bitmap)
+        Log.debug(bitmap)
         // 3. 밝기 계산 (Rec. 709)
         let brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b
         return brightness

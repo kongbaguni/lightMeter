@@ -18,6 +18,8 @@ struct ContentView: View {
     var body: some View {
         VStack {
             AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: area)
+            
+            LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
             Text("\(lightMetterValue)")
             Text("\(controlerEv)")
             Button {

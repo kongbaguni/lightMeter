@@ -27,6 +27,12 @@ struct ControllerView: View {
     }
     
     func calculateEV(aperture: Double, shutter: Double, iso: Double) -> Double {
+        if iso == 0 {
+            return 0
+        }
+        if shutter == 0 {
+            return 0
+        }
         let evBase = log2(pow(aperture, 2) / shutter)
         let isoCompensation = log2(iso / 100)
         return evBase - isoCompensation

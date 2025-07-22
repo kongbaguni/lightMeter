@@ -72,18 +72,14 @@ class LightMeterCameraManager: NSObject, ObservableObject {
             
             try device.lockForConfiguration()
             if device.isExposureModeSupported(.custom) {
-                let desiredISO: Float = 100   // 원하는 ISO 값
-                 let minISO = desiredISO
-                 let maxISO = desiredISO
-                 let clampedISO = min(max(desiredISO, minISO), maxISO)
-                 
-                 // 원하는 노출시간 (예: 1/500초)
-                 let desiredDuration = CMTimeMake(value: 1, timescale: 1000)
-                 let minDuration = desiredDuration
-                 let maxDuration = desiredDuration
-                 let clampedDuration = CMTimeMaximum(minDuration, CMTimeMinimum(desiredDuration, maxDuration))
-                 
-                 device.setExposureModeCustom(duration: clampedDuration, iso: clampedISO, completionHandler: nil)
+                let minISO = device.activeFormat.minISO
+                let maxISO = device.activeFormat.maxISO
+                let midISO = (minISO + maxISO) / 2.0
+                                
+                let desiredDuration =  CMTimeMake(value: 1, timescale: 500) 
+                
+                device.setExposureModeCustom(duration: desiredDuration, iso: midISO, completionHandler: nil)
+                
             }
             
             device.unlockForConfiguration()
@@ -159,7 +155,6 @@ extension CIImage {
         filter.inputImage = self
         let rect1 = CGRect(x: extent.origin.x, y: extent.origin.y, width: extent.size.width, height: extent.size.height)
         let rect2 = CIVector(cgRect: area.value.rect(for: rect1)).cgRectValue
-        Log.debug("targetRect:", rect2)
         filter.extent = rect2
         guard let outputImage = filter.outputImage else {
             return 0.0
@@ -178,8 +173,6 @@ extension CIImage {
         let r = Double(bitmap[0]) / 255.0
         let g = Double(bitmap[1]) / 255.0
         let b = Double(bitmap[2]) / 255.0
-
-        Log.debug(bitmap)
         // 3. 밝기 계산 (Rec. 709)
         let brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b
         return brightness

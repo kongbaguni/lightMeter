@@ -21,30 +21,6 @@ struct SlideDialView: View {
         }
     }
     
-    private var previesItem:Item? {
-        if let idx = items.firstIndex(where: { item in
-            return item.value == currentValue
-        }) {
-            if idx > 0 {
-                return items[idx - 1]
-            }
-        }
-        return nil
-    }
-    
-
-    private var nextItem:Item? {
-        if let idx = items.firstIndex(where: { item in
-            return item.value == currentValue
-        }) {
-            if idx < items.count - 1 {
-                return items[idx + 1]
-            }
-        }
-        return nil
-    }
-    
-    
     var body: some View {
         HStack {
             Group {
@@ -70,18 +46,49 @@ struct SlideDialView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.secondary)
             }
-
-            if let previesItem = previesItem {
-                Text(previesItem.label)
-            }
             
-            if let currentItem = currentItem {
-                Text(currentItem.label)
-                    .foregroundStyle(.red)
+            ScrollViewReader { proxy in
+                ScrollView(.horizontal) {
+                    LazyHStack(spacing:0) {
+                        ForEach(items,id:\.self) { item in
+                            Button {
+                                currentValue = item.value
+                            } label : {
+                                Text(item.label)
+                                    .bold(item == currentItem)
+                                    .font(.system(size: item == currentItem ? 20 : 12))
+                                    .foregroundStyle(item == currentItem ? .red : .primary)
+                                    .padding(10)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                            .fill(item == currentItem ? Color.accentColor : Color.secondary)
+                                    }
+                                    .padding(.horizontal, 1)
+                            }
+                        }
+                    }
+                }
+                .onAppear {
+                    withAnimation {
+                        if let idx = items.firstIndex(where: { item in
+                            item.value == currentValue
+                        }) {
+                            proxy.scrollTo(items[idx], anchor: .center)
+                        }
+                    }
+                }
+                .onChange(of: currentValue) { oldValue, newValue in
+                    withAnimation {
+                        if let idx = items.firstIndex(where: { item in
+                            item.value == currentValue
+                        }) {                            
+                            proxy.scrollTo(items[idx], anchor: .center)
+                        }
+                    }
+
+                }
             }
-            if let nextItem = nextItem {
-                Text(nextItem.label)
-            }
+            .frame(height:60)
             
         }
         .onAppear {
@@ -92,7 +99,6 @@ struct SlideDialView: View {
     }
     
     func selectPreviousItem() {
-        Log.debug(#function, #line)
         if currentValue == items.first?.value {
             return
         }

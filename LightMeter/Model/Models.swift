@@ -6,6 +6,41 @@
 //
 
 struct Models {
+    enum EVfix : Double, CaseIterable {
+        case ev10 = 10
+        case ev9 = 9
+        case ev8 = 8
+        case ev7 = 7
+        case ev6 = 6
+        case ev5 = 5
+        case ev4 = 4
+        case ev3 = 3
+        case ev2 = 2
+        case ev1 = 1
+        case ev0 = 0
+        case evNeg1 = -1
+        case evNeg2 = -2
+        case evNeg3 = -3
+        case evNeg4 = -4
+        case evNeg5 = -5
+        case evNeg6 = -6
+        case evNeg7 = -7
+        case evNeg8 = -8
+        case evNeg9 = -9
+        case evNeg10 = -10
+        
+        var stringValue:String {
+            String(format:"%02.f", rawValue)
+        }
+        
+        static var items:[SlideDialView.Item] {
+            EVfix.allCases.map { ev in
+                return .init(value: ev.rawValue, label: ev.stringValue)
+            }
+        }
+        
+    }
+    
     enum ISO : Double, CaseIterable {
         case m30 = 30
         case m50 = 50

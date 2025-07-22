@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ControllerView: View {
     @Binding var ev:Double?
-    
+    @AppStorage("evfix") var evFix:Double = 0.0
     @AppStorage("iso") var iso:Double = Models.ISO.allCases.first!.rawValue
     @AppStorage("aperture") var aperture:Double = Models.Aperture.allCases.first!.rawValue
     @AppStorage("shutterSpeed") var shutterSpeed:Double = Models.ShutterSpeed.allCases.first!.rawValue
@@ -20,7 +20,7 @@ struct ControllerView: View {
         }
         let evBase = log2(pow(aperture, 2) / shutter)
         let isoCompensation = log2(iso / 100)
-        return evBase - isoCompensation
+        return evBase - isoCompensation + evFix
     }
     
     
@@ -34,6 +34,9 @@ struct ControllerView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
+                Text("EVfix")
+                SlideDialView(items: Models.EVfix.items, currentValue: $evFix)
+                
                 Text("ISO")
                 SlideDialView(items: Models.ISO.items, currentValue: $iso)
                 
@@ -46,6 +49,9 @@ struct ControllerView: View {
             Spacer()
         }
         .padding(10)
+        .onChange(of: evFix) { oldValue, newValue in
+            calculateEV()
+        }
         .onChange(of: iso) { oldValue, newValue in
             calculateEV()
         }

@@ -13,17 +13,16 @@ struct ContentView: View {
     @State var isRunning: Bool = false
     @State var controlerEv:Double? = nil
     
-    @AppStorage("area") var area:LightMeterCameraManager.Area = .spot
     
     var body: some View {
         VStack {
             if let manager = cameraManager {
                 ZStack {
-                    AreaView(size: .init(width: 40 * 5, height: 30 * 5), area: area, manager: manager)
-                        if lightMetterValue > 0 {
-                            LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
-                                .padding(10)
-                        }
+                    CameraPreview(manager: manager)
+                    if lightMetterValue > 0 {
+                        LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
+                            .padding(10)
+                    }
                 }
             }
             #if DEBUG
@@ -31,29 +30,6 @@ struct ContentView: View {
             Text("\(controlerEv ?? 0.0)")
             #endif
             
-            HStack {
-                Button {
-                    area = .spot
-                    cameraManager?.captureArea = .spot
-                } label: {
-                    Text("스팟측광")
-                }.disabled(area == .spot)
-                
-                Button {
-                    area = .center
-                    cameraManager?.captureArea = .center
-                } label: {
-                    Text("중앙측광")
-                }.disabled(area == .center)
-                
-                Button {
-                    area = .multi
-                    cameraManager?.captureArea = .multi
-                } label: {
-                    Text("다중측광")
-                }.disabled(area == .multi)
-                
-            }
             
             ControllerView(ev:$controlerEv)
             

@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ControllerView: View {
     @Binding var ev:Double?
+    // 밝기 보정
+    let evFixOffset:CGFloat = 0
+    
     @AppStorage("evfix") var evFix:Double = 0.0
     @AppStorage("iso") var iso:Double = Models.ISO.allCases.first!.rawValue
     @AppStorage("aperture") var aperture:Double = Models.Aperture.allCases.first!.rawValue
@@ -20,7 +23,7 @@ struct ControllerView: View {
         }
         let evBase = log2(pow(aperture, 2) / shutter)
         let isoCompensation = log2(iso / 100)
-        return evBase - isoCompensation + evFix
+        return evBase - isoCompensation + evFix + evFixOffset
     }
     
     

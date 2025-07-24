@@ -42,19 +42,25 @@ struct Models {
     }
     
     enum ISO : Double, CaseIterable {
-        case m30 = 30
+        case m25 = 25
         case m50 = 50
+        case m64 = 64
         case m80 = 80
         case m100 = 100
-        case m150 = 150
+        case m125 = 125
+        case m160 = 160
         case m200 = 200
+        case m250 = 250
+        case m320 = 320
         case m400 = 400
+        case m500 = 500
+        case m640 = 640
         case m800 = 800
+        case m1000 = 1000
+        case m1250 = 1250
         case m1600 = 1600
+        case m2000 = 2000
         case m3200 = 3200
-        case m6400 = 6400
-        case m12800 = 12800
-        case m25600 = 25600
         
         var stringValue:String {
             String(format:"%02.f", rawValue)
@@ -68,18 +74,19 @@ struct Models {
     }
     
     enum Aperture: Double, CaseIterable {
-        case f22 = 22
         case f16 = 16
+        case f13 = 13
         case f11 = 11
+        case f9_5 = 9.5
         case f8 = 8
+        case f6_7 = 6.7
         case f5_6 = 5.6
+        case f4_8 = 4.8
         case f4 = 4
-        case f3 = 3
+        case f3_4 = 3.4
+        case f2_8 = 2.8
+        case f2_4 = 2.4
         case f2 = 2
-        case f1_8 = 1.8
-        case f1_4 = 1.4
-        case f1 = 1
-        case f0_9 = 0.9
         var stringValue:String {
             String(format:"f%02.1f", rawValue)
         }

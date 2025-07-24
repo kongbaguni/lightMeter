@@ -9,7 +9,7 @@ import SwiftUI
 
 import AVFoundation
 
-struct CameraPreview: UIViewRepresentable {
+struct _CameraPreview: UIViewRepresentable {
     class VideoPreviewView: UIView {
         override class var layerClass: AnyClass {
             AVCaptureVideoPreviewLayer.self
@@ -31,6 +31,25 @@ struct CameraPreview: UIViewRepresentable {
     
     func updateUIView(_ uiView: VideoPreviewView, context: Context) {
         // Nothing to update
+    }
+}
+
+struct CameraPreview : View {
+    let manager:LightMeterCameraManager
+    var body: some View {
+        ZStack {
+            _CameraPreview(manager: manager)
+        }
+        .background {
+            RoundedRectangle(cornerRadius: 0)
+                .fill(.secondary)
+        }
+        .background {
+            RoundedRectangle(cornerRadius: 0)
+                .stroke(lineWidth: 2)
+            
+        }
+        .padding(10)
     }
 }
 

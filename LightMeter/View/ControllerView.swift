@@ -15,7 +15,7 @@ struct ControllerView: View {
     @AppStorage("evfix") var evFix:Double = 0.0
     @AppStorage("iso") var iso:Double = Models.ISO.allCases.first!.rawValue
     @AppStorage("aperture") var aperture:Double = Models.Aperture.allCases.first!.rawValue
-    @AppStorage("shutterSpeed") var shutterSpeed:Double = Models.ShutterSpeed.allCases.first!.rawValue
+    @AppStorage("shutterSpeed") var shutterSpeed:Double = 0.0
     
     func calculateEV(aperture: Double, shutter: Double, iso: Double) -> Double? {
         if iso == 0 || shutter == 0 || aperture == 0 {
@@ -37,7 +37,7 @@ struct ControllerView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("EVfix")
+                Text("EV")
                 SlideDialView(items: Models.EVfix.items, currentValue: $evFix)
                 
                 Text("ISO")
@@ -47,7 +47,7 @@ struct ControllerView: View {
                 SlideDialView(items: Models.Aperture.items, currentValue: $aperture)
                 
                 Text("ShutterSpeed")
-                SlideDialView(items: Models.ShutterSpeed.items, currentValue: $shutterSpeed)
+                SlideDialView(items: Models.curentBody?.items ?? [], currentValue: $shutterSpeed)
             }
             Spacer()
         }

@@ -4,6 +4,8 @@
 //
 //  Created by Changyeol Seo on 7/21/25.
 //
+import AVFoundation
+import SwiftUI
 
 struct Models {
     enum EVfix : Double, CaseIterable {
@@ -97,36 +99,72 @@ struct Models {
         }
         
     }
+
     
-    enum ShutterSpeed: Double, CaseIterable {
-        case _4000 = 0.00025
-        case _2000 = 0.0005
-        case _1000 = 0.001
-        case _500 = 0.002
-        case _250 = 0.004
-        case _125 = 0.008
-        case _60 = 0.01666666
-        case _30 = 0.03333333
-        case _15 = 0.06666666
-        case _8 = 0.125
-        case _4 = 0.25
-        case _2 = 0.5 // 1/2
-        case s1 = 1
-        case s2 = 2
-        case s4 = 4
-        case s5 = 8
-        var stringValue: String {
-            if self.rawValue < 1.0 {
-                let denominator = 1.0 / rawValue
-                return String(format: "1/%.0f", denominator)
+    enum Lens {
+        case ApoSummicron35
+        case ApoSummicron50
+        
+        var apertureList : [Double] {
+            switch self {
+            case .ApoSummicron35, .ApoSummicron50:
+                return [2.0, 2.4, 2.8, 4.0, 5.6, 8.0, 11, 16]
             }
-            return String(format: "\"%01.0f", rawValue)
         }
         
-        static var items:[SlideDialView.Item] {
-            allCases.map { shutterSpeed in
-                return .init(value: shutterSpeed.rawValue, label: shutterSpeed.stringValue)
+    }
+    
+    
+    struct Body : Decodable {
+        let brand : String
+        let name : String
+        let shutterSpeeds : [String]
+        
+        func convert(str:String)->CMTime{
+            if str.contains("/") {
+                let parts = str.split(separator: "/")
+                if parts.count == 2,
+                   let numerator = Int(parts[0]),
+                   let denominator = Int(parts[1]) {
+                    return CMTime(value: CMTimeValue(numerator), timescale: CMTimeScale(denominator))
+                } else {
+                    return .init()
+                }
+            } else if let value = Int(str) {
+                return CMTime(value: CMTimeValue(value), timescale: 1)
+            } else {
+                return .init()
             }
         }
+        
+        var items:[SlideDialView.Item] {
+            shutterSpeeds.map { str in
+                return .init(value: convert(str: str).seconds, label: str)
+            }
+        }
+    }
+    static var bodys:[Body] = []
+
+    static func loadBodyData() -> [Body] {
+        guard let url = Bundle.main.url(forResource: "bodys", withExtension: "json")
+        else {
+            return []
+        }
+        do {
+            let data = try Data(contentsOf: url)
+            return try JSONDecoder().decode([Body].self, from: data)
+        } catch {
+            Log.debug(error.localizedDescription)
+            return []
+        }
+    }
+    
+    static var curentBody : Body? {
+        if bodys.count == 0 {
+            bodys = loadBodyData()
+        }
+        
+        let idx = UserDefaults.standard.integer(forKey: "bodySelectIdx")
+        return bodys[idx]
     }
 }

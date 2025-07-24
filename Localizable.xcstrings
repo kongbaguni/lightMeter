@@ -1,0 +1,62 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lf" : {
+      "shouldTranslate" : false
+    },
+    "Aperture" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "조리개"
+          }
+        }
+      }
+    },
+    "body list" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "바디 목록"
+          }
+        }
+      }
+    },
+    "EV" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노출보정"
+          }
+        }
+      }
+    },
+    "ISO" : {
+      "shouldTranslate" : false
+    },
+    "select body" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "바디 선택"
+          }
+        }
+      }
+    },
+    "ShutterSpeed" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "셔터속도"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

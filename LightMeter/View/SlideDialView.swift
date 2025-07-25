@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct SlideDialView: View {
     struct Item : Hashable {
@@ -82,23 +83,12 @@ struct SlideDialView: View {
                     }
                 }
                 .onAppear {
-                    withAnimation {
-                        if let idx = items.firstIndex(where: { item in
-                            item.value == currentValue
-                        }) {
-                            proxy.scrollTo(items[idx], anchor: .center)
-                        }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) {
+                        selectItem(proxy: proxy)
                     }
                 }
                 .onChange(of: currentValue) { newValue in
-                    withAnimation {
-                        if let idx = items.firstIndex(where: { item in
-                            item.value == currentValue
-                        }) {
-                            proxy.scrollTo(items[idx], anchor: .center)
-                        }
-                    }
-
+                    selectItem(proxy: proxy)
                 }
             }
             .frame(height:60)
@@ -107,6 +97,16 @@ struct SlideDialView: View {
         .onAppear {
             if currentItem == nil {
                 currentValue = items.first?.value ?? 0.0
+            }
+        }
+    }
+    
+    private func selectItem(proxy : SwiftUI.ScrollViewProxy) {
+        withAnimation {
+            if let idx = items.firstIndex(where: { item in
+                item.value == currentValue
+            }) {
+                proxy.scrollTo(items[idx], anchor: .center)
             }
         }
     }

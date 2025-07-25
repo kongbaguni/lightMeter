@@ -59,6 +59,9 @@ struct ContentView: View {
         .onChange(of: isPlay) { newValue in
             if newValue == true {
                 cameraManager?.startSession()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                    isPlay = false 
+                }
             }
             else {
                 cameraManager?.stopSession()

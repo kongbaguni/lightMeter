@@ -52,16 +52,16 @@ struct ControllerView: View {
             Spacer()
         }
         .padding(10)
-        .onChange(of: evFix) { oldValue, newValue in
+        .onChange(of: evFix) {  newValue in
             calculateEV()
         }
-        .onChange(of: iso) { oldValue, newValue in
+        .onChange(of: iso) {  newValue in
             calculateEV()
         }
-        .onChange(of: aperture) { oldValue, newValue in
+        .onChange(of: aperture) { newValue in
             calculateEV()
         }
-        .onChange(of: shutterSpeed) { oldValue, newValue in
+        .onChange(of: shutterSpeed) { newValue in
             calculateEV()
         }
         .onAppear {

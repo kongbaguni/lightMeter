@@ -77,7 +77,7 @@ struct SlideDialView: View {
                         }
                     }
                 }
-                .onChange(of: currentValue) { oldValue, newValue in
+                .onChange(of: currentValue) { newValue in
                     withAnimation {
                         if let idx = items.firstIndex(where: { item in
                             item.value == currentValue

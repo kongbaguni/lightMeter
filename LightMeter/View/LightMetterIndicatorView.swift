@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LightMetterIndicatorView: View {
-    let ev:Double
+    let ev:Double?
     let settingEv:Double?
     
     enum Status {
@@ -22,7 +22,7 @@ struct LightMetterIndicatorView: View {
     
     var status:Status {
         
-        guard let settingEv = settingEv else {
+        guard let settingEv = settingEv, let ev = ev else {
             return .off
         }
         
@@ -56,31 +56,41 @@ struct LightMetterIndicatorView: View {
                     Image(systemName: "arrowtriangle.left")
                 case .매우부족:
                     Image(systemName: "arrowtriangle.forward.fill")
+                        .foregroundStyle(.red)
                     Image(systemName: "circle")
                     Image(systemName: "arrowtriangle.left")
                 case .약간부족:
                     Image(systemName: "arrowtriangle.forward.fill")
+                        .foregroundStyle(.red)
                     Image(systemName: "circle.fill")
+                        .foregroundStyle(.green)
                     Image(systemName: "arrowtriangle.left")
                 case .정노출:
                     Image(systemName: "arrowtriangle.forward")
                     Image(systemName: "circle.fill")
+                        .foregroundStyle(.green)
                     Image(systemName: "arrowtriangle.left")
                 case .약간과노출:
                     Image(systemName: "arrowtriangle.forward")
                     Image(systemName: "circle.fill")
+                        .foregroundStyle(.green)
                     Image(systemName: "arrowtriangle.left.fill")
+                        .foregroundStyle(.red)
                 case .과노출:
                     Image(systemName: "arrowtriangle.forward")
                     Image(systemName: "circle")
                     Image(systemName: "arrowtriangle.left.fill")
+                        .foregroundStyle(.red)
                 }
-            }.foregroundStyle(.red)
+            }
         }
     }
 }
 
 #Preview {
+    LightMetterIndicatorView(ev: 0.0, settingEv: nil)
+    LightMetterIndicatorView(ev: 0.0, settingEv: 5.1)
+    LightMetterIndicatorView(ev: 10.0, settingEv: 5.1)
     LightMetterIndicatorView(ev: 0.0, settingEv: 0.5)
     LightMetterIndicatorView(ev: 0.5, settingEv: 0.5)
     LightMetterIndicatorView(ev: 0.35, settingEv: 0.5)

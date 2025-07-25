@@ -138,7 +138,7 @@ struct Models {
         }
         
         var items:[SlideDialView.Item] {
-            shutterSpeeds.map { str in
+            shutterSpeeds.reversed().map { str in
                 return .init(value: convert(str: str).seconds, label: str)
             }
         }
@@ -163,8 +163,10 @@ struct Models {
         if bodys.count == 0 {
             bodys = loadBodyData()
         }
-        
         let idx = UserDefaults.standard.integer(forKey: "bodySelectIdx")
+        if bodys.count < idx {
+            return bodys.last            
+        }
         return bodys[idx]
     }
 }

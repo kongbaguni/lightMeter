@@ -35,14 +35,10 @@ struct _CameraPreview: UIViewRepresentable {
 }
 
 struct CameraPreview : View {
-    let manager:LightMeterCameraManager
+    @ObservedObject var manager:LightMeterCameraManager
     var body: some View {
         ZStack {
             _CameraPreview(manager: manager)
-        }
-        .background {
-            RoundedRectangle(cornerRadius: 0)
-                .fill(.secondary)
         }
         .background {
             RoundedRectangle(cornerRadius: 0)
@@ -50,6 +46,16 @@ struct CameraPreview : View {
             
         }
         .padding(10)
+        .onAppear {
+            if !manager.session.isRunning {
+                manager.startSession()
+            }
+        }
+        .onDisappear {
+            if manager.session.isRunning {
+                manager.stopSession()
+            }
+        }
     }
 }
 

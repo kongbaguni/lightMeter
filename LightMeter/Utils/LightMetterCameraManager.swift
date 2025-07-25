@@ -41,23 +41,31 @@ class LightMeterCameraManager: NSObject, ObservableObject {
     
     private var lensAperture:Float? = nil
     
+    var sessionConfig:Bool = false
+    
     func startSession() {
-        guard let device = AVCaptureDevice.default(for: .video) else { return }
+        guard let device = AVCaptureDevice.default(for: .video) else {
+            return
+        }
         do {
-            let input = try AVCaptureDeviceInput(device: device)
-            session.beginConfiguration()
-            session.sessionPreset = .photo
-            
-            if session.canAddInput(input) {
-                session.addInput(input)
+            if sessionConfig == false {
+                let input = try AVCaptureDeviceInput(device: device)
+                session.beginConfiguration()
+                session.sessionPreset = .photo
+                
+                if session.canAddInput(input) {
+                    session.addInput(input)
+                }
+                
+                if session.canAddOutput(videoOutput) {
+                    session.addOutput(videoOutput)
+                }
+                session.commitConfiguration()
+                lensAperture = device.lensAperture
+                
+                sessionConfig = true
             }
-
-            if session.canAddOutput(videoOutput) {
-                session.addOutput(videoOutput)
-            }
-            session.commitConfiguration()
             
-            lensAperture = device.lensAperture
             
             // ISO 변화 감지
             isoObservation = device.observe(\.iso, options: [.new]) { [weak self] device, change in
@@ -74,7 +82,7 @@ class LightMeterCameraManager: NSObject, ObservableObject {
                 }
             }
             
-            DispatchQueue.global().async { [weak session] in
+            DispatchQueue.global(qos: .userInitiated).async { [weak session] in
                 session?.startRunning()
             }
 
@@ -86,7 +94,9 @@ class LightMeterCameraManager: NSObject, ObservableObject {
     }
     
     func stopSession() {
-        session.stopRunning()
+        DispatchQueue.global(qos: .userInitiated).async { [weak session] in
+            session?.stopRunning()
+        }
         isoObservation?.invalidate()
         isoObservation = nil
         exposureObservation?.invalidate()

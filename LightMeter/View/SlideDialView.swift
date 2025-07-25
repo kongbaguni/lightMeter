@@ -93,7 +93,7 @@ struct SlideDialView: View {
         }
         .onAppear {
             if currentItem == nil {
-                currentValue = items.first!.value
+                currentValue = items.first?.value ?? 0.0
             }
         }
     }

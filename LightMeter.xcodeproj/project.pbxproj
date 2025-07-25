@@ -442,6 +442,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LightMeter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LightMetter;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Use your camera to meter exposure.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -475,6 +476,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LightMeter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LightMetter;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Use your camera to meter exposure.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

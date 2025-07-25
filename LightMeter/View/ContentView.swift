@@ -20,15 +20,19 @@ struct ContentView: View {
                     isPlay.toggle()
                 } label: {
                     Image(systemName: "play.fill")
+                        .resizable()
+                        .scaledToFit()
                 }
             } else {
                 Button {
                     isPlay.toggle()
                 } label: {
                     Image(systemName: "stop.fill")
+                        .resizable()
+                        .scaledToFit()
                 }
             }
-        }
+        }.frame(height: 100)
     }
     
     var body: some View {
@@ -58,7 +62,7 @@ struct ContentView: View {
             }
             else {
                 cameraManager?.stopSession()
-            }            
+            }
         }
         .padding()
     }

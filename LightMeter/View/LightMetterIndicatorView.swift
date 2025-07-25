@@ -6,6 +6,14 @@
 //
 
 import SwiftUI
+struct ResizableSystemImage : View {
+    let systemName: String
+    var body: some View {
+        Image(systemName: systemName)
+            .resizable()
+            .scaledToFit()
+    }
+}
 
 struct LightMetterIndicatorView: View {
     let ev:Double?
@@ -51,39 +59,41 @@ struct LightMetterIndicatorView: View {
             Group {
                 switch status {
                 case .off:
-                    Image(systemName: "arrowtriangle.forward")
-                    Image(systemName: "circle")
-                    Image(systemName: "arrowtriangle.left")
+                    ResizableSystemImage(systemName: "arrowtriangle.forward")
+                    ResizableSystemImage(systemName: "circle")
+                    ResizableSystemImage(systemName: "arrowtriangle.left")
                 case .매우부족:
-                    Image(systemName: "arrowtriangle.forward.fill")
+                    ResizableSystemImage(systemName: "arrowtriangle.forward.fill")
                         .foregroundStyle(.red)
-                    Image(systemName: "circle")
-                    Image(systemName: "arrowtriangle.left")
+                    ResizableSystemImage(systemName: "circle")
+                    ResizableSystemImage(systemName: "arrowtriangle.left")
                 case .약간부족:
-                    Image(systemName: "arrowtriangle.forward.fill")
+                    ResizableSystemImage(systemName: "arrowtriangle.forward.fill")
                         .foregroundStyle(.red)
-                    Image(systemName: "circle.fill")
+                    ResizableSystemImage(systemName: "circle.fill")
                         .foregroundStyle(.green)
-                    Image(systemName: "arrowtriangle.left")
+                    ResizableSystemImage(systemName: "arrowtriangle.left")
                 case .정노출:
-                    Image(systemName: "arrowtriangle.forward")
-                    Image(systemName: "circle.fill")
+                    ResizableSystemImage(systemName: "arrowtriangle.forward")
+                    ResizableSystemImage(systemName: "circle.fill")
                         .foregroundStyle(.green)
-                    Image(systemName: "arrowtriangle.left")
+                    ResizableSystemImage(systemName: "arrowtriangle.left")
                 case .약간과노출:
-                    Image(systemName: "arrowtriangle.forward")
-                    Image(systemName: "circle.fill")
+                    ResizableSystemImage(systemName: "arrowtriangle.forward")
+                    ResizableSystemImage(systemName: "circle.fill")
                         .foregroundStyle(.green)
-                    Image(systemName: "arrowtriangle.left.fill")
+                    ResizableSystemImage(systemName: "arrowtriangle.left.fill")
                         .foregroundStyle(.red)
                 case .과노출:
-                    Image(systemName: "arrowtriangle.forward")
-                    Image(systemName: "circle")
-                    Image(systemName: "arrowtriangle.left.fill")
+                    ResizableSystemImage(systemName: "arrowtriangle.forward")
+                    ResizableSystemImage(systemName: "circle")
+                    ResizableSystemImage(systemName: "arrowtriangle.left.fill")
                         .foregroundStyle(.red)
                 }
             }
         }
+        .frame(height: 30)
+        .padding(10)
     }
 }
 

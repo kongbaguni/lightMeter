@@ -16,9 +16,22 @@ struct SlideDialView: View {
     @Binding var currentValue:Double
     
     private var currentItem:Item? {
-        items.first { item in
+        if let item = items.first(where: { item in
             return item.value == currentValue
+        }) {
+            return item
         }
+        var distance:Double? = 1000
+        var selectItem:Item? = nil
+        for item in items {
+            let dist = abs(item.value - currentValue)
+            if dist < distance! {
+                distance = dist
+                selectItem = item
+                currentValue = item.value
+            }
+        }
+        return selectItem
     }
     
     var body: some View {
@@ -73,7 +86,9 @@ struct SlideDialView: View {
                         if let idx = items.firstIndex(where: { item in
                             item.value == currentValue
                         }) {
-                            proxy.scrollTo(items[idx], anchor: .center)
+                            DispatchQueue.main.async {
+                                proxy.scrollTo(items[idx], anchor: .center)
+                            }
                         }
                     }
                 }
@@ -81,8 +96,10 @@ struct SlideDialView: View {
                     withAnimation {
                         if let idx = items.firstIndex(where: { item in
                             item.value == currentValue
-                        }) {                            
-                            proxy.scrollTo(items[idx], anchor: .center)
+                        }) {
+                            DispatchQueue.main.async {
+                                proxy.scrollTo(items[idx], anchor: .center)
+                            }
                         }
                     }
 

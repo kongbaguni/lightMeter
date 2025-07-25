@@ -11,18 +11,19 @@ struct ContentView: View {
     @State var cameraManager:LightMeterCameraManager? = nil
     @State var lightMetterValue: Double? = nil
     @State var controlerEv:Double? = nil
+    @State var isPlay:Bool = false
     
     var toggleButton : some View {
         Group {
-            if cameraManager?.isRunning == false {
+            if isPlay == false {
                 Button {
-                    cameraManager?.startSession()
+                    isPlay.toggle()
                 } label: {
                     Image(systemName: "play.fill")
                 }
             } else {
                 Button {
-                    cameraManager?.stopSession()
+                    isPlay.toggle()
                 } label: {
                     Image(systemName: "stop.fill")
                 }
@@ -45,9 +46,19 @@ struct ContentView: View {
             
         }
         .onAppear {
+            isPlay = cameraManager?.isRunning ?? false
             cameraManager = LightMeterCameraManager { value in
                 self.lightMetterValue = value
+                
             }
+        }
+        .onChange(of: isPlay) { newValue in
+            if newValue == true {
+                cameraManager?.startSession()
+            }
+            else {
+                cameraManager?.stopSession()
+            }            
         }
         .padding()
     }

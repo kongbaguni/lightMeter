@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lf" : {
-      "shouldTranslate" : false
-    },
     "Aperture" : {
       "localizations" : {
         "en" : {
@@ -15,6 +12,7 @@
       }
     },
     "body" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -48,6 +46,7 @@
       "shouldTranslate" : false
     },
     "lens" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

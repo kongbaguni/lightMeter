@@ -37,23 +37,36 @@ struct ControllerView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                if let currentBody = currentBody {
-                    HStack {
-                        Text(currentBody.brand)
-                            .bold()
-                            .foregroundStyle(.primary)
-                        Text(currentBody.name)
-                            .foregroundStyle(.secondary)
+                NavigationLink {
+                    BodyListView()
+                } label: {
+                    if let currentBody = currentBody {
+                        HStack {
+                            Text(currentBody.brand)
+                                .bold()
+                                .foregroundStyle(.primary)
+                            Text(currentBody.name)
+                                .foregroundStyle(.secondary)
+                        }
+                    } else {
+                        Text("select body")
                     }
                 }
-                if let currentLens = currentLens {
-                    HStack {
-                        Text(currentLens.brand)
-                            .bold()
-                            .foregroundStyle(.primary)
-                        Text(currentLens.name)
-                            .foregroundStyle(.secondary)
-                    }
+
+                NavigationLink {
+                    LensListView()
+                } label : {
+                    if let currentLens = currentLens {
+                        HStack {
+                            Text(currentLens.brand)
+                                .bold()
+                                .foregroundStyle(.primary)
+                            Text(currentLens.name)
+                                .foregroundStyle(.secondary)
+                        }
+                    } else {
+                        Text("select lens")
+                    }                    
                 }
                 
                 

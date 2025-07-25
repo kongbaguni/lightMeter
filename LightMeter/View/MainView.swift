@@ -9,25 +9,9 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        NavigationView {
-            NavigationStack {
-                ContentView()
-            }.toolbar {
-                NavigationLink {
-                    BodyListView()
-                } label: {
-                    Text("body")
-                }
-                
-                NavigationLink {
-                    LensListView()
-                } label: {
-                    Text("lens")
-                }
-
-            }
+        NavigationStack {
+            ContentView()
         }
-        
     }
 }
 

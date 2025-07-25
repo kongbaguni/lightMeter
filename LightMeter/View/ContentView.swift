@@ -36,18 +36,32 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
-            LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
-                .padding(10)
-            #if DEBUG
-            Text("\(lightMetterValue ?? 0.0)")
-            Text("\(controlerEv ?? 0.0)")
-            #endif
-            
-            Spacer()
-            ControllerView(ev:$controlerEv)
-            toggleButton
-            
+        GeometryReader { geometry in
+            if geometry.size.width < geometry.size.height {
+                VStack {
+                    LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
+                        .padding(10)
+//                    #if DEBUG
+//                    Text("\(lightMetterValue ?? 0.0)")
+//                    Text("\(controlerEv ?? 0.0)")
+//                    #endif
+                    
+                    Spacer()
+                    ControllerView(ev:$controlerEv)
+                    toggleButton
+                    
+                }
+            } else {
+                HStack {
+                    LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
+                        .padding(10)
+                    ScrollView {
+                        ControllerView(ev:$controlerEv)
+                    }
+                    toggleButton
+
+                }
+            }
         }
         .onAppear {
             isPlay = cameraManager?.isRunning ?? false
@@ -60,7 +74,7 @@ struct ContentView: View {
             if newValue == true {
                 cameraManager?.startSession()
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                    isPlay = false 
+                    isPlay = false
                 }
             }
             else {

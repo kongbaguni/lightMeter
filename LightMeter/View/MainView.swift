@@ -16,8 +16,15 @@ struct MainView: View {
                 NavigationLink {
                     BodyListView()
                 } label: {
-                    Text("body list")
+                    Text("body")
                 }
+                
+                NavigationLink {
+                    LensListView()
+                } label: {
+                    Text("lens")
+                }
+
             }
         }
         

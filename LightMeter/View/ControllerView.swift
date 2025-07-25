@@ -12,7 +12,7 @@ struct ControllerView: View {
     // 밝기 보정
     let evFixOffset:CGFloat = 0
     @State var currentBody:Models.Body? = nil
-    
+    @State var currentLens:Models.Lens? = nil
     
     @AppStorage("evfix") var evFix:Double = 0.0
     @AppStorage("iso") var iso:Double = Models.ISO.allCases.first!.rawValue
@@ -46,6 +46,16 @@ struct ControllerView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
+                if let currentLens = currentLens {
+                    HStack {
+                        Text(currentLens.brand)
+                            .bold()
+                            .foregroundStyle(.primary)
+                        Text(currentLens.name)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                
                 
                 Text("EV")
                 SlideDialView(items: Models.EVfix.items, currentValue: $evFix)
@@ -54,7 +64,7 @@ struct ControllerView: View {
                 SlideDialView(items: Models.ISO.items, currentValue: $iso)
                 
                 Text("Aperture")
-                SlideDialView(items: Models.Aperture.items, currentValue: $aperture)
+                SlideDialView(items: currentLens?.items ?? [], currentValue: $aperture)
                 
                 Text("ShutterSpeed")
                 SlideDialView(items: currentBody?.items ?? [], currentValue: $shutterSpeed)
@@ -63,7 +73,8 @@ struct ControllerView: View {
         }
         .padding(10)
         .onAppear {
-            currentBody = Models.curentBody
+            currentBody = Models.Body.curentBody
+            currentLens = Models.Lens.currentLens
         }
         .onChange(of: evFix) {  newValue in
             calculateEV()

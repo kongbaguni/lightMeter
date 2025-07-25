@@ -32,7 +32,7 @@ struct BodyListView: View {
         }
         .navigationTitle("select body")
         .onAppear {
-            list = Models.loadBodyData()
+            list = Models.Body.loadBodyData()
         }
     }
 }

@@ -86,9 +86,7 @@ struct SlideDialView: View {
                         if let idx = items.firstIndex(where: { item in
                             item.value == currentValue
                         }) {
-                            DispatchQueue.main.async {
-                                proxy.scrollTo(items[idx], anchor: .center)
-                            }
+                            proxy.scrollTo(items[idx], anchor: .center)
                         }
                     }
                 }
@@ -97,9 +95,7 @@ struct SlideDialView: View {
                         if let idx = items.firstIndex(where: { item in
                             item.value == currentValue
                         }) {
-                            DispatchQueue.main.async {
-                                proxy.scrollTo(items[idx], anchor: .center)
-                            }
+                            proxy.scrollTo(items[idx], anchor: .center)
                         }
                     }
 

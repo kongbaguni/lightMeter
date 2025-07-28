@@ -41,13 +41,10 @@ struct ContentView: View {
         GeometryReader { geometry in
             if geometry.size.width < geometry.size.height {
                 VStack {
-                    Spacer()
                     LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
                         .padding(10)                    
-                    Spacer()
                     ControllerView(ev:$controlerEv)
                     toggleButton
-                    
                 }
             } else {
                 HStack {

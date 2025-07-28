@@ -87,8 +87,8 @@ struct ControllerView: View {
         }
         .padding(10)
         .onAppear {
-//            currentBody = Models.Body.curentBody
-//            currentLens = Models.Lens.currentLens
+            currentBody = Models.Body.curentBody!
+            currentLens = Models.Lens.currentLens!
         }
         .onChange(of: evFix) {  newValue in
             calculateEV()

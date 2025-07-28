@@ -20,9 +20,6 @@ struct SlideDialView: View {
         if self.items.count == 0 {
             return nil 
         }
-        if self.currentValue == 0 {
-            return nil
-        }
         
         if let item = items.first(where: { item in
             return item.value == currentValue

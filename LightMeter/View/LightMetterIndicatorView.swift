@@ -12,6 +12,7 @@ struct ResizableSystemImage : View {
         Image(systemName: systemName)
             .resizable()
             .scaledToFit()
+            .padding(.horizontal, 20)
     }
 }
 
@@ -34,8 +35,8 @@ struct LightMetterIndicatorView: View {
             return .off
         }
         
-        let shotRange:Double = 0.25
-        let longRange:Double = 0.7
+        let shotRange:Double = 0.5
+        let longRange:Double = 1.0
 
         if (settingEv - shotRange ..< settingEv + shotRange).contains(ev) {
             return .정노출

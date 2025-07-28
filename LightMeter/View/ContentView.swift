@@ -19,26 +19,29 @@ struct ContentView: View {
                 Button {
                     isPlay.toggle()
                 } label: {
-                    Image(systemName: "play.fill")
+                    Image(systemName: "light.min")
                         .resizable()
                         .scaledToFit()
                 }
             } else {
-                Button {
-                    isPlay.toggle()
-                } label: {
-                    Image(systemName: "stop.fill")
-                        .resizable()
-                        .scaledToFit()
-                }
+                Image(systemName: "light.max")
+                    .resizable()
+                    .scaledToFit()
             }
-        }.frame(height: 100)
+        }.frame(width : 50, height: 50)
+            .padding(20)
+            .background {
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(.secondary, lineWidth: 2)
+            }
+        
     }
     
     var body: some View {
         GeometryReader { geometry in
             if geometry.size.width < geometry.size.height {
                 VStack {
+                    Spacer()
                     LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
                         .padding(10)                    
                     Spacer()
@@ -63,18 +66,15 @@ struct ContentView: View {
             cameraManager = LightMeterCameraManager { value in
                 self.lightMetterValue = value
                 
+            } onStopSession: {
+                self.isPlay = false
             }
         }
         .onChange(of: isPlay) { newValue in
             if newValue == true {
                 cameraManager?.startSession()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                    isPlay = false
-                }
             }
-            else {
-                cameraManager?.stopSession()
-            }
+            
         }
         .padding()
     }

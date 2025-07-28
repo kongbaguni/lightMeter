@@ -20,29 +20,44 @@ class LightMeterCameraManager: NSObject, ObservableObject {
 
     
     let lightMeterDidChange:(Double)->Void
-    init(lightMeterDidChange: @escaping (Double) -> Void) {
+    let onStopSession:()->Void
+    
+    init(lightMeterDidChange: @escaping (Double) -> Void, onStopSession:@escaping ()->Void) {
         self.lightMeterDidChange = lightMeterDidChange
+        self.onStopSession = onStopSession
+        super.init()
     }
     
     var isRunning:Bool {
         session.isRunning
     }
 
+    var changeCount:Int = 0
+    
     private var iso:Float? = nil {
         didSet {
-            lightMeterDidChange(calculateEV100())
+            postChange()
         }
     }
     private var shutterSpeed:CMTime? = nil {
         didSet {
-            lightMeterDidChange(calculateEV100())
+            postChange()
         }
     }
     
+    private func postChange() {
+        lightMeterDidChange(calculateEV100())
+        changeCount += 1
+        if changeCount > 2 {
+            self.stopSession()
+            changeCount = 0
+        }
+    }
     private var lensAperture:Float? = nil
     
     var sessionConfig:Bool = false
     
+       
     func startSession() {
         guard let device = AVCaptureDevice.default(for: .video) else {
             return
@@ -93,9 +108,12 @@ class LightMeterCameraManager: NSObject, ObservableObject {
 
     }
     
-    func stopSession() {
-        DispatchQueue.global(qos: .userInitiated).async { [weak session] in
+    private func stopSession() {
+        DispatchQueue.global(qos: .userInitiated).async { [weak session, weak self] in
             session?.stopRunning()
+            DispatchQueue.main.async {
+                self?.onStopSession()
+            }
         }
         isoObservation?.invalidate()
         isoObservation = nil

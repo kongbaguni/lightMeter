@@ -35,7 +35,7 @@ struct LightMetterIndicatorView: View {
             return .off
         }
         
-        let shotRange:Double = 0.5
+        let shotRange:Double = 0.25
         let longRange:Double = 1.0
 
         if (settingEv - shotRange ..< settingEv + shotRange).contains(ev) {

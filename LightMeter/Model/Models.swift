@@ -75,29 +75,5 @@ struct Models {
         }
     }
     
-    enum Aperture: Double, CaseIterable {
-        case f16 = 16
-        case f13 = 13
-        case f11 = 11
-        case f9_5 = 9.5
-        case f8 = 8
-        case f6_7 = 6.7
-        case f5_6 = 5.6
-        case f4_8 = 4.8
-        case f4 = 4
-        case f3_4 = 3.4
-        case f2_8 = 2.8
-        case f2_4 = 2.4
-        case f2 = 2
-        var stringValue:String {
-            String(format:"f%02.1f", rawValue)
-        }
-        static var items:[SlideDialView.Item] {
-            allCases.map { aperture in
-                return .init(value: aperture.rawValue, label: aperture.stringValue)
-            }
-        }
-        
-    }    
-    
+  
 }

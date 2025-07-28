@@ -39,65 +39,70 @@ struct SlideDialView: View {
         return selectItem
     }
         
-    var body: some View {
-        HStack {
-            Group {
-                Button {
-                    selectPreviousItem()
-                } label: {
-                    Image(systemName: "arrow.left")
-                        .imageScale(.large)
-                        .bold()
-                }
-                
-                Button {
-                    selectNextItem()
-                } label: {
-                    Image(systemName: "arrow.right")
-                        .imageScale(.large)
-                        .bold()
-                }
-            }
-            .foregroundStyle(Color.accentColor)
-            .padding(10)
-            .background {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.secondary)
+    var buttons : some View {
+        Group {
+            Button {
+                selectPreviousItem()
+            } label: {
+                Image(systemName: "arrow.left")
+                    .imageScale(.large)
+                    .bold()
             }
             
-            ScrollViewReader { proxy in
-                ScrollView(.horizontal) {
-                    LazyHStack(spacing:0) {
-                        ForEach(items,id:\.self) { item in
-                            Button {
-                                currentValue = item.value
-                            } label : {
-                                Text(item.label)
-                                    .bold(item == currentItem)
-                                    .font(.system(size: item == currentItem ? 20 : 12))
-                                    .foregroundStyle(item == currentItem ? .red : .primary)
-                                    .padding(10)
-                                    .background {
-                                        RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                            .fill(item == currentItem ? Color.accentColor : Color.secondary)
-                                    }
-                                    .padding(.horizontal, 1)
-                            }
+            Button {
+                selectNextItem()
+            } label: {
+                Image(systemName: "arrow.right")
+                    .imageScale(.large)
+                    .bold()
+            }
+        }
+        .foregroundStyle(Color.accentColor)
+        .padding(10)
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.secondary)
+        }
+    }
+    var scrollView : some View {
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal) {
+                LazyHStack(spacing:0) {
+                    ForEach(items,id:\.self) { item in
+                        Button {
+                            currentValue = item.value
+                        } label : {
+                            Text(item.label)
+                                .bold(item == currentItem)
+                                .font(.system(size: item == currentItem ? 20 : 12))
+                                .foregroundStyle(item == currentItem ? .red : .primary)
+                                .padding(10)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                        .fill(item == currentItem ? Color.accentColor : Color.secondary)
+                                }
+                                .padding(.horizontal, 1)
                         }
                     }
                 }
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) {
-                        selectItem(proxy: proxy)
-                    }
-                }
-                .onChange(of: currentValue) { newValue in
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) {
                     selectItem(proxy: proxy)
-                    Log.debug("currentValue : ", currentValue, UserDefaults.standard.double(forKey: "aperture"))
                 }
             }
-            .frame(height:60)
-            
+            .onChange(of: currentValue) { newValue in
+                selectItem(proxy: proxy)
+                Log.debug("currentValue : ", currentValue, UserDefaults.standard.double(forKey: "aperture"))
+            }
+        }
+        .frame(height:60)
+
+    }
+    var body: some View {
+        HStack {
+            scrollView
+            buttons
         }
         .onAppear {
             if currentItem == nil {

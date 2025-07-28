@@ -40,12 +40,7 @@ struct ContentView: View {
             if geometry.size.width < geometry.size.height {
                 VStack {
                     LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
-                        .padding(10)
-//                    #if DEBUG
-//                    Text("\(lightMetterValue ?? 0.0)")
-//                    Text("\(controlerEv ?? 0.0)")
-//                    #endif
-                    
+                        .padding(10)                    
                     Spacer()
                     ControllerView(ev:$controlerEv)
                     toggleButton

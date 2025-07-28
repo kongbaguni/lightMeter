@@ -17,6 +17,13 @@ struct SlideDialView: View {
     @Binding var currentValue:Double
     
     private var currentItem:Item? {
+        if self.items.count == 0 {
+            return nil 
+        }
+        if self.currentValue == 0 {
+            return nil
+        }
+        
         if let item = items.first(where: { item in
             return item.value == currentValue
         }) {
@@ -34,7 +41,7 @@ struct SlideDialView: View {
         }
         return selectItem
     }
-    
+        
     var body: some View {
         HStack {
             Group {
@@ -89,6 +96,7 @@ struct SlideDialView: View {
                 }
                 .onChange(of: currentValue) { newValue in
                     selectItem(proxy: proxy)
+                    Log.debug("currentValue : ", currentValue, UserDefaults.standard.double(forKey: "aperture"))
                 }
             }
             .frame(height:60)

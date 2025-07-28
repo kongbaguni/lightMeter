@@ -44,7 +44,10 @@ struct ContentView: View {
                     LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
                         .padding(10)                    
                     ControllerView(ev:$controlerEv)
-                    toggleButton
+                    HStack {
+                        LightMetterAutoView()
+                        toggleButton
+                    }
                 }
             } else {
                 HStack {
@@ -53,7 +56,10 @@ struct ContentView: View {
                     ScrollView {
                         ControllerView(ev:$controlerEv)
                     }
-                    toggleButton
+                    VStack {
+                        LightMetterAutoView()
+                        toggleButton
+                    }
 
                 }
             }

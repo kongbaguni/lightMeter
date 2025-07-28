@@ -19,7 +19,7 @@ struct ControllerView: View {
     @AppStorage("iso") var iso:Double = 0.0
     @AppStorage("aperture") var aperture:Double = 0.0
     @AppStorage("shutterSpeed") var shutterSpeed:Double = 0.0
-    
+        
     func calculateEV(aperture: Double, shutter: Double, iso: Double) -> Double? {
         if iso == 0 || shutter == 0 || aperture == 0 {
             return nil
@@ -63,25 +63,26 @@ struct ControllerView: View {
         }
     }
     
+   
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text("EV").font(.system(size: 12))
-                SlideDialView(items: Models.EVfix.items, currentValue: $evFix)
+                SlideDialView(viewType : .ev, items: Models.EVfix.items, currentValue: $evFix)
                 
                 Text("ISO").font(.system(size: 12))
-                SlideDialView(items: Models.ISO.items, currentValue: $iso)
+                SlideDialView(viewType : .iso , items: Models.ISO.items, currentValue: $iso)
                 
                 HStack {
                     Text("Aperture").font(.system(size: 12))
                     lensListNavigationItem
                 }
-                SlideDialView(items: currentLens.items, currentValue: $aperture)
+                SlideDialView(viewType : .aperture ,items: currentLens.items, currentValue: $aperture)
                 HStack {
                     Text("ShutterSpeed").font(.system(size: 12))
                     bodyListNavigationItem
                 }
-                SlideDialView(items: currentBody.items , currentValue: $shutterSpeed)
+                SlideDialView(viewType : .shutterSpeed, items: currentBody.items , currentValue: $shutterSpeed)
             }
             Spacer()
         }
@@ -102,6 +103,7 @@ struct ControllerView: View {
         .onChange(of: shutterSpeed) { newValue in
             calculateEV()
         }
+       
         .onAppear {
             calculateEV()
         }

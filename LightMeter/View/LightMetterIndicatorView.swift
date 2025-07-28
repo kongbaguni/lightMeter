@@ -29,8 +29,7 @@ struct LightMetterIndicatorView: View {
         case off
     }
     
-    var status:Status {
-        
+    var _status:Status {
         guard let settingEv = settingEv, let ev = ev else {
             return .off
         }
@@ -53,6 +52,18 @@ struct LightMetterIndicatorView: View {
         }
         
         return .과노출
+    }
+    
+    var status:Status {
+        guard let ev = self.ev,
+              let settingEv = self.settingEv else {
+            return .off
+        }
+
+        let newStatus = _status
+        
+        NotificationCenter.default.post(name: .lightMetterStatusDidChanged, object: newStatus, userInfo: ["ev" : ev, "settingEv": settingEv, "value": abs(ev - settingEv)])
+        return newStatus
     }
     
     var body: some View {

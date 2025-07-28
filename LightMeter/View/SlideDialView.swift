@@ -9,10 +9,19 @@ import SwiftUI
 import Foundation
 
 struct SlideDialView: View {
+    enum ViewType {
+        case ev
+        case iso
+        case aperture
+        case shutterSpeed
+    }
+    
     struct Item : Hashable {
         let value: Double
         let label: String
     }
+    let viewType:ViewType
+    
     let items: [Item]
     @Binding var currentValue:Double
     
@@ -97,7 +106,20 @@ struct SlideDialView: View {
             }
         }
         .frame(height:60)
-
+        .onReceive(NotificationCenter.default.publisher(for: .lightMetterSelectNext)) { output in
+            if let vt = output.object as? ViewType {
+                if self.viewType == vt {
+                    selectNextItem()
+                }
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .lightMetterSelectPrev)) { output in
+            if let vt = output.object as? ViewType {
+                if self.viewType == vt {
+                    selectPreviousItem()
+                }
+            }
+        }
     }
     var body: some View {
         HStack {
@@ -157,6 +179,6 @@ struct SlideDialView: View {
         .init(value: 0.9, label: "0.9"),
         .init(value: 10.0, label: "10.0")
     ]
-    SlideDialView(items: items, currentValue: .constant(items.last!.value))
+    SlideDialView( viewType : .aperture ,items: items, currentValue: .constant(items.last!.value))
                   
 }

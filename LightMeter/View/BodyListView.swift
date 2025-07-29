@@ -34,6 +34,9 @@ struct BodyListView: View {
         .onAppear {
             list = Models.Body.loadBodyData()
         }
+        .onChange(of: bodySelectIdx) {  newValue in
+            NotificationCenter.default.post(name: .lightMetterSettingChanged, object: nil)
+        }
     }
 }
 

@@ -18,13 +18,20 @@ struct AutoModeSelectView: View {
             return "a.circle"
         case .modeS:
             return "s.circle"
+        case .pause:
+            return "circle"
         }
     }
     
     var imageView : some View {
         Image(systemName: imageName)
             .resizable()
-            .frame(width: 32, height: 32)
+            .frame(width: 50, height: 50)
+            .padding(20)
+            .background {
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(.secondary, lineWidth: 2)
+            }
     }
     var body: some View {
         Button {
@@ -35,6 +42,8 @@ struct AutoModeSelectView: View {
                 mode = .modeS
             case .modeS:
                 mode = .manual
+            default:
+                break
             }
         } label: {
             imageView

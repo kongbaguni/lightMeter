@@ -34,6 +34,9 @@ struct LensListView: View {
         .onAppear {
             list = Models.Lens.loadData()
         }
+        .onChange(of: lensSelectIdx) {  newValue in
+            NotificationCenter.default.post(name: .lightMetterSettingChanged, object: nil)
+        }
     }
 }
 

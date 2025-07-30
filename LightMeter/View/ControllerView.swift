@@ -75,11 +75,13 @@ struct ControllerView: View {
                 
                 HStack {
                     Text("Aperture").font(.system(size: 12))
+                    Text("lens").foregroundStyle(.secondary)
                     lensListNavigationItem
                 }
                 SlideDialView(viewType : .aperture ,items: currentLens.items, currentValue: $aperture)
                 HStack {
                     Text("ShutterSpeed").font(.system(size: 12))
+                    Text("body").foregroundStyle(.secondary)
                     bodyListNavigationItem
                 }
                 SlideDialView(viewType : .shutterSpeed, items: currentBody.items , currentValue: $shutterSpeed)

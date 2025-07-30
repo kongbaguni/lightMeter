@@ -38,6 +38,12 @@ struct CustomLensMakeView: View {
                     HStack {
                         ForEach(apertureList, id:\.self) { aperture in
                             Text(String(format: "%0.1f", aperture))
+                                .padding(5)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(.blue)
+                                }
+                                .foregroundStyle(.white)
                         }
                         if !apertureList.isEmpty {
                             Button {
@@ -50,7 +56,9 @@ struct CustomLensMakeView: View {
                 }
             }
             ApertureMakeView {double in
-                apertureList.append(double)
+                if apertureList.last ?? 0 < double {
+                    apertureList.append(double)
+                }
             }
             
         }

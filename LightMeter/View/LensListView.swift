@@ -33,7 +33,7 @@ struct LensListView: View {
                     ForEach(0..<customList.count, id:\.self) { idx in
                         let lens = customList[idx]
                         HStack {
-                            Text(String(format:"%02d", idx))
+                            Text(String(format:"%d", idx + 1))
                             Button {
                                 lensSelectIdx = list.count + idx
                             } label: {

@@ -27,6 +27,16 @@
         }
       }
     },
+    "body" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "바디"
+          }
+        }
+      }
+    },
     "body list" : {
       "localizations" : {
         "ko" : {
@@ -77,8 +87,21 @@
         }
       }
     },
+    "F" : {
+      "shouldTranslate" : false
+    },
     "ISO" : {
       "shouldTranslate" : false
+    },
+    "lens" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "랜즈"
+          }
+        }
+      }
     },
     "lens list" : {
       "localizations" : {

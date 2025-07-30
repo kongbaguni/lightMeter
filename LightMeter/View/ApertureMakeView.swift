@@ -16,26 +16,66 @@ struct ApertureMakeView: View {
         Image(systemName: name)
             .resizable()
             .scaledToFit()
-            .frame(width: 40, height: 40)
+            .frame(width: 30, height: 30)
     }
+    
+    enum DataUpdateVector {
+        case up
+        case down
+    }
+    
+    func updateDate(idx:Int, vector:DataUpdateVector) {
+        switch vector {
+        case .up:
+            data[idx] += 1
+            if data[idx] > 9 {
+                data[idx] = 0
+                if idx - 1 >= 0 {
+                    data[idx - 1] += 1
+                }
+            }
+        case .down:
+            data[idx] -= 1
+            if data[idx] < 0 {
+                data[idx] = 9
+                if idx - 1 >= 0 {
+                    data[idx - 1] -= 1
+                }
+            }
+        }
+        
+        for (idx, item) in data.enumerated() {
+            if item > 9 {
+                data[idx] -= 10
+                if idx > 0 {
+                    data[idx - 1] += 1
+                }
+            }
+            else if item < 0 {
+                data[idx] += 10
+                if idx > 0 {
+                    data[idx - 1] -= 1
+                    if data[idx - 1] < 0 {
+                        data[idx - 1] = 0
+                    }
+                }
+            }
+        }
+
+    }
+    
     
     func numberView(_ idx:Int)-> some View {
         VStack {
             Button {
-                data[idx] += 1
-                if data[idx] > 9 {
-                    data[idx] = 0
-                }
+                updateDate(idx: idx, vector: .up)
             } label: {
                 buttonImage(name: "arrowtriangle.up")
             }
             Text("\(data[idx])")
                 .font(.system(size: 40, weight: .bold))
             Button {
-                data[idx] -= 1
-                if data[idx] < 0 {
-                    data[idx] = 9
-                }
+                updateDate(idx: idx, vector: .down)
             } label: {
                 buttonImage(name: "arrowtriangle.down")
             }
@@ -43,6 +83,8 @@ struct ApertureMakeView: View {
     }
     var body: some View {
         HStack {
+            Text("F").font(.system(size: 40, design: .serif).italic())
+                .padding(5)
             ForEach(0..<data.count, id:\.self) { idx in
                 if idx == data.count - 1 {
                     Text(".")
@@ -59,7 +101,9 @@ struct ApertureMakeView: View {
             } label: {
                 buttonImage(name: "return")
             }
-        }
+            Spacer()
+            
+        }.padding(10)
     }
 }
 

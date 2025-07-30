@@ -1,9 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Aperture" : {
+    "." : {
+      "shouldTranslate" : false
+    },
+    "%lld" : {
+      "shouldTranslate" : false
+    },
+    "aperture" : {
       "localizations" : {
-        "en" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "조리개"
@@ -11,20 +17,19 @@
         }
       }
     },
-    "body" : {
-      "extractionState" : "stale",
+    "Aperture" : {
       "localizations" : {
-        "en" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "바디"
+            "value" : "조리개"
           }
         }
       }
     },
     "body list" : {
       "localizations" : {
-        "en" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "바디 목록"
@@ -32,9 +37,39 @@
         }
       }
     },
+    "Brand" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "브랜드"
+          }
+        }
+      }
+    },
+    "Confirm" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인"
+          }
+        }
+      }
+    },
+    "custom lens list" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자 랜즈 목록"
+          }
+        }
+      }
+    },
     "EV" : {
       "localizations" : {
-        "en" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "노출보정"
@@ -45,20 +80,9 @@
     "ISO" : {
       "shouldTranslate" : false
     },
-    "lens" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "랜즈"
-          }
-        }
-      }
-    },
     "lens list" : {
       "localizations" : {
-        "en" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "랜즈 목록"
@@ -66,9 +90,39 @@
         }
       }
     },
+    "make custom lens" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자 랜즈 생성"
+          }
+        }
+      }
+    },
+    "Model" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모델"
+          }
+        }
+      }
+    },
+    "save" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장"
+          }
+        }
+      }
+    },
     "select body" : {
       "localizations" : {
-        "en" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "바디 선택"
@@ -78,7 +132,7 @@
     },
     "select lens" : {
       "localizations" : {
-        "en" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "랜즈 선택"
@@ -88,7 +142,7 @@
     },
     "ShutterSpeed" : {
       "localizations" : {
-        "en" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "셔터속도"

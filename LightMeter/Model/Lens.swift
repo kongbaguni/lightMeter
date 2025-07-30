@@ -7,10 +7,23 @@
 import Foundation
 
 extension Models {
-    struct Lens : Decodable {
+    struct Lens : Codable {
+        let id : Int
         let brand : String
         let name : String
         let apertures : [Double]
+        
+        var jsonString:String? {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            do {
+                let data = try encoder.encode(self)
+                return String(data:data, encoding: .utf8)
+            } catch {
+                
+                return nil
+            }
+        }
         
         var items:[SlideDialView.Item] {
             apertures.reversed().map { aperture in
@@ -38,11 +51,18 @@ extension Models {
             if lensList.count == 0 {
                 lensList = loadData()
             }
+            
             let idx = UserDefaults.standard.integer(forKey: "lensSelectIdx")
-            if lensList.count < idx {
-                return lensList.last
+            if idx < lensList.count {
+                return lensList[idx]
             }
-            return lensList[idx]
+            
+            let customLensList = UserDefaults.standard.loadCustomLens()
+            if customLensList.count > 0 {
+                let newidx = idx - lensList.count
+                return customLensList[newidx]
+            }
+            return nil
         }
     }
 

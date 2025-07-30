@@ -7,10 +7,23 @@
 import AVFoundation
 
 extension Models {
-    struct Body : Decodable {
+    struct Body : Codable {
+        let id : Int
         let brand : String
         let name : String
         let shutterSpeeds : [String]
+        
+        var jsonString:String? {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            do {
+                let data = try encoder.encode(self)
+                return String(data:data, encoding: .utf8)
+            } catch {
+                
+                return nil
+            }
+        }
         
         func convert(str:String)->CMTime{
             if str.contains("/") {
@@ -58,6 +71,14 @@ extension Models {
             let idx = UserDefaults.standard.integer(forKey: "bodySelectIdx")
             if bodys.count < idx {
                 return bodys.last
+            }
+            
+            let customBodyList = UserDefaults.standard.loadCustomBodys()
+            if customBodyList.count > 0 {
+                let newidx = idx - bodys.count
+                if newidx < customBodyList.count {
+                    return customBodyList[newidx]
+                }
             }
             return bodys[idx]
         }

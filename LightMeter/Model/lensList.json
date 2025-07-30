@@ -1,31 +1,37 @@
 [
     {
+        "id" : 1,
         "brand" : "Leica",
         "name" : "Summitar 50",
         "apertures": [2,2.2, 3.2, 4.5, 6.3, 9, 12.5]
     },
     {
+        "id" : 2,
         "brand" : "Leica",
         "name" : "APO Summicron 35",
         "apertures": [2,2.4,2.8,3.4,4,5.6,6.7,8,9.5,11,13,16]
     },
     {
+        "id" : 3,
         "brand" : "Leica",
         "name" : "APO Summicron 50",
         "apertures": [2,2.4,2.8,3.4,4,5.6,6.7,8,9.5,11,13,16]
     },
     {
+        "id" : 4,
         "brand" : "Leica",
         "name" : "APO Telyt 135",
         "apertures": [3.4,4,4.8,5.6,6.7,8,9.5,11,13,16,19,22]
     },
     
     {
+        "id" : 5,
         "brand" : "Rolei",
         "name" : "Tesser 40mm f3.5",
         "apertures": [3.5, 4, 5.6, 8, 11, 16]
     },
     {
+        "id" : 6,
         "brand" : "Rolei",
         "name" : "Sonner 40mm f2.8",
         "apertures": [2.8, 4, 5.6, 8, 11, 16, 22]

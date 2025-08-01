@@ -9,6 +9,7 @@ import SwiftUI
 import Foundation
 
 struct SlideDialView: View {
+    let buttonAlignment: Alignment
     enum ViewType {
         case ev
         case iso
@@ -123,8 +124,14 @@ struct SlideDialView: View {
     }
     var body: some View {
         HStack {
-            scrollView
-            buttons
+            if buttonAlignment == .leading {
+                buttons
+                scrollView
+            }
+            else {
+                scrollView
+                buttons
+            }
         }
         .onAppear {
             if currentItem == nil {
@@ -179,6 +186,6 @@ struct SlideDialView: View {
         .init(value: 0.9, label: "0.9"),
         .init(value: 10.0, label: "10.0")
     ]
-    SlideDialView( viewType : .aperture ,items: items, currentValue: .constant(items.last!.value))
+    SlideDialView(buttonAlignment:.leading, viewType : .aperture ,items: items, currentValue: .constant(items.last!.value))
                   
 }

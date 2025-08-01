@@ -19,6 +19,8 @@ struct ControllerView: View {
     @AppStorage("iso") var iso:Double = 0.0
     @AppStorage("aperture") var aperture:Double = 0.0
     @AppStorage("shutterSpeed") var shutterSpeed:Double = 0.0
+    
+    let buttonAlignment: Alignment
         
     func calculateEV(aperture: Double, shutter: Double, iso: Double) -> Double? {
         if iso == 0 || shutter == 0 || aperture == 0 {
@@ -68,23 +70,23 @@ struct ControllerView: View {
         HStack {
             VStack(alignment: .leading) {
                 Text("EV").font(.system(size: 12))
-                SlideDialView(viewType : .ev, items: Models.EVfix.items, currentValue: $evFix)
+                SlideDialView(buttonAlignment:buttonAlignment, viewType : .ev, items: Models.EVfix.items, currentValue: $evFix)
                 
                 Text("ISO").font(.system(size: 12))
-                SlideDialView(viewType : .iso , items: Models.ISO.items, currentValue: $iso)
+                SlideDialView(buttonAlignment:buttonAlignment, viewType : .iso , items: Models.ISO.items, currentValue: $iso)
                 
                 HStack {
                     Text("Aperture").font(.system(size: 12))
                     Text("lens").foregroundStyle(.secondary)
                     lensListNavigationItem
                 }
-                SlideDialView(viewType : .aperture ,items: currentLens.items, currentValue: $aperture)
+                SlideDialView(buttonAlignment:buttonAlignment, viewType : .aperture ,items: currentLens.items, currentValue: $aperture)
                 HStack {
                     Text("ShutterSpeed").font(.system(size: 12))
                     Text("body").foregroundStyle(.secondary)
                     bodyListNavigationItem
                 }
-                SlideDialView(viewType : .shutterSpeed, items: currentBody.items , currentValue: $shutterSpeed)
+                SlideDialView(buttonAlignment:buttonAlignment, viewType : .shutterSpeed, items: currentBody.items , currentValue: $shutterSpeed)
             }
             Spacer()
         }
@@ -113,5 +115,5 @@ struct ControllerView: View {
 }
 
 #Preview {
-    ControllerView(ev: .constant(0.0))
+    ControllerView(ev: .constant(0.0), buttonAlignment: .trailing)
 }

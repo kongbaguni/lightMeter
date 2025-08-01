@@ -82,7 +82,7 @@ struct ShuterSpeedMakeView: View {
                     onConfirm(second)
                     return
                 }
-                if second == "1" && devine != "1" {
+                if second == "1" && devine == "1" {
                     onConfirm("1")
                     return
                 }

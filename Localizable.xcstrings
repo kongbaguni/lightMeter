@@ -14,10 +14,29 @@
       "shouldTranslate" : false
     },
     "Ad" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "広告"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "광고"
+          }
+        }
+      }
     },
     "aperture" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "絞り"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28,6 +47,12 @@
     },
     "Aperture" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "絞り"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38,6 +63,12 @@
     },
     "body" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カメラ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48,6 +79,12 @@
     },
     "body list" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カメラ一覧"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58,6 +95,12 @@
     },
     "Brand" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ブランド"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68,6 +111,12 @@
     },
     "Confirm" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確認する"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -76,8 +125,17 @@
         }
       }
     },
+    "Crash" : {
+
+    },
     "custom body list" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カスタムカメラ一覧"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -88,6 +146,12 @@
     },
     "custom lens list" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カスタムレンズ一覧"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -104,7 +168,8 @@
             "value" : "노출보정"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "F" : {
       "shouldTranslate" : false
@@ -114,6 +179,12 @@
     },
     "lens" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "レンズ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -124,6 +195,12 @@
     },
     "lens list" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "レンズ一覧"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134,6 +211,12 @@
     },
     "make custom body" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カスタムカメラの作成"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -144,6 +227,12 @@
     },
     "make custom lens" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カスタムレンズを作る"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -154,6 +243,12 @@
     },
     "Model" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "モデル"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -164,6 +259,12 @@
     },
     "save" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -174,6 +275,12 @@
     },
     "select body" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カメラの選択"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -184,6 +291,12 @@
     },
     "select lens" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "レンズ選択"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -194,6 +307,12 @@
     },
     "shutterSpeed" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "シャッター速度"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -204,6 +323,12 @@
     },
     "ShutterSpeed" : {
       "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "シャッター速度"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",

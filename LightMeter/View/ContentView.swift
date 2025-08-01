@@ -6,8 +6,19 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
+import FirebaseCore
 
 struct ContentView: View {
+    init() {
+        FirebaseApp.configure()
+        GoogleMobileAds.MobileAds.shared.start { status in
+            print(status)
+            GoogleAdPrompt.promptWithDelay {
+                
+            }
+        }
+    }
     @State var cameraManager:LightMeterCameraManager? = nil
     @State var lightMetterValue: Double? = nil
     @State var controlerEv:Double? = nil

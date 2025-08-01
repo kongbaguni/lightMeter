@@ -21,6 +21,12 @@
 		1BE5CAC22E3D65590000D5DC /* GADNativeAd+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CAB12E3D65590000D5DC /* GADNativeAd+Extensions.swift */; };
 		1BE5CAC32E3D65590000D5DC /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE5CAB62E3D65590000D5DC /* UnifiedNativeAdView.xib */; };
 		1BE5CAC62E3D65ED0000D5DC /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAC52E3D65ED0000D5DC /* ActivityIndicatorView */; };
+		1BE5CACF2E3D812D0000D5DC /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CACE2E3D812D0000D5DC /* FirebaseCrashlytics */; };
+		1BE5CAD12E3D812D0000D5DC /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAD02E3D812D0000D5DC /* FirebasePerformance */; };
+		1BE5CAD32E3D81990000D5DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BE5CAD22E3D81990000D5DC /* GoogleService-Info.plist */; };
+		1BE5CAD52E3D81DC0000D5DC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAD42E3D81DC0000D5DC /* FirebaseAnalytics */; };
+		1BE5CAD72E3D81DC0000D5DC /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAD62E3D81DC0000D5DC /* FirebaseAnalyticsCore */; };
+		1BE5CAD92E3D81DC0000D5DC /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAD82E3D81DC0000D5DC /* FirebaseAnalyticsIdentitySupport */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,7 @@
 		1BE5CAB82E3D65590000D5DC /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		1BE5CAB92E3D65590000D5DC /* GoogleAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAd.swift; sourceTree = "<group>"; };
 		1BE5CABA2E3D65590000D5DC /* GoogleAdPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdPrompt.swift; sourceTree = "<group>"; };
+		1BE5CAD22E3D81990000D5DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BEE161A2E1243E5003123CE /* LightMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEE16272E1243E7003123CE /* LightMeterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightMeterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEE16312E1243E7003123CE /* LightMeterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightMeterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,8 +101,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BE5CAD92E3D81DC0000D5DC /* FirebaseAnalyticsIdentitySupport in Frameworks */,
 				1BE5CAAF2E3D64FB0000D5DC /* GoogleMobileAds in Frameworks */,
+				1BE5CACF2E3D812D0000D5DC /* FirebaseCrashlytics in Frameworks */,
+				1BE5CAD52E3D81DC0000D5DC /* FirebaseAnalytics in Frameworks */,
+				1BE5CAD12E3D812D0000D5DC /* FirebasePerformance in Frameworks */,
 				1BE5CAC62E3D65ED0000D5DC /* ActivityIndicatorView in Frameworks */,
+				1BE5CAD72E3D81DC0000D5DC /* FirebaseAnalyticsCore in Frameworks */,
 				1BE5CAAC2E3D63CF0000D5DC /* GoogleUserMessagingPlatform in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +155,7 @@
 		1BEE16112E1243E5003123CE = {
 			isa = PBXGroup;
 			children = (
+				1BE5CAD22E3D81990000D5DC /* GoogleService-Info.plist */,
 				1BD3AF8F2E33394900318F04 /* Launch Screen.storyboard */,
 				1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */,
 				1BAA23732E320A19008B0D71 /* Localizable.xcstrings */,
@@ -187,6 +200,11 @@
 				1BE5CAAB2E3D63CF0000D5DC /* GoogleUserMessagingPlatform */,
 				1BE5CAAE2E3D64FB0000D5DC /* GoogleMobileAds */,
 				1BE5CAC52E3D65ED0000D5DC /* ActivityIndicatorView */,
+				1BE5CACE2E3D812D0000D5DC /* FirebaseCrashlytics */,
+				1BE5CAD02E3D812D0000D5DC /* FirebasePerformance */,
+				1BE5CAD42E3D81DC0000D5DC /* FirebaseAnalytics */,
+				1BE5CAD62E3D81DC0000D5DC /* FirebaseAnalyticsCore */,
+				1BE5CAD82E3D81DC0000D5DC /* FirebaseAnalyticsIdentitySupport */,
 			);
 			productName = LightMeter;
 			productReference = 1BEE161A2E1243E5003123CE /* LightMeter.app */;
@@ -268,6 +286,7 @@
 				en,
 				Base,
 				ko,
+				ja,
 			);
 			mainGroup = 1BEE16112E1243E5003123CE;
 			minimizedProjectReferenceProxies = 1;
@@ -275,6 +294,7 @@
 				1BE5CAAA2E3D63CF0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */,
 				1BE5CAAD2E3D64FB0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				1BE5CAC42E3D65EC0000D5DC /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				1BE5CACD2E3D812D0000D5DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1BEE161B2E1243E5003123CE /* Products */;
@@ -293,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BE5CAD32E3D81990000D5DC /* GoogleService-Info.plist in Resources */,
 				1BAA23762E320A5A008B0D71 /* InfoPlist.xcstrings in Resources */,
 				1BD3AF902E33394900318F04 /* Launch Screen.storyboard in Resources */,
 				1BE5CAC32E3D65590000D5DC /* UnifiedNativeAdView.xib in Resources */,
@@ -520,9 +541,11 @@
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Use your camera to meter exposure.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -554,9 +577,11 @@
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Use your camera to meter exposure.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -710,6 +735,14 @@
 				minimumVersion = 1.2.1;
 			};
 		};
+		1BE5CACD2E3D812D0000D5DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -727,6 +760,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1BE5CAC42E3D65EC0000D5DC /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
+		};
+		1BE5CACE2E3D812D0000D5DC /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BE5CACD2E3D812D0000D5DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		1BE5CAD02E3D812D0000D5DC /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BE5CACD2E3D812D0000D5DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		1BE5CAD42E3D81DC0000D5DC /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BE5CACD2E3D812D0000D5DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		1BE5CAD62E3D81DC0000D5DC /* FirebaseAnalyticsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BE5CACD2E3D812D0000D5DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsCore;
+		};
+		1BE5CAD82E3D81DC0000D5DC /* FirebaseAnalyticsIdentitySupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BE5CACD2E3D812D0000D5DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsIdentitySupport;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

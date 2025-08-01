@@ -13,6 +13,9 @@
     "%lld" : {
       "shouldTranslate" : false
     },
+    "Ad" : {
+
+    },
     "aperture" : {
       "localizations" : {
         "ko" : {

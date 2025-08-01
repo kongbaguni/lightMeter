@@ -75,11 +75,15 @@ struct ContentView: View {
                         toggleButton
                         toggleBtnAlignment
                     }
+                    NativeAdView()
                 }
             } else {
                 HStack {
-                    LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
-                        .padding(10)
+                    VStack {
+                        LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
+                            .padding(10)
+                        NativeAdView()
+                    }
                     ScrollView {
                         ControllerView(ev:$controlerEv, buttonAlignment: buttonAlignment)
                     }

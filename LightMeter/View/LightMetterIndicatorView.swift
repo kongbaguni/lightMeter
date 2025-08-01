@@ -104,7 +104,7 @@ struct LightMetterIndicatorView: View {
                 }
             }
         }
-        .frame(height: 30)
+        .frame(height: 25)
         .padding(10)
     }
 }

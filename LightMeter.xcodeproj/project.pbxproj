@@ -10,6 +10,17 @@
 		1BAA23742E320A19008B0D71 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23732E320A19008B0D71 /* Localizable.xcstrings */; };
 		1BAA23762E320A5A008B0D71 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */; };
 		1BD3AF902E33394900318F04 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3AF8F2E33394900318F04 /* Launch Screen.storyboard */; };
+		1BE5CAAC2E3D63CF0000D5DC /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAAB2E3D63CF0000D5DC /* GoogleUserMessagingPlatform */; };
+		1BE5CAAF2E3D64FB0000D5DC /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAAE2E3D64FB0000D5DC /* GoogleMobileAds */; };
+		1BE5CABC2E3D65590000D5DC /* GoogleAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CAB92E3D65590000D5DC /* GoogleAd.swift */; };
+		1BE5CABD2E3D65590000D5DC /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CAB82E3D65590000D5DC /* BannerAdView.swift */; };
+		1BE5CABE2E3D65590000D5DC /* UnifiedNativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CAB32E3D65590000D5DC /* UnifiedNativeAdView.swift */; };
+		1BE5CABF2E3D65590000D5DC /* GoogleAdPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CABA2E3D65590000D5DC /* GoogleAdPrompt.swift */; };
+		1BE5CAC02E3D65590000D5DC /* AdLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CAB02E3D65590000D5DC /* AdLoader.swift */; };
+		1BE5CAC12E3D65590000D5DC /* NativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CAB22E3D65590000D5DC /* NativeAdView.swift */; };
+		1BE5CAC22E3D65590000D5DC /* GADNativeAd+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CAB12E3D65590000D5DC /* GADNativeAd+Extensions.swift */; };
+		1BE5CAC32E3D65590000D5DC /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE5CAB62E3D65590000D5DC /* UnifiedNativeAdView.xib */; };
+		1BE5CAC62E3D65ED0000D5DC /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAC52E3D65ED0000D5DC /* ActivityIndicatorView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +44,15 @@
 		1BAA23732E320A19008B0D71 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		1BD3AF8F2E33394900318F04 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		1BE5CAB02E3D65590000D5DC /* AdLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdLoader.swift; sourceTree = "<group>"; };
+		1BE5CAB12E3D65590000D5DC /* GADNativeAd+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GADNativeAd+Extensions.swift"; sourceTree = "<group>"; };
+		1BE5CAB22E3D65590000D5DC /* NativeAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdView.swift; sourceTree = "<group>"; };
+		1BE5CAB32E3D65590000D5DC /* UnifiedNativeAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedNativeAdView.swift; sourceTree = "<group>"; };
+		1BE5CAB42E3D65590000D5DC /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UnifiedNativeAdView.xib; path = Base.lproj/UnifiedNativeAdView.xib; sourceTree = "<group>"; };
+		1BE5CAB52E3D65590000D5DC /* UnifiedNativeAdView.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = UnifiedNativeAdView.xcstrings; path = mul.lproj/UnifiedNativeAdView.xcstrings; sourceTree = "<group>"; };
+		1BE5CAB82E3D65590000D5DC /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		1BE5CAB92E3D65590000D5DC /* GoogleAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAd.swift; sourceTree = "<group>"; };
+		1BE5CABA2E3D65590000D5DC /* GoogleAdPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdPrompt.swift; sourceTree = "<group>"; };
 		1BEE161A2E1243E5003123CE /* LightMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEE16272E1243E7003123CE /* LightMeterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightMeterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEE16312E1243E7003123CE /* LightMeterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightMeterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +94,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BE5CAAF2E3D64FB0000D5DC /* GoogleMobileAds in Frameworks */,
+				1BE5CAC62E3D65ED0000D5DC /* ActivityIndicatorView in Frameworks */,
+				1BE5CAAC2E3D63CF0000D5DC /* GoogleUserMessagingPlatform in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,12 +117,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BE5CAB72E3D65590000D5DC /* nativeAd */ = {
+			isa = PBXGroup;
+			children = (
+				1BE5CAB02E3D65590000D5DC /* AdLoader.swift */,
+				1BE5CAB12E3D65590000D5DC /* GADNativeAd+Extensions.swift */,
+				1BE5CAB22E3D65590000D5DC /* NativeAdView.swift */,
+				1BE5CAB32E3D65590000D5DC /* UnifiedNativeAdView.swift */,
+				1BE5CAB62E3D65590000D5DC /* UnifiedNativeAdView.xib */,
+			);
+			path = nativeAd;
+			sourceTree = "<group>";
+		};
+		1BE5CABB2E3D65590000D5DC /* GoogleAd */ = {
+			isa = PBXGroup;
+			children = (
+				1BE5CAB72E3D65590000D5DC /* nativeAd */,
+				1BE5CAB82E3D65590000D5DC /* BannerAdView.swift */,
+				1BE5CAB92E3D65590000D5DC /* GoogleAd.swift */,
+				1BE5CABA2E3D65590000D5DC /* GoogleAdPrompt.swift */,
+			);
+			path = GoogleAd;
+			sourceTree = "<group>";
+		};
 		1BEE16112E1243E5003123CE = {
 			isa = PBXGroup;
 			children = (
 				1BD3AF8F2E33394900318F04 /* Launch Screen.storyboard */,
 				1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */,
 				1BAA23732E320A19008B0D71 /* Localizable.xcstrings */,
+				1BE5CABB2E3D65590000D5DC /* GoogleAd */,
 				1BEE161C2E1243E5003123CE /* LightMeter */,
 				1BEE162A2E1243E7003123CE /* LightMeterTests */,
 				1BEE16342E1243E7003123CE /* LightMeterUITests */,
@@ -137,6 +184,9 @@
 			);
 			name = LightMeter;
 			packageProductDependencies = (
+				1BE5CAAB2E3D63CF0000D5DC /* GoogleUserMessagingPlatform */,
+				1BE5CAAE2E3D64FB0000D5DC /* GoogleMobileAds */,
+				1BE5CAC52E3D65ED0000D5DC /* ActivityIndicatorView */,
 			);
 			productName = LightMeter;
 			productReference = 1BEE161A2E1243E5003123CE /* LightMeter.app */;
@@ -221,6 +271,11 @@
 			);
 			mainGroup = 1BEE16112E1243E5003123CE;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1BE5CAAA2E3D63CF0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */,
+				1BE5CAAD2E3D64FB0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				1BE5CAC42E3D65EC0000D5DC /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1BEE161B2E1243E5003123CE /* Products */;
 			projectDirPath = "";
@@ -240,6 +295,7 @@
 			files = (
 				1BAA23762E320A5A008B0D71 /* InfoPlist.xcstrings in Resources */,
 				1BD3AF902E33394900318F04 /* Launch Screen.storyboard in Resources */,
+				1BE5CAC32E3D65590000D5DC /* UnifiedNativeAdView.xib in Resources */,
 				1BAA23742E320A19008B0D71 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +321,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BE5CABC2E3D65590000D5DC /* GoogleAd.swift in Sources */,
+				1BE5CABD2E3D65590000D5DC /* BannerAdView.swift in Sources */,
+				1BE5CABE2E3D65590000D5DC /* UnifiedNativeAdView.swift in Sources */,
+				1BE5CABF2E3D65590000D5DC /* GoogleAdPrompt.swift in Sources */,
+				1BE5CAC02E3D65590000D5DC /* AdLoader.swift in Sources */,
+				1BE5CAC12E3D65590000D5DC /* NativeAdView.swift in Sources */,
+				1BE5CAC22E3D65590000D5DC /* GADNativeAd+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +359,18 @@
 			targetProxy = 1BEE16322E1243E7003123CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1BE5CAB62E3D65590000D5DC /* UnifiedNativeAdView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1BE5CAB42E3D65590000D5DC /* UnifiedNativeAdView.xib */,
+				1BE5CAB52E3D65590000D5DC /* UnifiedNativeAdView.xcstrings */,
+			);
+			name = UnifiedNativeAdView.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1BEE16392E1243E7003123CE /* Debug */ = {
@@ -609,6 +684,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1BE5CAAA2E3D63CF0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-user-messaging-platform";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		1BE5CAAD2E3D64FB0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.8.0;
+			};
+		};
+		1BE5CAC42E3D65EC0000D5DC /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1BE5CAAB2E3D63CF0000D5DC /* GoogleUserMessagingPlatform */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BE5CAAA2E3D63CF0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */;
+			productName = GoogleUserMessagingPlatform;
+		};
+		1BE5CAAE2E3D64FB0000D5DC /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BE5CAAD2E3D64FB0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		1BE5CAC52E3D65ED0000D5DC /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BE5CAC42E3D65EC0000D5DC /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1BEE16122E1243E5003123CE /* Project object */;
 }

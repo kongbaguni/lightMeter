@@ -2,13 +2,13 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "shouldTranslate" : false
     },
     "." : {
       "shouldTranslate" : false
     },
     "/" : {
-
+      "shouldTranslate" : false
     },
     "%lld" : {
       "shouldTranslate" : false
@@ -74,7 +74,14 @@
       }
     },
     "custom body list" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자 바디 목록"
+          }
+        }
+      }
     },
     "custom lens list" : {
       "localizations" : {
@@ -123,7 +130,14 @@
       }
     },
     "make custom body" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자 바디 생성"
+          }
+        }
+      }
     },
     "make custom lens" : {
       "localizations" : {
@@ -176,7 +190,14 @@
       }
     },
     "shutterSpeed" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "셔터속도"
+          }
+        }
+      }
     },
     "ShutterSpeed" : {
       "localizations" : {

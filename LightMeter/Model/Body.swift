@@ -69,8 +69,8 @@ extension Models {
                 bodys = loadBodyData()
             }
             let idx = UserDefaults.standard.integer(forKey: "bodySelectIdx")
-            if bodys.count < idx {
-                return bodys.last
+            if  idx < bodys.count  {
+                return bodys[idx]
             }
             
             let customBodyList = UserDefaults.standard.loadCustomBodys()
@@ -80,7 +80,9 @@ extension Models {
                     return customBodyList[newidx]
                 }
             }
-            return bodys[idx]
+            UserDefaults.standard.set("0", forKey: "bodySelectIdx")
+            return bodys.first
+            
         }
     }
 }

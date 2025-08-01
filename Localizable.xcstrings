@@ -1,8 +1,14 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "." : {
       "shouldTranslate" : false
+    },
+    "/" : {
+
     },
     "%lld" : {
       "shouldTranslate" : false
@@ -67,6 +73,9 @@
         }
       }
     },
+    "custom body list" : {
+
+    },
     "custom lens list" : {
       "localizations" : {
         "ko" : {
@@ -112,6 +121,9 @@
           }
         }
       }
+    },
+    "make custom body" : {
+
     },
     "make custom lens" : {
       "localizations" : {
@@ -162,6 +174,9 @@
           }
         }
       }
+    },
+    "shutterSpeed" : {
+
     },
     "ShutterSpeed" : {
       "localizations" : {

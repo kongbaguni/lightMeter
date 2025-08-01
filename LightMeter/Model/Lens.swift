@@ -60,9 +60,13 @@ extension Models {
             let customLensList = UserDefaults.standard.loadCustomLens()
             if customLensList.count > 0 {
                 let newidx = idx - lensList.count
-                return customLensList[newidx]
+                if newidx < customLensList.count {
+                    return customLensList[newidx]
+                }
             }
-            return nil
+            
+            UserDefaults.standard.set("0", forKey: "lensSelectIdx")
+            return lensList.first
         }
     }
 

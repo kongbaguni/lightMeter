@@ -10,10 +10,8 @@ import SwiftUI
 import GoogleMobileAds
 
 extension NativeAd {
-    var view : some View {
-        NadViewAdView(ad: self)
-            .frame(height:350)
-        
+    func makeAdView(size:CGSize) -> some View {
+        NadViewAdView(ad: self, size: size)        
     }
 }
 
@@ -21,14 +19,16 @@ fileprivate struct NadViewAdView : UIViewRepresentable {
     typealias UIViewType = UIView
     
     let ad:NativeAd
+    let size:CGSize
     
     func makeUIView(context: Context) -> UIView {
-        let view = UnifiedNativeAdView(ad: ad, frame: .init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 350))
+        let view = UnifiedNativeAdView(ad: ad, frame: .init(x: 0, y: 0, width: size.width, height: size.height))
         return view
     }
     
     func updateUIView(_ uiView: UIView, context: Context) {
-        uiView.frame.size.width = UIScreen.main.bounds.width
+//        uiView.frame.size.width = UIScreen.main.bounds.width
+        uiView.frame.size = size
     }
 }
 

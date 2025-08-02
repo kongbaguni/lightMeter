@@ -15,7 +15,7 @@ fileprivate let interstitialVideoGaId = "ca-app-pub-3940256099942544/4411468910"
 fileprivate let bannerGaId = "ca-app-pub-7714069006629518~7204865653" // test ga id
 #else
 fileprivate let interstitialVideoGaId = "ca-app-pub-7714069006629518/8776893623" // real ga id
-fileprivate let bannerGaId = "ca-app-pub-7714069006629518/3753098473" // real ga id
+fileprivate let bannerGaId = "ca-app-pub-7714069006629518/5530785359" // real ga id
 #endif
 
 class GoogleAd : NSObject {

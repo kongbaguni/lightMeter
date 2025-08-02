@@ -187,7 +187,6 @@
 				1BEE16162E1243E5003123CE /* Sources */,
 				1BEE16172E1243E5003123CE /* Frameworks */,
 				1BEE16182E1243E5003123CE /* Resources */,
-				1BE5CB662E3D89A10000D5DC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -337,26 +336,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1BE5CB662E3D89A10000D5DC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\necho \"$GOOGLESERVICE_INFO_PLIST_BASE64\" | base64 --decode > \"${SRCROOT}/YourApp/GoogleService-Info.plist\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1BEE16162E1243E5003123CE /* Sources */ = {

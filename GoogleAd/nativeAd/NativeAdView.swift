@@ -22,13 +22,16 @@ struct NativeAdView : View {
     var body: some View {
         ZStack {
             if error == nil {
-                if let view = nativeAd?.view {
-                    view
+                GeometryReader { proxy in
+                    if let view = nativeAd?.makeAdView(size: proxy.size) {
+                        view
+                    }
                 }
                 VStack(alignment: .center) {
                     ActivityIndicatorView(isVisible: $loading, type: .default()).frame(width: 50, height: 50)
-                }.frame(height:350)
-            } 
+                }
+                
+            }
         }.onAppear {
             loading = true
             AdLoader.shared.onError = { error in

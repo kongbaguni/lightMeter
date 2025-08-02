@@ -26,7 +26,7 @@ struct AutoModeSelectView: View {
     var imageView : some View {
         Image(systemName: imageName)
             .resizable()
-            .frame(width: 50, height: 50)
+            .frame(width: .buttonRadius, height: .buttonRadius)
             .padding(20)
             .background {
                 RoundedRectangle(cornerRadius: 20)

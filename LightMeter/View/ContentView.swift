@@ -39,7 +39,7 @@ struct ContentView: View {
                     .resizable()
                     .scaledToFit()
             }
-        }.frame(width : 50, height: 50)
+        }.frame(width : .buttonRadius, height: .buttonRadius)
             .padding(20)
             .background {
                 RoundedRectangle(cornerRadius: 20)
@@ -64,7 +64,7 @@ struct ContentView: View {
             )
                 .resizable()
                 .scaledToFit()
-                .frame(width : 50, height: 50)
+                .frame(width : .buttonRadius, height: .buttonRadius)
                 .padding(20)
                 .background {
                     RoundedRectangle(cornerRadius: 20)
@@ -87,6 +87,7 @@ struct ContentView: View {
                         toggleBtnAlignment
                     }
                     NativeAdView()
+                        .padding(.bottom, .safeAreaInsetBottom)
                 }
             } else {
                 HStack {
@@ -94,6 +95,7 @@ struct ContentView: View {
                         LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
                             .padding(10)
                         NativeAdView()
+                            .padding(.bottom, .safeAreaInsetBottom)
                     }
                     ScrollView {
                         ControllerView(ev:$controlerEv, buttonAlignment: buttonAlignment)

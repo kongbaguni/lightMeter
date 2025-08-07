@@ -42,7 +42,11 @@ struct DialView: View {
         Log.debug(#function, index)
         
         if index < items.count && index >= 0 {
-            currentItem = items[index]
+            let newItem = items[index]
+            if currentItem != newItem {
+                HapticFeedback.medium()
+                currentItem = newItem
+            }
         }
     }
     

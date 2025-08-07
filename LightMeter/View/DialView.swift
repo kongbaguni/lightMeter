@@ -86,7 +86,7 @@ struct DialView: View {
                     .opacity(0.4)
             }
         }
-        .frame(height: 80)
+        .frame(height: 60)
         .onDisappear {
             debounceTask?.cancel()
         }

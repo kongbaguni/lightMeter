@@ -62,6 +62,7 @@ struct ContentView: View {
                         LightMetterAutoView()
                         toggleButton
                     }
+                    .padding(.bottom, 20)
 #if !targetEnvironment(simulator)
                     NativeAdView()
                         .padding(.bottom, .safeAreaInsetBottom)

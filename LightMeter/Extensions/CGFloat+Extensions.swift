@@ -24,6 +24,6 @@ extension CGFloat {
     }
 
     static var buttonRadius : CGFloat {
-        return 20
+        return 25
     }
 }

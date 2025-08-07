@@ -25,9 +25,9 @@ extension Models {
             }
         }
         
-        var items:[SlideDialView.Item] {
+        var items:[Models.Item] {
             apertures.reversed().map { aperture in
-                return .init(value: aperture, label: .init(format:"%0.1f", aperture))
+                return .init(value: aperture, title: .init(format:"%0.1f", aperture))
             }
         }
         

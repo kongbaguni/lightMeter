@@ -63,7 +63,7 @@ struct LensListView: View {
             list = Models.Lens.loadData()
             customList = UserDefaults.standard.loadCustomLens()
         }
-        .onChange(of: lensSelectIdx) {  newValue in
+        .onChange(of: lensSelectIdx) { _, newValue in
             NotificationCenter.default.post(name: .lightMetterSettingChanged, object: nil)
         }
     }

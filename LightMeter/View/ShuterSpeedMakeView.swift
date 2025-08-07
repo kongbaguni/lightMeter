@@ -94,7 +94,7 @@ struct ShuterSpeedMakeView: View {
             Spacer()
         }
         .padding(10)
-        .onChange(of: second) { newValue in
+        .onChange(of: second) {_, newValue in
             if newValue != "1" {
                 devine = "1"
             }

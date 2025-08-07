@@ -78,13 +78,13 @@ struct CustomBodyMakeView: View {
                 self.shutterSpeedList = data.shutterSpeeds
             }
         }
-        .onChange(of: brand) { newValue in
+        .onChange(of: brand) {_,newValue in
             checkCanSave()
         }
-        .onChange(of: model) { newValue in
+        .onChange(of: model) {_,newValue in
             checkCanSave()
         }
-        .onChange(of: shutterSpeedList) { newValue in
+        .onChange(of: shutterSpeedList) {_, newValue in
             checkCanSave()
         }
     }

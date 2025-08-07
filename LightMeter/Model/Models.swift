@@ -35,9 +35,9 @@ struct Models {
             String(format:"%02.f", rawValue)
         }
         
-        static var items:[SlideDialView.Item] {
+        static var items:[Models.Item] {
             EVfix.allCases.map { ev in
-                return .init(value: ev.rawValue, label: ev.stringValue)
+                return .init(value: ev.rawValue, title: ev.stringValue)
             }
         }
         
@@ -68,9 +68,9 @@ struct Models {
             String(format:"%02.f", rawValue)
         }
         
-        static var items:[SlideDialView.Item] {
+        static var items:[Models.Item] {
             ISO.allCases.map { iso in
-                return .init(value: iso.rawValue, label: iso.stringValue)
+                return .init(value: iso.rawValue, title: iso.stringValue)
             }
         }
     }

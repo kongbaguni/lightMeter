@@ -42,9 +42,9 @@ extension Models {
             }
         }
         
-        var items:[SlideDialView.Item] {
+        var items:[Models.Item] {
             shutterSpeeds.reversed().map { str in
-                return .init(value: convert(str: str).seconds, label: str)
+                return .init(value: convert(str: str).seconds, title: str)
             }
         }
         

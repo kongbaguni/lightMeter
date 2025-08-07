@@ -65,7 +65,7 @@ struct BodyListView: View {
             list = Models.Body.loadBodyData()
             customList = UserDefaults.standard.loadCustomBodys()
         }
-        .onChange(of: bodySelectIdx) {  newValue in
+        .onChange(of: bodySelectIdx) { oldValue, newValue in
             NotificationCenter.default.post(name: .lightMetterSettingChanged, object: nil)
         }
     }

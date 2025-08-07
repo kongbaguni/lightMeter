@@ -15,13 +15,16 @@ struct ControllerView: View {
     @State var currentBody:Models.Body = Models.Body.curentBody!
     @State var currentLens:Models.Lens = Models.Lens.currentLens!
     
+    @State var evFixItem:Models.Item = .empty
+    @State var isoItem:Models.Item = .empty
+    @State var apertureItem:Models.Item = .empty
+    @State var shutterSpeedItem:Models.Item = .empty
+    
     @AppStorage("evfix") var evFix:Double = 0.0
     @AppStorage("iso") var iso:Double = 0.0
     @AppStorage("aperture") var aperture:Double = 0.0
     @AppStorage("shutterSpeed") var shutterSpeed:Double = 0.0
-    
-    let buttonAlignment: Alignment
-        
+           
     func calculateEV(aperture: Double, shutter: Double, iso: Double) -> Double? {
         if iso == 0 || shutter == 0 || aperture == 0 {
             return nil
@@ -31,10 +34,19 @@ struct ControllerView: View {
         return evBase - isoCompensation + evFix + evFixOffset
     }
     
-    
-    
     private func calculateEV() {
-        ev = calculateEV(aperture: aperture, shutter: shutterSpeed, iso: iso)
+        if apertureItem != .empty {
+            aperture = apertureItem.value
+        }
+        if shutterSpeedItem != .empty {
+            shutterSpeed = shutterSpeedItem.value
+        }
+        if isoItem != .empty {
+            iso = isoItem.value
+        }
+        if evFixItem != .empty {
+            ev = calculateEV(aperture: aperture, shutter: shutterSpeed, iso: iso)
+        }
     }
     
     var bodyListNavigationItem : some View {
@@ -69,24 +81,39 @@ struct ControllerView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("EV").font(.system(size: 12))
-                SlideDialView(buttonAlignment:buttonAlignment, viewType : .ev, items: Models.EVfix.items, currentValue: $evFix)
-                
-                Text("ISO").font(.system(size: 12))
-                SlideDialView(buttonAlignment:buttonAlignment, viewType : .iso , items: Models.ISO.items, currentValue: $iso)
+                HStack {
+                    VStack {
+                        HStack {
+                            Text("EV").font(.system(size: 12))
+                            Text(evFixItem.title).foregroundStyle(.secondary)
+                        }
+                        DialView(items: Models.EVfix.items.reversed(), currentItem: $evFixItem)
+                    }
+                    VStack {
+                        HStack {
+                            Text("ISO").font(.system(size: 12))
+                            Text(isoItem.title).foregroundStyle(.secondary)
+                        }
+                        DialView(items: Models.ISO.items.reversed(), currentItem: $isoItem)
+                    }
+                }
                 
                 HStack {
                     Text("Aperture").font(.system(size: 12))
+                    Text(apertureItem.title).foregroundStyle(.secondary)
+                    
                     Text("lens").foregroundStyle(.secondary)
                     lensListNavigationItem
                 }
-                SlideDialView(buttonAlignment:buttonAlignment, viewType : .aperture ,items: currentLens.items, currentValue: $aperture)
+                DialView(items: currentLens.items.reversed(), currentItem: $apertureItem)
+
                 HStack {
                     Text("ShutterSpeed").font(.system(size: 12))
+                    Text(shutterSpeedItem.title).foregroundStyle(.secondary)
                     Text("body").foregroundStyle(.secondary)
                     bodyListNavigationItem
                 }
-                SlideDialView(buttonAlignment:buttonAlignment, viewType : .shutterSpeed, items: currentBody.items , currentValue: $shutterSpeed)
+                DialView(items: currentBody.items.reversed(), currentItem: $shutterSpeedItem)
             }
             Spacer()
         }
@@ -95,25 +122,66 @@ struct ControllerView: View {
             currentBody = Models.Body.curentBody!
             currentLens = Models.Lens.currentLens!
         }
-        .onChange(of: evFix) {  newValue in
+        .onChange(of: evFixItem) { oldValue, newValue in
+            evFix = newValue.value
+            calculateEV()
+            
+        }
+        .onChange(of: isoItem) { oldValue, newValue in
+            iso = newValue.value
             calculateEV()
         }
-        .onChange(of: iso) {  newValue in
+        .onChange(of: apertureItem) { oldValue, newValue in
+            aperture = newValue.value
             calculateEV()
         }
-        .onChange(of: aperture) { newValue in
+        .onChange(of: shutterSpeedItem) { oldValue, newValue in
+            shutterSpeed = newValue.value
             calculateEV()
         }
-        .onChange(of: shutterSpeed) { newValue in
-            calculateEV()
-        }
-       
         .onAppear {
+            if evFixItem == .empty {
+                for item in Models.EVfix.items {
+                    if item.value == evFix {
+                        evFixItem = item
+                    }
+                }
+            }
+            if isoItem == .empty {
+                for item in Models.ISO.items {
+                    if item.value == iso {
+                        isoItem = item
+                    }
+                }
+            }
+            
+            if apertureItem == .empty {
+                for item in currentLens.items {
+                    Log.debug(aperture)
+                    if item.value == aperture {
+                        apertureItem = item
+                    }
+                }
+                if apertureItem == .empty {
+                    apertureItem = currentLens.items.first!
+                }
+            }
+            
+            if shutterSpeedItem == .empty {
+                for item in currentBody.items {
+                    if item.value == shutterSpeed {
+                        shutterSpeedItem = item
+                    }
+                }
+                if shutterSpeedItem == .empty {
+                    shutterSpeedItem = currentBody.items.first!
+                }
+            }
             calculateEV()
         }
     }
 }
 
 #Preview {
-    ControllerView(ev: .constant(0.0), buttonAlignment: .trailing)
+    ControllerView(ev: .constant(0.0))
 }

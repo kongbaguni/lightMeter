@@ -33,18 +33,18 @@ struct LightMetterAutoView : View {
         case .modeA:
             switch status {
             case .매우부족, .약간부족:
-                NotificationCenter.default.post(name: .lightMetterSelectNext, object: SlideDialView.ViewType.shutterSpeed)
+                NotificationCenter.default.post(name: .lightMetterSelectNext, object: Models.ViewType.shutterSpeed)
             case .약간과노출, .과노출:
-                NotificationCenter.default.post(name: .lightMetterSelectPrev, object: SlideDialView.ViewType.shutterSpeed)
+                NotificationCenter.default.post(name: .lightMetterSelectPrev, object: Models.ViewType.shutterSpeed)
             default:
                 break
             }
         case .modeS:
             switch status {
             case .매우부족, .약간부족:
-                NotificationCenter.default.post(name: .lightMetterSelectNext, object: SlideDialView.ViewType.aperture)
+                NotificationCenter.default.post(name: .lightMetterSelectNext, object: Models.ViewType.aperture)
             case .약간과노출, .과노출:
-                NotificationCenter.default.post(name: .lightMetterSelectPrev, object: SlideDialView.ViewType.aperture)
+                NotificationCenter.default.post(name: .lightMetterSelectPrev, object: Models.ViewType.aperture)
             default:
                 break
             }
@@ -58,7 +58,7 @@ struct LightMetterAutoView : View {
             .onAppear {
                 autoMode = .init(rawValue: autoModeValue)!
             }
-            .onChange(of: autoMode) { newValue in
+            .onChange(of: autoMode) { _, newValue in
                 if autoMode != .pause {
                     autoModeValue = autoMode.rawValue
                     Log.debug("onchange automode aperture", aperture, "shutterSpeed", shutterSpeed)

@@ -23,7 +23,6 @@ struct ContentView: View {
     @State var lightMetterValue: Double? = nil
     @State var controlerEv:Double? = nil
     @State var isPlay:Bool = false
-    @State var buttonAlignment:Alignment = .leading
     var toggleButton : some View {
         Group {
             if isPlay == false {
@@ -48,31 +47,7 @@ struct ContentView: View {
         
     }
     
-    var toggleBtnAlignment: some View {
-        Button {
-            if buttonAlignment == .leading {
-                buttonAlignment = .trailing
-            } else {
-                buttonAlignment = .leading
-            }
-        } label: {
-            Image(systemName:
-                    buttonAlignment == .leading
-                  ? "button.vertical.left.press"
-                  : "button.vertical.right.press"
-            
-            )
-                .resizable()
-                .scaledToFit()
-                .frame(width : .buttonRadius, height: .buttonRadius)
-                .padding(20)
-                .background {
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(.secondary, lineWidth: 2)
-                }
-
-        }
-    }
+   
     
     var body: some View {
         GeometryReader { geometry in
@@ -80,11 +55,10 @@ struct ContentView: View {
                 VStack {
                     LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
                         .padding(10)                    
-                    ControllerView(ev:$controlerEv, buttonAlignment: buttonAlignment)
+                    ControllerView(ev:$controlerEv)
                     HStack {
                         LightMetterAutoView()
                         toggleButton
-                        toggleBtnAlignment
                     }
                     NativeAdView()
                         .padding(.bottom, .safeAreaInsetBottom)
@@ -98,12 +72,11 @@ struct ContentView: View {
                             .padding(.bottom, .safeAreaInsetBottom)
                     }
                     ScrollView {
-                        ControllerView(ev:$controlerEv, buttonAlignment: buttonAlignment)
+                        ControllerView(ev:$controlerEv)
                     }
                     VStack {
                         LightMetterAutoView()
                         toggleButton
-                        toggleBtnAlignment
                     }
 
                 }
@@ -117,16 +90,12 @@ struct ContentView: View {
             } onStopSession: {
                 self.isPlay = false
             }
-            buttonAlignment = UserDefaults.standard.bool(forKey: "buttonAlignment") ? .leading : .trailing
         }
-        .onChange(of: isPlay) { newValue in
+        .onChange(of: isPlay) {oldValue, newValue in
             if newValue == true {
                 cameraManager?.startSession()
             }
             
-        }
-        .onChange(of: buttonAlignment) { newValue in
-            UserDefaults.standard.set(newValue == .leading, forKey: "buttonAlignment")
         }
         .padding()
     }

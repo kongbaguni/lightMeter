@@ -78,13 +78,13 @@ struct CustomLensMakeView: View {
                 self.apertureList = lens.apertures
             }
         }
-        .onChange(of: brand) { newValue in
+        .onChange(of: brand) { _, newValue in
             checkCanSave()
         }
-        .onChange(of: model) { newValue in
+        .onChange(of: model) { _, newValue in
             checkCanSave()
         }
-        .onChange(of: apertureList) { newValue in
+        .onChange(of: apertureList) {_, newValue in
             checkCanSave()
         }
     }

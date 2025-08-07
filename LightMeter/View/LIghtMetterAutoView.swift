@@ -34,7 +34,7 @@ struct LightMetterAutoView : View {
             switch status {
             case .매우부족, .약간부족:
                 NotificationCenter.default.post(name: .lightMetterSelectNext, object: Models.ViewType.shutterSpeed)
-            case .약간과노출, .과노출:
+            case .과노출, .약간과노출:
                 NotificationCenter.default.post(name: .lightMetterSelectPrev, object: Models.ViewType.shutterSpeed)
             default:
                 break
@@ -43,7 +43,7 @@ struct LightMetterAutoView : View {
             switch status {
             case .매우부족, .약간부족:
                 NotificationCenter.default.post(name: .lightMetterSelectNext, object: Models.ViewType.aperture)
-            case .약간과노출, .과노출:
+            case .과노출, .약간과노출:
                 NotificationCenter.default.post(name: .lightMetterSelectPrev, object: Models.ViewType.aperture)
             default:
                 break

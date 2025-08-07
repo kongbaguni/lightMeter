@@ -11,6 +11,7 @@ import FirebaseCore
 
 struct ContentView: View {
     init() {
+#if !targetEnvironment(simulator)
         FirebaseApp.configure()
         GoogleMobileAds.MobileAds.shared.start { status in
             print(status)
@@ -18,6 +19,7 @@ struct ContentView: View {
                 
             }
         }
+#endif
     }
     @State var cameraManager:LightMeterCameraManager? = nil
     @State var lightMetterValue: Double? = nil
@@ -60,16 +62,21 @@ struct ContentView: View {
                         LightMetterAutoView()
                         toggleButton
                     }
+#if !targetEnvironment(simulator)
                     NativeAdView()
                         .padding(.bottom, .safeAreaInsetBottom)
+#endif
+                    
                 }
             } else {
                 HStack {
                     VStack {
                         LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
                             .padding(10)
+#if !targetEnvironment(simulator)
                         NativeAdView()
                             .padding(.bottom, .safeAreaInsetBottom)
+#endif
                     }
                     ScrollView {
                         ControllerView(ev:$controlerEv)

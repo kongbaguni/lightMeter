@@ -168,11 +168,14 @@
       },
       "shouldTranslate" : false
     },
+    "f" : {
+      "shouldTranslate" : false
+    },
     "F" : {
       "shouldTranslate" : false
     },
     "ISO" : {
-
+      "shouldTranslate" : false
     },
     "lens" : {
       "localizations" : {
@@ -266,6 +269,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "저장"
+          }
+        }
+      }
+    },
+    "sec" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "秒"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "초"
           }
         }
       }

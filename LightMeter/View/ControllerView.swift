@@ -24,6 +24,11 @@ struct ControllerView: View {
     @AppStorage("iso") var iso:Double = 0.0
     @AppStorage("aperture") var aperture:Double = 0.0
     @AppStorage("shutterSpeed") var shutterSpeed:Double = 0.0
+    @AppStorage("autoModeValue") var autoModeValue:Int = 0
+    
+    var autoMode:Models.AutoMode {
+        return .init(rawValue: autoModeValue)!
+    }
            
     func calculateEV(aperture: Double, shutter: Double, iso: Double) -> Double? {
         if iso == 0 || shutter == 0 || aperture == 0 {
@@ -98,22 +103,30 @@ struct ControllerView: View {
                     }
                 }
                 
+                
                 HStack {
-                    Text("Aperture").font(.system(size: 12))
-                    Text(apertureItem.title).foregroundStyle(.secondary)
+                    Text("Aperture").font(.system(size: 12)).foregroundStyle(.secondary)
+                    Text("f").foregroundStyle(.secondary)
+                    Text(apertureItem.title).foregroundStyle(.primary)
                     
                     Text("lens").foregroundStyle(.secondary)
                     lensListNavigationItem
                 }
-                DialView(items: currentLens.items.reversed(), currentItem: $apertureItem)
+                if autoMode != .modeS {
+                    DialView(items: currentLens.items.reversed(), currentItem: $apertureItem)
+                }
 
                 HStack {
                     Text("ShutterSpeed").font(.system(size: 12))
-                    Text(shutterSpeedItem.title).foregroundStyle(.secondary)
+                        .foregroundStyle(.secondary)
+                    Text(shutterSpeedItem.title).foregroundStyle(.primary)
+                    Text("sec").foregroundStyle(.secondary)
                     Text("body").foregroundStyle(.secondary)
                     bodyListNavigationItem
                 }
-                DialView(items: currentBody.items.reversed(), currentItem: $shutterSpeedItem)
+                if autoMode != .modeA {
+                    DialView(items: currentBody.items.reversed(), currentItem: $shutterSpeedItem)
+                }
             }
             Spacer()
         }
@@ -178,6 +191,62 @@ struct ControllerView: View {
                 }
             }
             calculateEV()
+        }
+        
+        .onReceive(NotificationCenter.default.publisher(for: .lightMetterSelectNext)) { output in
+            
+            guard let type = output.object as? Models.ViewType else { return }
+            switch type {
+            case .aperture:
+                let items = currentLens.items
+                if let index = items.firstIndex(of: apertureItem) {
+                    if index + 1 < items.count {
+                        let nextIndex = index + 1
+                        apertureItem = items[nextIndex]
+                        aperture = items[nextIndex].value
+                    }
+                }
+                
+            case .shutterSpeed:
+                let items = currentBody.items
+                if let index = items.firstIndex(of: shutterSpeedItem) {
+                    if index + 1 < items.count {
+                        let nextIndex = index + 1
+                        shutterSpeedItem = items[nextIndex]
+                        shutterSpeed = items[nextIndex].value
+                    }
+                }
+
+            default :
+                break
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .lightMetterSelectPrev)) { output in
+            guard let type = output.object as? Models.ViewType else { return }
+            switch type {
+            case .aperture:
+                let items = currentLens.items
+                if let index = items.firstIndex(of: apertureItem) {
+                    if index - 1 >= 0 {
+                        let nextIndex = index - 1
+                        apertureItem = items[nextIndex]
+                        aperture = items[nextIndex].value
+                    }
+                }
+                
+            case .shutterSpeed:
+                let items = currentBody.items
+                if let index = items.firstIndex(of: shutterSpeedItem) {
+                    if index - 1 >= 0 {
+                        let nextIndex = index - 1
+                        shutterSpeedItem = items[nextIndex]
+                        shutterSpeed = items[nextIndex].value
+                    }
+                }
+                
+            default :
+                break
+            }
         }
     }
 }

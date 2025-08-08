@@ -15,6 +15,12 @@
     },
     "Ad" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anzeige"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31,6 +37,12 @@
     },
     "aperture" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnung"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47,6 +59,12 @@
     },
     "Aperture" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnung"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -63,6 +81,12 @@
     },
     "body" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Körper"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -79,6 +103,12 @@
     },
     "body list" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Körperliste"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -95,6 +125,12 @@
     },
     "Brand" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marke"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111,6 +147,12 @@
     },
     "Confirm" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bestätigen"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -127,6 +169,12 @@
     },
     "custom body list" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "benutzerdefinierte Körperliste"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -143,6 +191,12 @@
     },
     "custom lens list" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benutzerdefinierte Objektivliste"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -179,6 +233,12 @@
     },
     "lens" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Objektiv"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,6 +255,12 @@
     },
     "lens list" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Objektivliste"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -211,6 +277,12 @@
     },
     "make custom body" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstellen Sie einen benutzerdefinierten Körper"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -227,6 +299,12 @@
     },
     "make custom lens" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstellen Sie benutzerdefinierte Objektive"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -243,6 +321,12 @@
     },
     "Model" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modell"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -259,6 +343,12 @@
     },
     "save" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "speichern"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -275,6 +365,12 @@
     },
     "sec" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sekunde"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -291,6 +387,12 @@
     },
     "select body" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Körper auswählen"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -307,6 +409,12 @@
     },
     "select lens" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Objektiv auswählen"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -323,6 +431,12 @@
     },
     "shutterSpeed" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verschlusszeit"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -339,6 +453,12 @@
     },
     "ShutterSpeed" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verschlusszeit"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

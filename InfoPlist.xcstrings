@@ -5,10 +5,16 @@
       "comment" : "Bundle display name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lichtmesser"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "LightMetter"
+            "value" : "LightMeter"
           }
         },
         "ja" : {
@@ -29,6 +35,12 @@
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lichtmesser"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -53,6 +65,12 @@
       "comment" : "Privacy - Camera Usage Description",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwenden Sie Ihre Kamera, um die Belichtung zu messen."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -77,6 +95,12 @@
       "comment" : "Privacy - Tracking Usage Description",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Kennung wird verwendet, um Ihnen personalisierte Werbung zu liefern."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",

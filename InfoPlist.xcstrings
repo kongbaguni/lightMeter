@@ -11,6 +11,12 @@
             "value" : "LightMetter"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "露出計"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27,6 +33,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "LightMeter"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フィルムカメラ露出計"
           }
         },
         "ko" : {
@@ -47,6 +59,12 @@
             "value" : "Use your camera to meter exposure."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カメラを使用して露出を測定します。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -63,6 +81,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "This identifier will be used to deliver personalized ads to you."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この識別子は、パーソナライズされた広告を配信するために使用されます。"
           }
         },
         "ko" : {

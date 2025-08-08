@@ -87,17 +87,23 @@ struct ControllerView: View {
         HStack {
             VStack(alignment: .leading) {
                 HStack {
-                    VStack {
+                    VStack(alignment: .leading) {
                         HStack {
-                            Text("EV").font(.system(size: 12))
-                            Text(evFixItem.title).foregroundStyle(.secondary)
+                            Text("EV")
+                                .font(.system(size: 12))
+                                .foregroundStyle(.secondary)
+                            Text(evFixItem.title)
+                                .foregroundStyle(.primary)
                         }
                         DialView(items: Models.EVfix.items.reversed(), currentItem: $evFixItem)
                     }
-                    VStack {
+                    VStack(alignment: .leading)  {
                         HStack {
-                            Text("ISO").font(.system(size: 12))
-                            Text(isoItem.title).foregroundStyle(.secondary)
+                            Text("ISO")
+                                .font(.system(size: 12))
+                                .foregroundStyle(.secondary)
+                            Text(isoItem.title)
+                                .foregroundStyle(.primary)
                         }
                         DialView(items: Models.ISO.items.reversed(), currentItem: $isoItem)
                     }

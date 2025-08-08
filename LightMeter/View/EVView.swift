@@ -20,7 +20,7 @@ struct EVView: View {
     var body: some View {
         HStack {
             Text("ev")
-                .foregroundStyle(.accent)
+                .foregroundStyle(.secondary)
             RoundedRectangle(cornerRadius: 3)
                 .frame(width: 6, height: 50)
                 .foregroundStyle(.secondary)

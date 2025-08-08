@@ -12,6 +12,9 @@ struct LensListView: View {
     @State var customList : [Models.Lens] = []
     @AppStorage("lensSelectIdx") var lensSelectIdx: Int = 0
     
+    @State var deleteCustomIdx: Int? = nil
+    @State var isAlert: Bool = false
+    
     var body: some View {
         List {
             Section("lens list") {
@@ -66,13 +69,25 @@ struct LensListView: View {
         .onChange(of: lensSelectIdx) { _, newValue in
             NotificationCenter.default.post(name: .lightMetterSettingChanged, object: nil)
         }
+        .alert(isPresented: $isAlert) {
+            if let idx = self.deleteCustomIdx {
+                return .init(title: .init("Deletes the selected custom lens."), primaryButton: .cancel(), secondaryButton: .default(.init("delete"), action: {
+                    let lens = customList[idx]
+                    UserDefaults.standard.removeLens(lens: lens)
+                    customList.remove(at: idx)
+                }))
+            }
+            else {
+                return .init(title: .init("alert"))
+            }
+            
+        }
     }
     
     func makeDeleteBtn(idx:Int)-> some View {
         Button {
-            let lens = customList[idx]
-            UserDefaults.standard.removeLens(lens: lens)
-            customList.remove(at: idx)
+            deleteCustomIdx = idx
+            isAlert = true
         } label : {
             Image(systemName: "trash")
         }

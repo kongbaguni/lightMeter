@@ -35,6 +35,28 @@
         }
       }
     },
+    "alert" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alarm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "警告"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알림"
+          }
+        }
+      }
+    },
     "aperture" : {
       "localizations" : {
         "de" : {
@@ -207,6 +229,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "사용자 랜즈 목록"
+          }
+        }
+      }
+    },
+    "delete" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "löschen"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        }
+      }
+    },
+    "Deletes the selected custom camea body." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löscht das ausgewählte benutzerdefinierte Kameragehäuse"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択したカスタムカメラ本体を削除します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택된 사용자 정의 카메라 본체를 삭제합니다."
+          }
+        }
+      }
+    },
+    "Deletes the selected custom lens." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löscht das ausgewählte benutzerdefinierte Objektiv."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択したカスタム レンズを削除します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 사용자 렌즈를 삭제합니다."
           }
         }
       }

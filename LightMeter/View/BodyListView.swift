@@ -12,6 +12,9 @@ struct BodyListView: View {
     @State var customList : [Models.Body] = []
     @AppStorage("bodySelectIdx") var bodySelectIdx: Int = 0
     
+    @State var deleteCustomIdx: Int? = nil
+    @State var isAlert: Bool = false
+
     var body: some View {
         List {
             Section("body list") {
@@ -68,13 +71,26 @@ struct BodyListView: View {
         .onChange(of: bodySelectIdx) { oldValue, newValue in
             NotificationCenter.default.post(name: .lightMetterSettingChanged, object: nil)
         }
+        .alert(isPresented: $isAlert) {
+            if let idx = self.deleteCustomIdx {
+                return .init(title: .init("Deletes the selected custom camea body."), primaryButton: .cancel(), secondaryButton: .default(.init("delete"), action: {
+                    let body = customList[idx]
+                    UserDefaults.standard.removeBody(body: body)
+                    customList.remove(at: idx)
+                }))
+            }
+            else {
+                return .init(title: .init("alert"))
+            }
+            
+        }
+
     }
     
     func makeDeleteBtn(idx:Int)-> some View {
         Button {
-            let body = customList[idx]
-            UserDefaults.standard.removeBody(body: body)
-            customList.remove(at: idx)
+            deleteCustomIdx = idx
+            isAlert = true
         } label : {
             Image(systemName: "trash")
         }

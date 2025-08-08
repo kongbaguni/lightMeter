@@ -9,30 +9,30 @@ import SwiftUI
 
 struct Models {
     enum EVfix : Double, CaseIterable {
-        case ev10 = 10
-        case ev9 = 9
-        case ev8 = 8
-        case ev7 = 7
-        case ev6 = 6
-        case ev5 = 5
-        case ev4 = 4
-        case ev3 = 3
-        case ev2 = 2
-        case ev1 = 1
+        case ev10 = 3.0
+        case ev9 = 2.7
+        case ev8 = 2.4
+        case ev7 = 2.1
+        case ev6 = 1.8
+        case ev5 = 1.5
+        case ev4 = 1.2
+        case ev3 = 0.9
+        case ev2 = 0.6
+        case ev1 = 0.3
         case ev0 = 0
-        case evNeg1 = -1
-        case evNeg2 = -2
-        case evNeg3 = -3
-        case evNeg4 = -4
-        case evNeg5 = -5
-        case evNeg6 = -6
-        case evNeg7 = -7
-        case evNeg8 = -8
-        case evNeg9 = -9
-        case evNeg10 = -10
+        case evNeg1 = -0.3
+        case evNeg2 = -0.6
+        case evNeg3 = -0.9
+        case evNeg4 = -1.2
+        case evNeg5 = -1.5
+        case evNeg6 = -1.8
+        case evNeg7 = -2.1
+        case evNeg8 = -2.4
+        case evNeg9 = -2.7
+        case evNeg10 = -3.0
         
         var stringValue:String {
-            String(format:"%02.f", rawValue)
+            String(format:"%0.1f", rawValue)
         }
         
         static var items:[Models.Item] {

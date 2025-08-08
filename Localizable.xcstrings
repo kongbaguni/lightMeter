@@ -299,6 +299,9 @@
         }
       }
     },
+    "ev" : {
+
+    },
     "EV" : {
       "localizations" : {
         "ko" : {

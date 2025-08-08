@@ -49,14 +49,23 @@ struct ContentView: View {
         
     }
     
-   
+   var evview : some View {
+       if let a = lightMetterValue, let b = controlerEv {
+           EVView(cameraEV: a, settingEV: b)
+       } else {
+           EVView(cameraEV: 0, settingEV: 0)
+       }
+    }
     
     var body: some View {
         GeometryReader { geometry in
             if geometry.size.width < geometry.size.height {
                 VStack {
-                    LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
-                        .padding(10)                    
+                    HStack {
+                        evview
+                        LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
+                            .padding(10)
+                    }
                     ControllerView(ev:$controlerEv)
                     HStack {
                         LightMetterAutoView()
@@ -72,8 +81,11 @@ struct ContentView: View {
             } else {
                 HStack {
                     VStack {
-                        LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
-                            .padding(10)
+                        HStack {
+                            evview
+                            LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
+                                .padding(10)
+                        }
 #if !targetEnvironment(simulator)
                         NativeAdView()
                             .padding(.bottom, .safeAreaInsetBottom)

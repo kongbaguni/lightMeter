@@ -11,7 +11,7 @@ struct DialView: View {
     let items: [Models.Item]
     @Binding var currentItem: Models.Item
 
-    @State private var itemWidth: CGFloat = 60
+    let itemWidth: CGFloat = 90
     @State private var scrollOffsetx: CGFloat = 0
     
     @State private var debounceTask: Task<Void, Never>? = nil
@@ -44,13 +44,20 @@ struct DialView: View {
         if index < items.count && index >= 0 {
             let newItem = items[index]
             if currentItem != newItem {
-                HapticFeedback.medium()
+                HapticFeedback.feedback()
                 currentItem = newItem
             }
         }
     }
     
-    var body: some View {
+    func makelabel(item: Models.Item) -> some View {
+        Text(item.title)
+            .font(.system(size: item == currentItem ? 24 : 18))
+            .bold(item == currentItem)
+            .foregroundStyle(item == currentItem ? .primary : .secondary)
+    }
+    
+    var content: some View {
         GeometryReader { geometry in
             ZStack(alignment: .center) {
                 ScrollViewReader { scrollProxy in
@@ -59,11 +66,10 @@ struct DialView: View {
                             ForEach(items.indices, id: \.self) { index in
                                 ZStack {
                                     Rectangle()
-                                        .fill(.primary)
+                                        .fill(.dialBg)
                                         .frame(width: itemWidth + 2, height: 50)
-                                        .opacity(0.2)
-                                    Text(items[index].title)
-                                        .font(.caption)
+                                    makelabel(item: items[index])
+                                    
                                 }
                                 .frame(width: itemWidth)
                                 .id(index)
@@ -91,9 +97,21 @@ struct DialView: View {
             }
         }
         .frame(height: 60)
+
+    }
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .frame(height: 60)
+                .foregroundStyle(.dialTrack)
+            content
+
+        }
         .onDisappear {
             debounceTask?.cancel()
         }
+
+
     }
 }
 

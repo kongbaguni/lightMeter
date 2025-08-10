@@ -23,18 +23,9 @@ struct AutoModeSelectView: View {
         }
     }
     
-    var imageView : some View {
-        Image(systemName: imageName)
-            .resizable()
-            .frame(width: .buttonRadius, height: .buttonRadius)
-            .padding(20)
-            .background {
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(.secondary, lineWidth: 2)
-            }
-    }
+    
     var body: some View {
-        Button {
+        ImageButtonView(systemName: imageName) {
             switch mode {
             case .manual:
                 mode = .modeA
@@ -45,8 +36,6 @@ struct AutoModeSelectView: View {
             default:
                 break
             }
-        } label: {
-            imageView
         }
     }
 }

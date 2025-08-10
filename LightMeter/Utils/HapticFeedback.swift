@@ -9,6 +9,19 @@ import UIKit
  햅틱 피드백
  */
 enum HapticFeedback {
+    static func feedback() {
+        let setting = UserDefaults.standard.integer(forKey: "hapticFeedbackSetting")
+        switch setting {
+        case 1:
+            light()
+        case 2:
+            medium()
+        case 3:
+            heavy()
+        default:
+            break
+        }
+    }
     
     static func light() {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()

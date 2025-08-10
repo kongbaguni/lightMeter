@@ -26,27 +26,11 @@ struct ContentView: View {
     @State var controlerEv:Double? = nil
     @State var isPlay:Bool = false
     var toggleButton : some View {
-        Group {
+        ImageButtonView(systemName: isPlay ? "light.min" : "light.max") {
             if isPlay == false {
-                Button {
-                    isPlay.toggle()
-                } label: {
-                    Image(systemName: "light.min")
-                        .resizable()
-                        .scaledToFit()
-                }
-            } else {
-                Image(systemName: "light.max")
-                    .resizable()
-                    .scaledToFit()
+                isPlay = true
             }
-        }.frame(width : .buttonRadius, height: .buttonRadius)
-            .padding(20)
-            .background {
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(.secondary, lineWidth: 2)
-            }
-        
+        }        
     }
     
    var evview : some View {
@@ -55,6 +39,23 @@ struct ContentView: View {
        } else {
            EVView(cameraEV: 0, settingEV: 0)
        }
+    }
+    
+    var versionLabel: some View {
+        HStack {
+            Text("ver")
+                .foregroundStyle(.secondary)
+            Text(Bundle.main.version ?? "0.0.0")
+                .foregroundStyle(.primary)
+        }
+    }
+    
+    var settingsButton: some View {
+        NavigationLink {
+            SettingView()
+        } label: {
+            ButtonImageView(systemName: "gearshape")
+        }
     }
     
     var body: some View {
@@ -67,11 +68,14 @@ struct ContentView: View {
                             .padding(10)
                     }
                     ControllerView(ev:$controlerEv)
-                    HStack {
+                    HStack (alignment: .bottom) {
+                        settingsButton
                         LightMetterAutoView()
                         toggleButton
+
                     }
                     .padding(.bottom, 20)
+                    
 #if !targetEnvironment(simulator)
                     NativeAdView()
                         .padding(.bottom, .safeAreaInsetBottom)
@@ -97,11 +101,13 @@ struct ContentView: View {
                     VStack {
                         LightMetterAutoView()
                         toggleButton
+                        settingsButton
                     }
 
                 }
             }
         }
+        
         .onAppear {
             isPlay = cameraManager?.isRunning ?? false
             cameraManager = LightMeterCameraManager { value in

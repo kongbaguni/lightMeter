@@ -27,9 +27,10 @@ struct EVView: View {
             
             VStack(alignment: .leading) {
                 makeLabel(double: cameraEV)
-                    .font(.system(size: 24).bold())
+                    .font(.system(size: 15).bold())
                     .foregroundStyle(.primary)
                 makeLabel(double: settingEV)
+                    .font(.system(size: 15))
                     .foregroundStyle(.secondary)
             }
         }

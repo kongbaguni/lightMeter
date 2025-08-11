@@ -64,9 +64,11 @@ struct ContentView: View {
                 VStack {
                     HStack {
                         evview
+                        Spacer()
                         LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
                             .padding(10)
                     }
+                    .padding(.horizontal, 10)
                     ControllerView(ev:$controlerEv)
                     HStack (alignment: .bottom) {
                         settingsButton
@@ -87,6 +89,7 @@ struct ContentView: View {
                     VStack {
                         HStack {
                             evview
+                            Spacer()
                             LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
                                 .padding(10)
                         }

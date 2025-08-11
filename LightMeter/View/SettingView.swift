@@ -11,7 +11,8 @@ struct SettingView: View {
     @State var currentBody:Models.Body = Models.Body.curentBody!
     @State var currentLens:Models.Lens = Models.Lens.currentLens!
     
-    @AppStorage("hapticFeedbackSetting") var data:Int = 0
+    @State var testItem:Models.Item = .init(value: 5, title: "5")
+    @AppStorage("hapticFeedbackSetting") var hapticFeedbackSetting:Int = 0
 
     var bodyListNavigationItem : some View {
         NavigationLink {
@@ -61,7 +62,7 @@ struct SettingView: View {
             }
             
             Section {
-                Picker(selection: $data) {
+                Picker(selection: $hapticFeedbackSetting) {
                     Text("off").tag(0)
                     Text("light").tag(1)
                     Text("medium").tag(2)
@@ -69,7 +70,22 @@ struct SettingView: View {
                 } label: {
                     Text("haptic feedback")
                 }
-
+                
+                if hapticFeedbackSetting != 0 {
+                    DialView(items: [
+                        .init(value: 0, title: "0"),
+                        .init(value: 1, title: "1"),
+                        .init(value: 2, title: "2"),
+                        .init(value: 3, title: "3"),
+                        .init(value: 4, title: "4"),
+                        .init(value: 5, title: "5"),
+                        .init(value: 6, title: "6"),
+                        .init(value: 7, title: "7"),
+                        .init(value: 8, title: "8"),
+                        .init(value: 9, title: "9"),
+                        .init(value: 10, title: "10"),
+                    ], currentItem: $testItem)
+                }
             }
         }
         .navigationTitle("setting")

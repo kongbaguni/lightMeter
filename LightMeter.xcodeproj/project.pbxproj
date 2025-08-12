@@ -27,9 +27,19 @@
 		1BE5CAD52E3D81DC0000D5DC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAD42E3D81DC0000D5DC /* FirebaseAnalytics */; };
 		1BE5CAD72E3D81DC0000D5DC /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAD62E3D81DC0000D5DC /* FirebaseAnalyticsCore */; };
 		1BE5CAD92E3D81DC0000D5DC /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE5CAD82E3D81DC0000D5DC /* FirebaseAnalyticsIdentitySupport */; };
+		1BE6CD4F2E4AF1DB00B883AF /* appClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 1BE6CD432E4AF1D900B883AF /* appClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1BE6CD7D2E4AF3B500B883AF /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23732E320A19008B0D71 /* Localizable.xcstrings */; };
+		1BE6CD7E2E4AF3BB00B883AF /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1BE6CD4D2E4AF1DB00B883AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BEE16122E1243E5003123CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BE6CD422E4AF1D900B883AF;
+			remoteInfo = appClip;
+		};
 		1BEE16282E1243E7003123CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1BEE16122E1243E5003123CE /* Project object */;
@@ -46,6 +56,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1BE6CD502E4AF1DB00B883AF /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				1BE6CD4F2E4AF1DB00B883AF /* appClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1BAA23732E320A19008B0D71 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -60,6 +84,7 @@
 		1BE5CAB92E3D65590000D5DC /* GoogleAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAd.swift; sourceTree = "<group>"; };
 		1BE5CABA2E3D65590000D5DC /* GoogleAdPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdPrompt.swift; sourceTree = "<group>"; };
 		1BE5CAD22E3D81990000D5DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1BE6CD432E4AF1D900B883AF /* appClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEE161A2E1243E5003123CE /* LightMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEE16272E1243E7003123CE /* LightMeterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightMeterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEE16312E1243E7003123CE /* LightMeterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightMeterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,13 +98,71 @@
 			);
 			target = 1BEE16192E1243E5003123CE /* LightMeter */;
 		};
+		1BE6CD542E4AF1DB00B883AF /* Exceptions for "appClip" folder in "appClip" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1BE6CD422E4AF1D900B883AF /* appClip */;
+		};
+		1BE6CD562E4AF21D00B883AF /* Exceptions for "LightMeter" folder in "appClip" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				"Extensions/Bundle+Extensions.swift",
+				"Extensions/CGFloat+Extensions.swift",
+				"Extensions/Color+Extensions.swift",
+				"Extensions/Double+Extension.swift",
+				"Extensions/UIApplication+Extensions.swift",
+				"Extensions/UserDefault+Extension.swift",
+				Model/AutoMode.swift,
+				Model/Body.swift,
+				Model/bodys.json,
+				Model/Item.swift,
+				Model/Lens.swift,
+				Model/lensList.json,
+				Model/Models.swift,
+				Model/ViewType.swift,
+				Utils/HapticFeedback.swift,
+				Utils/LightMetterCameraManager.swift,
+				Utils/Logger.swift,
+				View/ApertureMakeView.swift,
+				View/AutoModeSelectView.swift,
+				View/BodyListView.swift,
+				View/ButtonImageView.swift,
+				View/ControllerView.swift,
+				View/CustomBodyMakeView.swift,
+				View/CustomLensMakeView.swift,
+				View/DialView.swift,
+				View/EVView.swift,
+				View/ImageButtonView.swift,
+				View/LensListView.swift,
+				View/LIghtMetterAutoView.swift,
+				View/LightMetterIndicatorView.swift,
+				View/MultiColorAnimeTextView.swift,
+				View/NumPadView.swift,
+				View/SettingView.swift,
+				View/ShuterSpeedMakeView.swift,
+				View/SlideDialView.swift,
+			);
+			target = 1BE6CD422E4AF1D900B883AF /* appClip */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		1BE6CD442E4AF1D900B883AF /* appClip */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1BE6CD542E4AF1DB00B883AF /* Exceptions for "appClip" folder in "appClip" target */,
+			);
+			path = appClip;
+			sourceTree = "<group>";
+		};
 		1BEE161C2E1243E5003123CE /* LightMeter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				1BD3AF922E333F6100318F04 /* Exceptions for "LightMeter" folder in "LightMeter" target */,
+				1BE6CD562E4AF21D00B883AF /* Exceptions for "LightMeter" folder in "appClip" target */,
 			);
 			path = LightMeter;
 			sourceTree = "<group>";
@@ -97,6 +180,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1BE6CD402E4AF1D900B883AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BEE16172E1243E5003123CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -163,6 +253,7 @@
 				1BEE161C2E1243E5003123CE /* LightMeter */,
 				1BEE162A2E1243E7003123CE /* LightMeterTests */,
 				1BEE16342E1243E7003123CE /* LightMeterUITests */,
+				1BE6CD442E4AF1D900B883AF /* appClip */,
 				1BEE161B2E1243E5003123CE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -173,6 +264,7 @@
 				1BEE161A2E1243E5003123CE /* LightMeter.app */,
 				1BEE16272E1243E7003123CE /* LightMeterTests.xctest */,
 				1BEE16312E1243E7003123CE /* LightMeterUITests.xctest */,
+				1BE6CD432E4AF1D900B883AF /* appClip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,6 +272,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1BE6CD422E4AF1D900B883AF /* appClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BE6CD532E4AF1DB00B883AF /* Build configuration list for PBXNativeTarget "appClip" */;
+			buildPhases = (
+				1BE6CD3F2E4AF1D900B883AF /* Sources */,
+				1BE6CD402E4AF1D900B883AF /* Frameworks */,
+				1BE6CD412E4AF1D900B883AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1BE6CD442E4AF1D900B883AF /* appClip */,
+			);
+			name = appClip;
+			packageProductDependencies = (
+			);
+			productName = appClip;
+			productReference = 1BE6CD432E4AF1D900B883AF /* appClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
 		1BEE16192E1243E5003123CE /* LightMeter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1BEE163B2E1243E7003123CE /* Build configuration list for PBXNativeTarget "LightMeter" */;
@@ -188,10 +302,12 @@
 				1BEE16172E1243E5003123CE /* Frameworks */,
 				1BEE16182E1243E5003123CE /* Resources */,
 				1B85D0FC2E4591B5005CBDCF /* ShellScript */,
+				1BE6CD502E4AF1DB00B883AF /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1BE6CD4E2E4AF1DB00B883AF /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				1BEE161C2E1243E5003123CE /* LightMeter */,
@@ -267,6 +383,9 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					1BE6CD422E4AF1D900B883AF = {
+						CreatedOnToolsVersion = 16.4;
+					};
 					1BEE16192E1243E5003123CE = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -306,11 +425,21 @@
 				1BEE16192E1243E5003123CE /* LightMeter */,
 				1BEE16262E1243E7003123CE /* LightMeterTests */,
 				1BEE16302E1243E7003123CE /* LightMeterUITests */,
+				1BE6CD422E4AF1D900B883AF /* appClip */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1BE6CD412E4AF1D900B883AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BE6CD7E2E4AF3BB00B883AF /* InfoPlist.xcstrings in Resources */,
+				1BE6CD7D2E4AF3B500B883AF /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BEE16182E1243E5003123CE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -365,6 +494,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1BE6CD3F2E4AF1D900B883AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BEE16162E1243E5003123CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -396,6 +532,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1BE6CD4E2E4AF1DB00B883AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BE6CD422E4AF1D900B883AF /* appClip */;
+			targetProxy = 1BE6CD4D2E4AF1DB00B883AF /* PBXContainerItemProxy */;
+		};
 		1BEE16292E1243E7003123CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1BEE16192E1243E5003123CE /* LightMeter */;
@@ -421,6 +562,73 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1BE6CD512E4AF1DB00B883AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = appClip/appClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = QU9EPTU238;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = appClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LightMeter;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Use your camera to meter exposure.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.LightMeter.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1BE6CD522E4AF1DB00B883AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = appClip/appClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QU9EPTU238;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = appClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LightMeter;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Use your camera to meter exposure.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.LightMeter.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		1BEE16392E1243E7003123CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -701,6 +909,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1BE6CD532E4AF1DB00B883AF /* Build configuration list for PBXNativeTarget "appClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BE6CD512E4AF1DB00B883AF /* Debug */,
+				1BE6CD522E4AF1DB00B883AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1BEE16152E1243E5003123CE /* Build configuration list for PBXProject "LightMeter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -140,6 +140,7 @@ struct ControllerView: View {
         .onAppear {
             currentBody = Models.Body.curentBody!
             currentLens = Models.Lens.currentLens!
+            calculateEV()
         }
         .onChange(of: evFixItem) { oldValue, newValue in
             evFix = newValue.value
@@ -167,6 +168,7 @@ struct ControllerView: View {
                 }
             }
             if isoItem == .empty {
+                isoItem = Models.ISO.items.first!
                 for item in Models.ISO.items {
                     if item.value == iso {
                         isoItem = item

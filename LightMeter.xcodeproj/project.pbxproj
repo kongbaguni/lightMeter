@@ -419,9 +419,9 @@
 				1BEE16162E1243E5003123CE /* Sources */,
 				1BEE16172E1243E5003123CE /* Frameworks */,
 				1BEE16182E1243E5003123CE /* Resources */,
-				1B85D0FC2E4591B5005CBDCF /* ShellScript */,
 				1BE6CD502E4AF1DB00B883AF /* Embed App Clips */,
 				1BE6CD982E4C1A4F00B883AF /* Embed Foundation Extensions */,
+				1B85D0FC2E4591B5005CBDCF /* ShellScript */,
 			);
 			buildRules = (
 			);

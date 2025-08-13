@@ -12,7 +12,7 @@ extension UserDefaults {
         guard let str = string(forKey: "customBodys"), let data = str.data(using: .utf8) else {
             return []
         }
-            
+        
         do {
             let list = try JSONDecoder().decode([Models.Body].self, from: data)
             return list
@@ -96,5 +96,4 @@ extension UserDefaults {
         }
         saveCustomLens(lenss)
     }
-    
 }

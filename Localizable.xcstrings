@@ -363,6 +363,9 @@
         }
       }
     },
+    "iso" : {
+
+    },
     "ISO" : {
       "shouldTranslate" : false
     },
@@ -519,6 +522,9 @@
           }
         }
       }
+    },
+    "My Widget" : {
+
     },
     "off" : {
       "localizations" : {
@@ -695,6 +701,9 @@
           }
         }
       }
+    },
+    "This is an example widget." : {
+
     },
     "ver" : {
       "localizations" : {

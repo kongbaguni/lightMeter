@@ -12,13 +12,13 @@ struct ResizableSystemImage : View {
         Image(systemName: systemName)
             .resizable()
             .scaledToFit()
-            .padding(.horizontal, 20)
     }
 }
 
 struct LightMetterIndicatorView: View {
     let ev:Double?
     let settingEv:Double?
+    let padding:CGFloat
     
     enum Status {
         case 매우부족
@@ -102,6 +102,7 @@ struct LightMetterIndicatorView: View {
                         .foregroundStyle(.red)
                 }
             }
+            .padding(.horizontal, padding)
         }
         .frame(height: 25)
         .padding(10)
@@ -109,12 +110,12 @@ struct LightMetterIndicatorView: View {
 }
 
 #Preview {
-    LightMetterIndicatorView(ev: 0.0, settingEv: nil)
-    LightMetterIndicatorView(ev: 0.0, settingEv: 5.1)
-    LightMetterIndicatorView(ev: 10.0, settingEv: 5.1)
-    LightMetterIndicatorView(ev: 0.0, settingEv: 0.5)
-    LightMetterIndicatorView(ev: 0.5, settingEv: 0.5)
-    LightMetterIndicatorView(ev: 0.35, settingEv: 0.5)
+    LightMetterIndicatorView(ev: 0.0, settingEv: nil, padding: 20)
+    LightMetterIndicatorView(ev: 0.0, settingEv: 5.1, padding: 20)
+    LightMetterIndicatorView(ev: 10.0, settingEv: 5.1, padding: 20)
+    LightMetterIndicatorView(ev: 0.0, settingEv: 0.5, padding: 20)
+    LightMetterIndicatorView(ev: 0.5, settingEv: 0.5, padding: 20)
+    LightMetterIndicatorView(ev: 0.35, settingEv: 0.5, padding: 20)
     
-    LightMetterIndicatorView(ev: 1.0, settingEv: 0.5)
+    LightMetterIndicatorView(ev: 1.0, settingEv: 0.5, padding: 20)
 }

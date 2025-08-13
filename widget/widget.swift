@@ -41,9 +41,10 @@ struct widgetEntryView : View {
 
     var nomalView: some View {
         VStack {
-            if family == .systemMedium || family == .systemLarge || family == .systemExtraLarge {
-                LightMetterIndicatorView(ev: entry.cameraEv, settingEv: entry.settingEv)
-            }
+            LightMetterIndicatorView(
+                ev: entry.cameraEv,
+                settingEv: entry.settingEv,
+                padding: family == .systemSmall ? 0 : 20)
             
             HStack (spacing:10){
                 if family == .systemMedium || family == .systemLarge || family == .systemExtraLarge {

@@ -20,6 +20,7 @@ struct EVView: View {
     var body: some View {
         HStack {
             Text("ev")
+                .font(.system(size: 13))
                 .foregroundStyle(.secondary)
             RoundedRectangle(cornerRadius: 5)
                 .frame(width: 6, height: 50)
@@ -28,7 +29,7 @@ struct EVView: View {
             
             VStack(alignment: .leading) {
                 makeLabel(double: cameraEV)
-                    .font(.system(size: 15).bold())
+                    .font(.system(size: 17).bold())
                     .foregroundStyle(.primary)
                 makeLabel(double: settingEV)
                     .font(.system(size: 15))

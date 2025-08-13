@@ -52,7 +52,7 @@ struct ContentView: View {
                     HStack {
                         evview
                         Spacer()
-                        LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
+                        LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv, padding: 20)
                             .padding(10)
                     }
                     .padding(.horizontal, 10)
@@ -69,7 +69,7 @@ struct ContentView: View {
                         HStack {
                             evview
                             Spacer()
-                            LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv)
+                            LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv, padding: 20)
                                 .padding(10)
                         }
                     }

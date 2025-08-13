@@ -364,7 +364,7 @@
       }
     },
     "iso" : {
-
+      "shouldTranslate" : false
     },
     "ISO" : {
       "shouldTranslate" : false
@@ -524,7 +524,32 @@
       }
     },
     "My Widget" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belichtungswert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "exposure value"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "露出値"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노출 값"
+          }
+        }
+      }
     },
     "off" : {
       "localizations" : {
@@ -702,9 +727,6 @@
         }
       }
     },
-    "This is an example widget." : {
-
-    },
     "ver" : {
       "localizations" : {
         "de" : {
@@ -745,6 +767,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "버전"
+          }
+        }
+      }
+    },
+    "widget description" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeigt die letzte Belichtungsmessereinstellung an."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows the last exposure meter setting."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最後の露出計の設定を表示します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "마지막 노출계 설정을 표시합니다."
           }
         }
       }

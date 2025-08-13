@@ -22,8 +22,8 @@ struct ContentView: View {
 #endif
     }
     @State var cameraManager:LightMeterCameraManager? = nil
-    @State var lightMetterValue: Double? = nil
-    @State var controlerEv:Double? = nil
+    @State var lightMetterValue: Double? =  UserDefaults.shared.double(forKey: "widget_cameraEv")
+    @State var controlerEv:Double? = UserDefaults.shared.double(forKey: "widget_settingEv")
     @State var isPlay:Bool = false
     var toggleButton : some View {
         ImageButtonView(systemName: isPlay ? "light.min" : "light.max") {

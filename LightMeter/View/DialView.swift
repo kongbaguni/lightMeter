@@ -21,12 +21,6 @@ struct DialView: View {
     @State private var isInitialized: Bool = false
     
     func scrollToCurrentIndex(scrollProxy: ScrollViewProxy) {
-        if currentItem == .empty {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-                scrollToCurrentIndex(scrollProxy: scrollProxy)
-            }
-            return
-        }
         if let index = items.firstIndex(where: { $0 == currentItem }) {
             scrollProxy.scrollTo(index, anchor: .center)
         }
@@ -66,7 +60,7 @@ struct DialView: View {
                             ForEach(items.indices, id: \.self) { index in
                                 ZStack {
                                     Rectangle()
-                                        .fill(.dialBg)
+                                        .fill(items[index] == currentItem ? .dialBg2 : .dialBg)
                                         .frame(width: itemWidth + 2, height: 50)
                                     makelabel(item: items[index])
                                     
@@ -83,10 +77,12 @@ struct DialView: View {
                         scrollOffsetx = newValue.x
                         handleOffsetChanged(offset: newValue.x)
                     }
-                    
-                    .onAppear {
-                        scrollToCurrentIndex(scrollProxy: scrollProxy)
+                    .onChange(of: currentItem) { oldValue, newValue in
+                        if oldValue == .empty {
+                            scrollToCurrentIndex(scrollProxy: scrollProxy)
+                        }
                     }
+
                 }
                 
                 // 중앙 포인터
@@ -97,6 +93,7 @@ struct DialView: View {
             }
         }
         .frame(height: 60)
+        
 
     }
     var body: some View {
@@ -110,7 +107,6 @@ struct DialView: View {
         .onDisappear {
             debounceTask?.cancel()
         }
-
 
     }
 }

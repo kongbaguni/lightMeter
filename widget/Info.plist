@@ -5,7 +5,7 @@
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.widgetkit-extension</string>
+		<string>net.kongbaguni.lightmeter.widget</string>
 	</dict>
 </dict>
 </plist>

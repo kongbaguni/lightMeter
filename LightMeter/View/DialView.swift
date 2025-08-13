@@ -82,6 +82,9 @@ struct DialView: View {
                             scrollToCurrentIndex(scrollProxy: scrollProxy)
                         }
                     }
+                    .task {
+                        scrollToCurrentIndex(scrollProxy: scrollProxy)
+                    }
 
                 }
                 

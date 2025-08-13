@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct MainView: View {
     var body: some View {
         NavigationStack {
             ContentView()
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { output in
+                    WidgetCenter.shared.reloadTimelines(ofKind: "widget")
+                }
+
         }
     }
 }

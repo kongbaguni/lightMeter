@@ -88,7 +88,7 @@ struct ContentView: View {
             isPlay = cameraManager?.isRunning ?? false
             cameraManager = LightMeterCameraManager { value in
                 self.lightMetterValue = value
-                
+                UserDefaults.shared.set(cameraEv: value)
             } onStopSession: {
                 self.isPlay = false
             }
@@ -96,8 +96,7 @@ struct ContentView: View {
         .onChange(of: isPlay) {oldValue, newValue in
             if newValue == true {
                 cameraManager?.startSession()
-            }
-            
+            }            
         }
         .padding()
     }

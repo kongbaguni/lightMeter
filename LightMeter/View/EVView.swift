@@ -21,9 +21,10 @@ struct EVView: View {
         HStack {
             Text("ev")
                 .foregroundStyle(.secondary)
-            RoundedRectangle(cornerRadius: 3)
+            RoundedRectangle(cornerRadius: 5)
                 .frame(width: 6, height: 50)
                 .foregroundStyle(.secondary)
+                .opacity(0.5)
             
             VStack(alignment: .leading) {
                 makeLabel(double: cameraEV)

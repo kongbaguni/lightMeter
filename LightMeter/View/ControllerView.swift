@@ -52,8 +52,13 @@ struct ControllerView: View {
         if evFixItem != .empty {
             ev = calculateEV(aperture: aperture, shutter: shutterSpeed, iso: iso)
         }
-        if apertureItem != .empty && shutterSpeedItem != .empty && isoItem != .empty {
-            UserDefaults.shared.setData(iso: isoItem.title, aperture: apertureItem.title, shutterSpeed: shutterSpeedItem.title)
+        if let ev = ev {
+            UserDefaults.shared.set(
+                iso: isoItem.title,
+                aperture: apertureItem.title,
+                shutterSpeed: shutterSpeedItem.title,                
+            )
+            UserDefaults.shared.set(settingEv: ev)
         }
     }
     

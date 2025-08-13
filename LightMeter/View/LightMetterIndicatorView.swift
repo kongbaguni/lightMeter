@@ -61,7 +61,6 @@ struct LightMetterIndicatorView: View {
         }
 
         let newStatus = _status
-        
         NotificationCenter.default.post(name: .lightMetterStatusDidChanged, object: newStatus, userInfo: ["ev" : ev, "settingEv": settingEv, "value": abs(ev - settingEv)])
         return newStatus
     }

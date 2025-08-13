@@ -40,6 +40,9 @@
 		1BE6CDA42E4C2A0300B883AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BE6CD0F2E4A1F4800B883AF /* Assets.xcassets */; };
 		1BE6CDA52E4C2D9E00B883AF /* SharedDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6CDA12E4C279D00B883AF /* SharedDefaults.swift */; };
 		1BE6CDA82E4C2DF500B883AF /* SharedDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6CDA12E4C279D00B883AF /* SharedDefaults.swift */; };
+		1BE6CE3A2E4C3AF900B883AF /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6CE382E4C3AEF00B883AF /* Notification+Name.swift */; };
+		1BE6CE3C2E4C3D1500B883AF /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6CE382E4C3AEF00B883AF /* Notification+Name.swift */; };
+		1BE6CE3D2E4C3D1500B883AF /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6CE382E4C3AEF00B883AF /* Notification+Name.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,7 @@
 		1BE6CD872E4C1A4D00B883AF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		1BE6CD9F2E4C23C600B883AF /* widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widgetExtension.entitlements; sourceTree = "<group>"; };
 		1BE6CDA12E4C279D00B883AF /* SharedDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDefaults.swift; sourceTree = "<group>"; };
+		1BE6CE382E4C3AEF00B883AF /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		1BEE161A2E1243E5003123CE /* LightMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEE16272E1243E7003123CE /* LightMeterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightMeterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEE16312E1243E7003123CE /* LightMeterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightMeterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +205,14 @@
 			);
 			target = 1BE6CD422E4AF1D900B883AF /* appClip */;
 		};
+		1BE6CE372E4C3A8700B883AF /* Exceptions for "LightMeter" folder in "widgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				View/EVView.swift,
+				View/LightMetterIndicatorView.swift,
+			);
+			target = 1BE6CD822E4C1A4D00B883AF /* widgetExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -227,6 +239,7 @@
 			exceptions = (
 				1BD3AF922E333F6100318F04 /* Exceptions for "LightMeter" folder in "LightMeter" target */,
 				1BE6CD562E4AF21D00B883AF /* Exceptions for "LightMeter" folder in "appClip" target */,
+				1BE6CE372E4C3A8700B883AF /* Exceptions for "LightMeter" folder in "widgetExtension" target */,
 			);
 			path = LightMeter;
 			sourceTree = "<group>";
@@ -327,6 +340,7 @@
 		1BE6CDA02E4C279300B883AF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1BE6CE382E4C3AEF00B883AF /* Notification+Name.swift */,
 				1BE6CD0F2E4A1F4800B883AF /* Assets.xcassets */,
 				1BE6CDA12E4C279D00B883AF /* SharedDefaults.swift */,
 			);
@@ -634,6 +648,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BE6CDA82E4C2DF500B883AF /* SharedDefaults.swift in Sources */,
+				1BE6CE3C2E4C3D1500B883AF /* Notification+Name.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +657,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BE6CDA52E4C2D9E00B883AF /* SharedDefaults.swift in Sources */,
+				1BE6CE3D2E4C3D1500B883AF /* Notification+Name.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +670,7 @@
 				1BE5CABD2E3D65590000D5DC /* BannerAdView.swift in Sources */,
 				1BE5CABE2E3D65590000D5DC /* UnifiedNativeAdView.swift in Sources */,
 				1BE5CABF2E3D65590000D5DC /* GoogleAdPrompt.swift in Sources */,
+				1BE6CE3A2E4C3AF900B883AF /* Notification+Name.swift in Sources */,
 				1BE5CAC02E3D65590000D5DC /* AdLoader.swift in Sources */,
 				1BE5CAC12E3D65590000D5DC /* NativeAdView.swift in Sources */,
 				1BE5CAC22E3D65590000D5DC /* GADNativeAd+Extensions.swift in Sources */,
@@ -1003,8 +1020,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2.3;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.LightMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1041,8 +1060,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2.3;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.LightMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

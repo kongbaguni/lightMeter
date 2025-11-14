@@ -26,6 +26,20 @@ struct ControllerView: View {
     @AppStorage("shutterSpeed") var shutterSpeed:Double = 0.0
     @AppStorage("autoModeValue") var autoModeValue:Int = 0
     
+    @AppStorage("filterType") var filterTypeRawValue: Int = 0
+    
+    @State var fixedISO:Int = 0
+    
+    func makefilteredISO(iso:Double)->Double {
+        var result = iso
+        if filterTypeRawValue > 0 {
+            for _ in 0..<filterTypeRawValue {
+                result = result / 2
+            }
+        }
+        return result
+    }
+    
     var autoMode:Models.AutoMode {
         return .init(rawValue: autoModeValue)!
     }
@@ -34,8 +48,9 @@ struct ControllerView: View {
         if iso == 0 || shutter == 0 || aperture == 0 {
             return nil
         }
+        let newISO = makefilteredISO(iso: iso)
         let evBase = log2(pow(aperture, 2) / shutter)
-        let isoCompensation = log2(iso / 100)
+        let isoCompensation = log2(newISO / 100)
         return evBase - isoCompensation + evFix + evFixOffset
     }
     
@@ -110,8 +125,11 @@ struct ControllerView: View {
                             Text("ISO")
                                 .font(.system(size: 12))
                                 .foregroundStyle(.secondary)
-                            Text(isoItem.title)
+                            Text("\(Int(isoItem.value))")
                                 .foregroundStyle(.primary)
+                            
+                            Text("\(fixedISO)")
+                                .foregroundStyle(.red)
                         }
                         DialView(items: Models.ISO.items.reversed(), currentItem: $isoItem)
                     }
@@ -146,10 +164,24 @@ struct ControllerView: View {
         }
         .padding(10)
         .onAppear {
+            print(Int(makefilteredISO(iso: iso)))
+            print(isoItem.title)
+            print(isoItem.value)
             currentBody = Models.Body.curentBody!
             currentLens = Models.Lens.currentLens!
+            fixedISO = Int(makefilteredISO(iso: iso))
             calculateEV()
         }
+        .onReceive(NotificationCenter.default.publisher(for: .filterTypeChanged), perform: { output in
+            if let value = output.object as? Int {
+                filterTypeRawValue = value
+            }
+        })
+        .onChange(of: filterTypeRawValue, { oldValue, newValue in
+            fixedISO = Int(makefilteredISO(iso: isoItem.value))
+            calculateEV()
+
+        })
         .onChange(of: evFixItem) { oldValue, newValue in
             evFix = newValue.value
             calculateEV()
@@ -157,6 +189,8 @@ struct ControllerView: View {
         }
         .onChange(of: isoItem) { oldValue, newValue in
             iso = newValue.value
+            fixedISO = Int(makefilteredISO(iso: isoItem.value))
+
             calculateEV()
         }
         .onChange(of: apertureItem) { oldValue, newValue in
@@ -167,6 +201,7 @@ struct ControllerView: View {
             shutterSpeed = newValue.value
             calculateEV()
         }
+        
         .onAppear {
             if evFixItem == .empty {
                 for item in Models.EVfix.items {

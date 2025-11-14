@@ -64,17 +64,17 @@ struct ContentView: View {
                 VStack {
                     HStack {
                         evview
-                        Spacer()
+                        Spacer()                        
                         LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv, padding: 20)
                             .padding(10)
                     }
                     .padding(.horizontal, 10)
                     ControllerView(ev:$controlerEv)
                     HStack (alignment: .bottom) {
+                        FilterTypeView()
                         settingsButton
                         LightMetterAutoView()
                         toggleButton
-
                     }
                     .padding(.bottom, 20)
                     
@@ -105,6 +105,7 @@ struct ContentView: View {
                         LightMetterAutoView()
                         toggleButton
                         settingsButton
+                        FilterTypeView()
                     }
 
                 }

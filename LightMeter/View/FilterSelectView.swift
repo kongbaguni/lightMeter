@@ -12,13 +12,33 @@ extension Notification.Name {
 }
 
 struct FilterTypeView : View {
-    enum FilterType : Int, CaseIterable {
-        case clear = 0
-        case yellow = 1
-        case orange = 2
-        case red = 3
-        var stop : Int {
-            self.rawValue
+    enum FilterType : Double, CaseIterable {
+
+        case clear
+        case yellow
+        case orange
+        case red
+        case green
+        case blue
+        case polarizer
+        
+        var stop : Double {
+            switch self {
+            case .clear:
+                return 0
+            case .yellow:
+                return 1.0
+            case .orange:
+                return 1.5
+            case .red:
+                return 3
+            case .green:
+                return 2
+            case .blue:
+                return 2
+            case .polarizer:
+                return 2
+            }
         }
         
         var color:Color {
@@ -31,6 +51,31 @@ struct FilterTypeView : View {
                 return .yellow
             case .clear:
                 return .clear
+            case .green:
+                return .green
+            case .blue:
+                return .blue
+            case .polarizer:
+                return .black
+            }
+        }
+        
+        var label : Text {
+            switch self {
+            case .red:
+                return Text("Red")
+            case .orange:
+                return Text("Orange")
+            case .yellow:
+                return Text("Yellow")
+            case .clear:
+                return Text("Clear")
+            case .green:
+                return Text("Green")
+            case .blue:
+                return Text("Blue")
+            case .polarizer:
+                return Text("Polarizer")
             }
         }
     }
@@ -38,7 +83,7 @@ struct FilterTypeView : View {
     let filters = FilterType.allCases
     @State var selectedFilter: FilterType = .clear
     @State var isSheetPresented: Bool = false
-    @AppStorage("filterType") var filterTypeRawValue: Int = 0
+    @AppStorage("filterType") var filterTypeRawValue: Double = 0
     
     var body: some View {
         Button {
@@ -78,7 +123,9 @@ struct FilterSelectView : View {
                 ForEach(FilterTypeView.FilterType.allCases, id: \.self) { type in
                     Button {
                         selectedFilter = type
-                        dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                            dismiss()
+                        }
                     } label: {
                         Circle()
                             .fill(type.color)
@@ -88,6 +135,7 @@ struct FilterSelectView : View {
                     }
                 }
             }
+            selectedFilter.label
         }
     }
 }

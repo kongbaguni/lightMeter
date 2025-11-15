@@ -15,11 +15,13 @@ struct FilterListView: View {
     
     var body: some View {
         List {
-            ForEach(FilterType.allCases, id: \.self) { filter in
-                Button {
-                    filterTypeRawValue = filter.rawValue
-                } label: {
-                    FilterSelectRow(filter: filter, useCheckmark: true)
+            Section("filter list") {
+                ForEach(FilterType.allCases, id: \.self) { filter in
+                    Button {
+                        filterTypeRawValue = filter.rawValue
+                    } label: {
+                        FilterSelectRow(filter: filter, useCheckmark: true)
+                    }
                 }
             }
         }.navigationTitle("select filter")

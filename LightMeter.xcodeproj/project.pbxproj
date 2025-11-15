@@ -176,7 +176,7 @@
 				View/EVView.swift,
 				View/FilterListView.swift,
 				View/FilterSelectRow.swift,
-				View/FilterSelectView.swift,
+				View/FilterTypeView.swift,
 				View/ImageButtonView.swift,
 				View/LensListView.swift,
 				View/LIghtMetterAutoView.swift,

@@ -168,11 +168,6 @@ struct ControllerView: View {
             fixedISO = Int(makefilteredISO(iso: iso))
             calculateEV()
         }
-        .onReceive(NotificationCenter.default.publisher(for: .filterTypeChanged), perform: { output in
-            if let value = output.object as? Int {
-                filterTypeRawValue = value
-            }
-        })
         .onChange(of: filterTypeRawValue, { oldValue, newValue in
             fixedISO = Int(makefilteredISO(iso: isoItem.value))
             calculateEV()

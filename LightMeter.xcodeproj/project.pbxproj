@@ -152,6 +152,7 @@
 				"Extensions/Double+Extension.swift",
 				"Extensions/UIApplication+Extensions.swift",
 				"Extensions/UserDefault+Extension.swift",
+				"Extensions/View+Extensions.swift",
 				Model/AutoMode.swift,
 				Model/Body.swift,
 				Model/bodys.json,

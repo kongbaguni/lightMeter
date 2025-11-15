@@ -31,7 +31,8 @@ struct ControllerView: View {
     @State var fixedISO:Int = 0
     
     func makefilteredISO(iso:Double)->Double {
-        let factor = pow(2.0, -filterTypeRawValue)
+        let type = FilterTypeView.FilterType(rawValue: filterTypeRawValue) ?? .clear
+        let factor = pow(2.0, -type.stop)
         return iso * factor
     }
     

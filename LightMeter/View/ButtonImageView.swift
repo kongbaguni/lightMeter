@@ -23,6 +23,7 @@ struct ButtonImageView: View {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(.secondary.opacity(0.2))
             }
+            .safeGlassEffect(useInteractive: true, inShape: RoundedRectangle(cornerRadius: 5))
         
     }
 }

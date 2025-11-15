@@ -90,12 +90,14 @@ struct FilterTypeView : View {
             isSheetPresented = true
         } label: {
             Circle()
-                .fill(selectedFilter.color)
+                .fill(selectedFilter.color.opacity(0.5))
                 .overlay(
                     Circle().stroke(.primary, lineWidth: 2)
                 )
-                .frame(width: 40, height: 40)
+                .frame(width: 32, height: 32)
                 .padding(10)
+                .safeGlassEffect(useInteractive: true, inShape: Circle())
+
         }
         .sheet(isPresented: $isSheetPresented) {
             FilterSelectView(selectedFilter: $selectedFilter)
@@ -115,27 +117,43 @@ struct FilterSelectView : View {
     @Environment(\.dismiss) private var dismiss
 
     @Binding var selectedFilter: FilterTypeView.FilterType
+    @State var willDismiss: Bool = false
     
     var body: some View {
         VStack {
-            Text("filter select")
             HStack {
-                ForEach(FilterTypeView.FilterType.allCases, id: \.self) { type in
-                    Button {
-                        selectedFilter = type
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                            dismiss()
-                        }
-                    } label: {
-                        Circle()
-                            .fill(type.color)
-                            .stroke(type == selectedFilter ? .tertiary : .primary, lineWidth: type == selectedFilter ? 5 : 2)
-                        
-                            .frame(width: 32, height: 32)
+                Text("filter select")
+                    .font(.title)
+                    .foregroundStyle(.primary)
+                Spacer()
+            }.padding(.horizontal,10)
+            ScrollView(.horizontal) {
+                HStack(spacing: 0) {
+                    ForEach(FilterTypeView.FilterType.allCases, id: \.self) { type in
+                        Button {
+                            selectedFilter = type
+                            willDismiss = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)){
+                                dismiss()
+                            }
+                        } label: {
+                            Circle()
+                                .fill(type.color.opacity(0.5))
+                                .stroke(type == selectedFilter ? .tertiary : .primary, lineWidth: type == selectedFilter ? 5 : 2)
+                            
+                                .frame(width: 32, height: 32)
+                                .safeGlassEffect(useInteractive: true, inShape: Circle())
+                                .padding(10)
+                            
+                        }.disabled(willDismiss)
                     }
-                }
+                }.frame(height:100)
             }
-            selectedFilter.label
+            HStack {
+                Text("Selected filter :")
+                selectedFilter.label
+                Spacer()
+            }.padding(.horizontal,10)
         }
     }
 }

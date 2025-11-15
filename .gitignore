@@ -1,1 +1,82 @@
+########################
+# Xcode
+########################
+# User settings
+xcuserdata/
+*.xcuserstate
+
+# Build products
+build/
+DerivedData/
+*.ipa
+*.xcarchive
+
+# SwiftPM
+.swiftpm/
+.build/
+
+# Xcode workspace
+xcshareddata/WorkspaceSettings.xcsettings
+
+# iOS device support
+DeviceSupport/
+Devices/
+
+########################
+# CocoaPods
+########################
+Pods/
+Podfile.lock
+# If you want deterministic builds, keep Podfile.lock
+
+########################
+# Carthage
+########################
+Carthage/Build/
+Carthage/Checkouts/
+
+########################
+# Fastlane
+########################
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+########################
+# Firebase / Google
+########################
 GoogleService-Info.plist
+# or encrypt / use CI secret
+
+########################
+# SwiftLint / SwiftFormat
+########################
+.swiftlint.yml
+.swiftformat
+
+########################
+# SPM Artifacts
+########################
+.idea/
+.packages/
+Package.resolved
+
+########################
+# misc
+########################
+*.DS_Store
+*.swp
+*.lock
+*.tmp
+*.orig
+*.bak
+*.env
+
+# Prevent committing Xcode crash logs
+*.xccrashpoint
+*.crash
+
+# Prevent committing provisioning profiles
+*.mobileprovision
+*.provisioningprofile

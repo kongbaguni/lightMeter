@@ -26,12 +26,12 @@ struct ControllerView: View {
     @AppStorage("shutterSpeed") var shutterSpeed:Double = 0.0
     @AppStorage("autoModeValue") var autoModeValue:Int = 0
     
-    @AppStorage("filterType") var filterTypeRawValue: Double = 0.0
+    @AppStorage("filterType") var filterTypeRawValue: Int = 0
     
     @State var fixedISO:Int = 0
     
     func makefilteredISO(iso:Double)->Double {
-        let type = FilterTypeView.FilterType(rawValue: filterTypeRawValue) ?? .clear
+        let type = FilterType(rawValue: filterTypeRawValue) ?? .clear
         let factor = pow(2.0, -type.stop)
         return iso * factor
     }
@@ -169,7 +169,7 @@ struct ControllerView: View {
             calculateEV()
         }
         .onReceive(NotificationCenter.default.publisher(for: .filterTypeChanged), perform: { output in
-            if let value = output.object as? Double {
+            if let value = output.object as? Int {
                 filterTypeRawValue = value
             }
         })

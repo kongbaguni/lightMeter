@@ -14,6 +14,11 @@ struct SettingView: View {
     @State var testItem:Models.Item = .init(value: 5, title: "5")
     @AppStorage("hapticFeedbackSetting") var hapticFeedbackSetting:Int = 0
 
+    @AppStorage("filterType") var filterTypeRawValue: Int = 0
+    var selectedFilter: FilterType {
+        FilterType(rawValue: filterTypeRawValue) ?? .clear
+    }
+
     var bodyListNavigationItem : some View {
         NavigationLink {
             BodyListView()
@@ -43,6 +48,18 @@ struct SettingView: View {
             }
         }
     }
+    
+    var filterListNavigationItem : some View {
+        NavigationLink {
+            FilterListView()
+        } label : {
+            HStack {
+                Text("filter")
+                FilterSelectRow(filter: selectedFilter, useCheckmark: false)
+            }
+        }
+    }
+    
     var body: some View {
         List {
             Section {
@@ -59,6 +76,7 @@ struct SettingView: View {
             Section {
                 bodyListNavigationItem
                 lensListNavigationItem
+                filterListNavigationItem
             }
             
             Section {

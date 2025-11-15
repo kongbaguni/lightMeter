@@ -169,6 +169,7 @@
 				View/AutoModeSelectView.swift,
 				View/BodyListView.swift,
 				View/ButtonImageView.swift,
+				View/CameraPermissionView.swift,
 				View/ControllerView.swift,
 				View/CustomBodyMakeView.swift,
 				View/CustomLensMakeView.swift,

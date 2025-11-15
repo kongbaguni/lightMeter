@@ -39,6 +39,7 @@ class LightMeterCameraManager: NSObject, ObservableObject {
             postChange()
         }
     }
+    
     private var shutterSpeed:CMTime? = nil {
         didSet {
             postChange()
@@ -53,6 +54,7 @@ class LightMeterCameraManager: NSObject, ObservableObject {
             changeCount = 0
         }
     }
+    
     private var lensAperture:Float? = nil
     
     var sessionConfig:Bool = false
@@ -62,6 +64,7 @@ class LightMeterCameraManager: NSObject, ObservableObject {
         guard let device = AVCaptureDevice.default(for: .video) else {
             return
         }
+        
         do {
             if sessionConfig == false {
                 let input = try AVCaptureDeviceInput(device: device)

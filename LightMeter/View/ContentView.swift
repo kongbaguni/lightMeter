@@ -8,6 +8,7 @@
 import SwiftUI
 import GoogleMobileAds
 import FirebaseCore
+import AVFoundation
 
 struct ContentView: View {
     init() {
@@ -25,6 +26,9 @@ struct ContentView: View {
     @State var lightMetterValue: Double? =  UserDefaults.shared.double(forKey: "widget_cameraEv")
     @State var controlerEv:Double? = UserDefaults.shared.double(forKey: "widget_settingEv")
     @State var isPlay:Bool = false
+    
+    @State var permissionOK:Bool = false
+    
     var toggleButton : some View {
         ImageButtonView(systemName: isPlay ? "light.min" : "light.max") {
             if isPlay == false {
@@ -58,13 +62,13 @@ struct ContentView: View {
         }
     }
     
-    var body: some View {
+    var contentView : some View {
         GeometryReader { geometry in
             if geometry.size.width < geometry.size.height {
                 VStack {
                     HStack {
                         evview
-                        Spacer()                        
+                        Spacer()
                         LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv, padding: 20)
                             .padding(10)
                     }
@@ -111,7 +115,16 @@ struct ContentView: View {
                 }
             }
         }
-        
+    }
+    
+    var body: some View {
+        Group {
+            if permissionOK {
+                contentView
+            } else {
+                CameraPermissionView()
+            }
+        }
         .onAppear {
             isPlay = cameraManager?.isRunning ?? false
             cameraManager = LightMeterCameraManager { value in
@@ -119,6 +132,13 @@ struct ContentView: View {
                 UserDefaults.shared.set(cameraEv: value)
             } onStopSession: {
                 self.isPlay = false
+            }
+            
+            switch AVCaptureDevice.authorizationStatus(for: .video) {
+            case .notDetermined, .authorized:
+                permissionOK = true
+            default:
+                permissionOK = false
             }
         }
         .onChange(of: isPlay) {oldValue, newValue in

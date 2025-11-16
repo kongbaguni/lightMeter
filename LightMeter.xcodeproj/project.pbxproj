@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B7EE79A2EC98EED009F9515 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BE5CAD22E3D81990000D5DC /* GoogleService-Info.plist */; };
 		1BAA23742E320A19008B0D71 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23732E320A19008B0D71 /* Localizable.xcstrings */; };
 		1BAA23762E320A5A008B0D71 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */; };
 		1BD3AF902E33394900318F04 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3AF8F2E33394900318F04 /* Launch Screen.storyboard */; };
@@ -597,6 +598,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B7EE79A2EC98EED009F9515 /* GoogleService-Info.plist in Resources */,
 				1BAA23762E320A5A008B0D71 /* InfoPlist.xcstrings in Resources */,
 				1BD3AF902E33394900318F04 /* Launch Screen.storyboard in Resources */,
 				1BE5CAC32E3D65590000D5DC /* UnifiedNativeAdView.xib in Resources */,
@@ -635,6 +637,7 @@
 				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
 				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
 				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}.debug.dylib",
 			);
 			outputFileListPaths = (
 			);

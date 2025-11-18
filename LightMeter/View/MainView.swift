@@ -18,7 +18,7 @@ struct MainView: View {
                 case 0:
                     NormalModeView()
                 default:
-                    FlashControllerView()
+                    FlashModeView()
                 }
                 
                 VStack {

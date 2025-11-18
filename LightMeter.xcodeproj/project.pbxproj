@@ -12,6 +12,7 @@
 		1B664F132ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */; };
 		1B664F142ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */; };
 		1B664F152ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */; };
+		1B664FC12ECC5D27006FFBCD /* jkdsUtility in Frameworks */ = {isa = PBXBuildFile; productRef = 1B664FC02ECC5D27006FFBCD /* jkdsUtility */; };
 		1BAA23742E320A19008B0D71 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23732E320A19008B0D71 /* Localizable.xcstrings */; };
 		1BAA23762E320A5A008B0D71 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */; };
 		1BD3AF902E33394900318F04 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3AF8F2E33394900318F04 /* Launch Screen.storyboard */; };
@@ -154,6 +155,7 @@
 				"Extensions/CGFloat+Extensions.swift",
 				"Extensions/Color+Extensions.swift",
 				"Extensions/Double+Extension.swift",
+				"Extensions/String+Extension.swift",
 				"Extensions/UIApplication+Extensions.swift",
 				"Extensions/UserDefault+Extension.swift",
 				"Extensions/View+Extensions.swift",
@@ -294,6 +296,7 @@
 				1BE5CAD52E3D81DC0000D5DC /* FirebaseAnalytics in Frameworks */,
 				1BE5CAD12E3D812D0000D5DC /* FirebasePerformance in Frameworks */,
 				1BE5CAC62E3D65ED0000D5DC /* ActivityIndicatorView in Frameworks */,
+				1B664FC12ECC5D27006FFBCD /* jkdsUtility in Frameworks */,
 				1BE5CAD72E3D81DC0000D5DC /* FirebaseAnalyticsCore in Frameworks */,
 				1BE5CAAC2E3D63CF0000D5DC /* GoogleUserMessagingPlatform in Frameworks */,
 			);
@@ -467,6 +470,7 @@
 				1BE5CAD42E3D81DC0000D5DC /* FirebaseAnalytics */,
 				1BE5CAD62E3D81DC0000D5DC /* FirebaseAnalyticsCore */,
 				1BE5CAD82E3D81DC0000D5DC /* FirebaseAnalyticsIdentitySupport */,
+				1B664FC02ECC5D27006FFBCD /* jkdsUtility */,
 			);
 			productName = LightMeter;
 			productReference = 1BEE161A2E1243E5003123CE /* LightMeter.app */;
@@ -564,6 +568,7 @@
 				1BE5CAAD2E3D64FB0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				1BE5CAC42E3D65EC0000D5DC /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 				1BE5CACD2E3D812D0000D5DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1B664FBF2ECC5D27006FFBCD /* XCRemoteSwiftPackageReference "jkdsUtility" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1BEE161B2E1243E5003123CE /* Products */;
@@ -1218,6 +1223,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1B664FBF2ECC5D27006FFBCD /* XCRemoteSwiftPackageReference "jkdsUtility" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JKDataSystems/jkdsUtility";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		1BE5CAAA2E3D63CF0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-user-messaging-platform";
@@ -1253,6 +1266,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1B664FC02ECC5D27006FFBCD /* jkdsUtility */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B664FBF2ECC5D27006FFBCD /* XCRemoteSwiftPackageReference "jkdsUtility" */;
+			productName = jkdsUtility;
+		};
 		1BE5CAAB2E3D63CF0000D5DC /* GoogleUserMessagingPlatform */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1BE5CAAA2E3D63CF0000D5DC /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */;

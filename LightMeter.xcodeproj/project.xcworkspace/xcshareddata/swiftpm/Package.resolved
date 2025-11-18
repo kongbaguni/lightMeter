@@ -1,5 +1,5 @@
 {
-  "originHash" : "2f909e7eb852bfbec6790a2624f7e48b73659a9509ec07a7373a87e77178ae2c",
+  "originHash" : "9333bf42962ca1cd5b9f8325812907703ecc929ce92bda582f477663ffe80d95",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -98,6 +98,15 @@
       "state" : {
         "revision" : "040d087ac2267d2ddd4cca36c757d1c6a05fdbfe",
         "version" : "101.0.0"
+      }
+    },
+    {
+      "identity" : "jkdsutility",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JKDataSystems/jkdsUtility",
+      "state" : {
+        "branch" : "main",
+        "revision" : "23368765b0be5ca365ed70675731b6961c906214"
       }
     },
     {

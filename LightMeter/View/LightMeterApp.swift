@@ -8,9 +8,22 @@
 import SwiftUI
 import FirebaseCore
 import GoogleMobileAds
+import jkdsUtility
 
 @main
 struct LightMeterApp: App {
+    
+    @State var versionCheckResult: StoreVersion.VersionDifferenceCheckResult? = nil
+    
+    var isNeedUpdate:Bool {
+        switch versionCheckResult?.difference {
+        case .majorHigherInStore, .minorHigherInStore, .patchHigherInStore:
+            return true
+        default:
+            return false
+        }
+    }
+    
     init() {
 #if !targetEnvironment(simulator)
         FirebaseApp.configure()
@@ -25,8 +38,28 @@ struct LightMeterApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            if isNeedUpdate {
+                VStack {
+                    Text("Please update the app.")
+                    Button {
+                        let appStoreUrl = "itms-apps://itunes.apple.com/app/" + .appId
+                        UIApplication.shared.open(URL(string: appStoreUrl)!)
+                    } label: {
+                        Text("goto app store")
+                    }
+                }
+            } else {
+                MainView()
+                    .onAppear {
+                        StoreVersion.compareAppVersion(appId: .appId, currentVersion: .currentAppVersion) { result in
+                            Task { @MainActor in
+                                versionCheckResult = result
+                            }
+                        }
+                    }
+            }
         }
+    
     }
 }
 

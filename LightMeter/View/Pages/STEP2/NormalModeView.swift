@@ -9,6 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct NormalModeView: View {
+    @StateObject private var orientationManager = OrientationManager()
 
     @State var cameraManager:LightMeterCameraManager? = nil
     @State var lightMetterValue: Double? =  UserDefaults.shared.double(forKey: "widget_cameraEv")
@@ -52,7 +53,7 @@ struct NormalModeView: View {
     
     var contentView : some View {
         GeometryReader { geometry in
-            if geometry.size.width < geometry.size.height {
+            if orientationManager.orientation.isPortrait {
                 VStack {
                     HStack {
                         evview

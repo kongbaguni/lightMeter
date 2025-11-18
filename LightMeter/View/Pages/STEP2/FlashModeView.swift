@@ -87,8 +87,13 @@ struct FlashModeView : View {
                         Text("Flash")
                             .font(.system(size: 12))
                             .foregroundStyle(.secondary)
-                        Text(String(format:"GN%0.2f", Double(flashItem.value)))
-                            .foregroundStyle(.primary)
+                        NavigationLink {
+                            FlashSettingView()
+                        } label: {
+                            Text(String(format:"GN%0.2f", Double(flashItem.value)))
+                                .foregroundStyle(.primary)
+                        }
+
                         
                     }
                     DialView(items: flashModel.items, currentItem: $flashItem)
@@ -132,6 +137,12 @@ struct FlashModeView : View {
                     .font(.system(size: 12))
                     .foregroundStyle(.secondary)
                 FilterTypeView()
+                
+                NavigationLink {
+                    SettingView()
+                } label: {
+                    ButtonImageView(systemName: "gearshape")
+                }
             }
             
             

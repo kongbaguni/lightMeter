@@ -9,7 +9,6 @@ import SwiftUI
 import AVFoundation
 
 struct NormalModeView: View {
-    @StateObject private var orientationManager = OrientationManager()
 
     @State var cameraManager:LightMeterCameraManager? = nil
     @State var lightMetterValue: Double? =  UserDefaults.shared.double(forKey: "widget_cameraEv")
@@ -59,7 +58,7 @@ struct NormalModeView: View {
                         evview
                         Spacer()
                         LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv, padding: 20)
-                            .padding(10)
+                            
                     }
                     .padding(.horizontal, 10)
                     ControllerView(ev:$controlerEv)
@@ -84,7 +83,7 @@ struct NormalModeView: View {
                             evview
                             Spacer()
                             LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv, padding: 20)
-                                .padding(10)
+                                
                         }
 #if !targetEnvironment(simulator)
                         NativeAdView()
@@ -136,7 +135,6 @@ struct NormalModeView: View {
             }
             
         }
-        .padding()
     }
 }
 

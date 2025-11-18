@@ -60,6 +60,15 @@ struct SettingView: View {
         }
     }
     
+    var flashSettingNavigationItem : some View {
+        NavigationLink {
+            FlashSettingView()
+        } label : {
+            HStack {
+                Text("flash setting")                
+            }
+        }
+    }
     var body: some View {
         List {
             Section {
@@ -77,6 +86,7 @@ struct SettingView: View {
                 bodyListNavigationItem
                 lensListNavigationItem
                 filterListNavigationItem
+                flashSettingNavigationItem
             }
             
             Section {

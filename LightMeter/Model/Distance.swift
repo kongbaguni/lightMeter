@@ -13,7 +13,8 @@ struct Distance {
         var result: [Models.Item] = []
         for i in min..<max {
             let value = Double(i)
-            result.append(.init(value: value, title: "\(value)cm"))
+            let title = String(format: "%0.0fcm", value)
+            result.append(.init(value: value, title: title))
         }
         return result
     }

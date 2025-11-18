@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B7EE79A2EC98EED009F9515 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BE5CAD22E3D81990000D5DC /* GoogleService-Info.plist */; };
+		1B664F112ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */; };
+		1B664F122ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */; };
+		1B664F132ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */; };
+		1B664F142ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */; };
+		1B664F152ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */; };
 		1BAA23742E320A19008B0D71 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23732E320A19008B0D71 /* Localizable.xcstrings */; };
 		1BAA23762E320A5A008B0D71 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */; };
 		1BD3AF902E33394900318F04 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3AF8F2E33394900318F04 /* Launch Screen.storyboard */; };
@@ -102,6 +106,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BAA23732E320A19008B0D71 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		1BD3AF8F2E33394900318F04 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -114,7 +119,6 @@
 		1BE5CAB82E3D65590000D5DC /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		1BE5CAB92E3D65590000D5DC /* GoogleAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAd.swift; sourceTree = "<group>"; };
 		1BE5CABA2E3D65590000D5DC /* GoogleAdPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdPrompt.swift; sourceTree = "<group>"; };
-		1BE5CAD22E3D81990000D5DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BE6CD0F2E4A1F4800B883AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BE6CD432E4AF1D900B883AF /* appClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE6CD832E4C1A4D00B883AF /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +182,7 @@
 				View/FilterListView.swift,
 				View/FilterSelectRow.swift,
 				View/FilterTypeView.swift,
+				View/FlashModeView.swift,
 				View/ImageButtonView.swift,
 				View/LensListView.swift,
 				View/LIghtMetterAutoView.swift,
@@ -358,7 +363,6 @@
 			children = (
 				1BE6CDA02E4C279300B883AF /* Common */,
 				1BE6CD9F2E4C23C600B883AF /* widgetExtension.entitlements */,
-				1BE5CAD22E3D81990000D5DC /* GoogleService-Info.plist */,
 				1BD3AF8F2E33394900318F04 /* Launch Screen.storyboard */,
 				1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */,
 				1BAA23732E320A19008B0D71 /* Localizable.xcstrings */,
@@ -370,6 +374,7 @@
 				1BE6CD892E4C1A4D00B883AF /* widget */,
 				1BE6CD842E4C1A4D00B883AF /* Frameworks */,
 				1BEE161B2E1243E5003123CE /* Products */,
+				1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -582,6 +587,7 @@
 				1BE6CD7E2E4AF3BB00B883AF /* InfoPlist.xcstrings in Resources */,
 				1BE6CD7C2E4AF34A00B883AF /* Assets.xcassets in Resources */,
 				1BE6CD7D2E4AF3B500B883AF /* Localizable.xcstrings in Resources */,
+				1B664F112ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +597,7 @@
 			files = (
 				1BE6CDA42E4C2A0300B883AF /* Assets.xcassets in Resources */,
 				1BE6CD992E4C1C6100B883AF /* Localizable.xcstrings in Resources */,
+				1B664F142ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,8 +605,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B7EE79A2EC98EED009F9515 /* GoogleService-Info.plist in Resources */,
 				1BAA23762E320A5A008B0D71 /* InfoPlist.xcstrings in Resources */,
+				1B664F122ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */,
 				1BD3AF902E33394900318F04 /* Launch Screen.storyboard in Resources */,
 				1BE5CAC32E3D65590000D5DC /* UnifiedNativeAdView.xib in Resources */,
 				1BE6CD142E4A1F4800B883AF /* Assets.xcassets in Resources */,
@@ -611,6 +618,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B664F152ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +626,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B664F132ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

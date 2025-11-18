@@ -6,22 +6,10 @@
 //
 
 import SwiftUI
-import GoogleMobileAds
-import FirebaseCore
 import AVFoundation
 
-struct ContentView: View {
-    init() {
-#if !targetEnvironment(simulator)
-        FirebaseApp.configure()
-        GoogleMobileAds.MobileAds.shared.start { status in
-            print(status)
-            GoogleAdPrompt.promptWithDelay {
-                
-            }
-        }
-#endif
-    }
+struct NormalModeView: View {
+
     @State var cameraManager:LightMeterCameraManager? = nil
     @State var lightMetterValue: Double? =  UserDefaults.shared.double(forKey: "widget_cameraEv")
     @State var controlerEv:Double? = UserDefaults.shared.double(forKey: "widget_settingEv")
@@ -152,5 +140,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    NormalModeView()
 }

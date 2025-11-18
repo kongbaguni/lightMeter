@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B664F122ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */; };
 		1B664FC12ECC5D27006FFBCD /* jkdsUtility in Frameworks */ = {isa = PBXBuildFile; productRef = 1B664FC02ECC5D27006FFBCD /* jkdsUtility */; };
 		1BAA23742E320A19008B0D71 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23732E320A19008B0D71 /* Localizable.xcstrings */; };
 		1BAA23762E320A5A008B0D71 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */; };
@@ -103,7 +102,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BAA23732E320A19008B0D71 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		1BAA23752E320A5A008B0D71 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		1BD3AF8F2E33394900318F04 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -373,7 +371,6 @@
 				1BE6CD892E4C1A4D00B883AF /* widget */,
 				1BE6CD842E4C1A4D00B883AF /* Frameworks */,
 				1BEE161B2E1243E5003123CE /* Products */,
-				1B664F102ECC3DB8006FFBCD /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -605,7 +602,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BAA23762E320A5A008B0D71 /* InfoPlist.xcstrings in Resources */,
-				1B664F122ECC3DB8006FFBCD /* GoogleService-Info.plist in Resources */,
 				1BD3AF902E33394900318F04 /* Launch Screen.storyboard in Resources */,
 				1BE5CAC32E3D65590000D5DC /* UnifiedNativeAdView.xib in Resources */,
 				1BE6CD142E4A1F4800B883AF /* Assets.xcassets in Resources */,

@@ -40,20 +40,27 @@ struct LightMeterApp: App {
         WindowGroup {
             if isNeedUpdate {
                 VStack {
-                    Text("Please update the app.")
+                    Text("Please update the app")
+                        .font(.title)
+                    Spacer().frame(height: 50)
+                    Divider()
+                    Text("store version : " + (versionCheckResult?.storeVersion ?? "unknown"))
+                    Text("current version : " + (versionCheckResult?.currentVersion ?? "unknown"))
+                    Divider()
+                    Spacer().frame(height: 50)
                     Button {
                         let appStoreUrl = "itms-apps://itunes.apple.com/app/" + .appId
                         UIApplication.shared.open(URL(string: appStoreUrl)!)
                     } label: {
                         Text("goto app store")
                     }
-                }
+                }.padding()
             } else {
                 MainView()
                     .onAppear {
                         StoreVersion.compareAppVersion(appId: .appId, currentVersion: .currentAppVersion) { result in
                             Task { @MainActor in
-                                versionCheckResult = result
+                                 versionCheckResult = result
                             }
                         }
                     }

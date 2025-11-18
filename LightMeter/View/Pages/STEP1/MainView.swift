@@ -28,11 +28,20 @@ struct MainView: View {
                             tabIdx = 0
                         } label: {
                             Text("mode1")
+                                .font(.caption)
+                                .disabled(tabIdx == 0)
+                                .foregroundStyle(tabIdx == 0 ? .primary : .secondary)
                         }
+                        
                         Button {
                             tabIdx = 1
                         } label: {
                             Text("mode2")
+                                .font(.caption)
+                                .disabled(tabIdx == 1)
+                                .foregroundStyle(tabIdx == 1 ? .primary : .secondary)
+
+
                         }
                     }
                 }

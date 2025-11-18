@@ -53,7 +53,7 @@ struct NormalModeView: View {
     
     var contentView : some View {
         GeometryReader { geometry in
-            if orientationManager.orientation.isPortrait {
+            if geometry.size.width < geometry.size.height {
                 VStack {
                     HStack {
                         evview

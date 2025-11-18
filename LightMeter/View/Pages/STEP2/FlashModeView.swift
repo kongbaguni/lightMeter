@@ -77,6 +77,9 @@ struct FlashModeView : View {
     
     var body: some View {
         VStack {
+            LightMetterIndicatorView(ev: rightGN, settingEv: flash, padding: 20)
+                .padding(10)
+
             HStack {
                 VStack {
                     HStack {
@@ -130,6 +133,7 @@ struct FlashModeView : View {
                     .foregroundStyle(.secondary)
                 FilterTypeView()
             }
+            
             
 #if !targetEnvironment(simulator)
             NativeAdView()

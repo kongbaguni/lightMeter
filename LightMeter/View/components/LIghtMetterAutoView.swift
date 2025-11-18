@@ -74,3 +74,7 @@ struct LightMetterAutoView : View {
             }
     }
 }
+
+#Preview {
+    LightMetterAutoView(autoMode: .manual, autoModeValue: 0, aperture: 10, shutterSpeed: 10, status: .off)
+}

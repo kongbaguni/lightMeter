@@ -90,6 +90,7 @@ struct BodyListView: View {
                            let idx = deleteCustomIdx {
                             UserDefaults.standard.removeBody(body:body)
                             customList.remove(at: idx)
+                            NotificationCenter.default.post(name: .lightMetterSettingChanged, object: nil)
                         }
                     }
                     isDeleteSheet = false

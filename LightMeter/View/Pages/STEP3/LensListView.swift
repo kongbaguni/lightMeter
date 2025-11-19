@@ -90,6 +90,7 @@ struct LensListView: View {
                            let idx = deleteCustomIdx {
                             UserDefaults.standard.removeLens(lens: lens)
                             customList.remove(at: idx)
+                            NotificationCenter.default.post(name: .lightMetterSettingChanged, object: nil)
                         }
                     }
                     isDeleteSheet = false

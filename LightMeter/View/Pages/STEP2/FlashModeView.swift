@@ -97,60 +97,74 @@ struct FlashModeView : View {
         LightMetterIndicatorView(ev: rightGN, settingEv: flash, padding: 20)
     }
     
+    var flashCtrlView : some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Flash")
+                    .font(.system(size: 12))
+                    .foregroundStyle(.secondary)
+                Text(String(format: "GN%0.2f", rightGN))
+                NavigationLink {
+                    FlashSettingView()
+                } label: {
+                    Text(String(format:"GN%0.2f", Double(flashItem.value)))
+                        .foregroundStyle(.primary)
+                }
+                
+            }
+            DialView(items: flashModel.items, currentItem: $flashItem)
+        }
+    }
+    
+    var distanceCtlView : some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Distance")
+                    .font(.system(size: 12))
+                    .foregroundStyle(.secondary)
+                Text(String(format:"%0.2fcm", Double(distanceItem.value)))
+                    .foregroundStyle(.primary)
+            }
+            DialView(items: Distance.defaultDistance.items, currentItem: $distanceItem)
+        }
+    }
+    var isoCtlView : some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("ISO")
+                    .font(.system(size: 12))
+                    .foregroundStyle(.secondary)
+                Text("\(Int(isoItem.value))")
+                    .foregroundStyle(.primary)
+                Text("\(fixedISO)")
+                    .foregroundStyle(.red)
+            }
+            DialView(items: Models.ISO.items.reversed(), currentItem: $isoItem)
+        }
+    }
+    
+    var apertureCtlView : some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Aperture").font(.system(size: 12)).foregroundStyle(.secondary)
+                Text("f").foregroundStyle(.secondary)
+                Text(apertureItem.title).foregroundStyle(.primary)
+                
+                Text("lens").foregroundStyle(.secondary)
+                lensListNavigationItem
+            }
+            DialView(items: currentLens.items.reversed(), currentItem: $apertureItem)
+        }
+    }
     var controllerView : some View {
         VStack {
             VStack(alignment: .leading) {
+                flashCtrlView
                 HStack {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text("Flash")
-                                .font(.system(size: 12))
-                                .foregroundStyle(.secondary)
-                            Text(String(format: "%0.2f", rightGN))
-                            NavigationLink {
-                                FlashSettingView()
-                            } label: {
-                                Text(String(format:"GN%0.2f", Double(flashItem.value)))
-                                    .foregroundStyle(.primary)
-                            }
-                            
-                        }
-                        DialView(items: flashModel.items, currentItem: $flashItem)
-                    }
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text("Distance")
-                                .font(.system(size: 12))
-                                .foregroundStyle(.secondary)
-                            Text(String(format:"%0.2fcm", Double(distanceItem.value)))
-                                .foregroundStyle(.primary)
-                        }
-                        DialView(items: Distance.defaultDistance.items, currentItem: $distanceItem)
-                    }
+                    isoCtlView
+                    distanceCtlView
                 }
-                
-                
-                
-                HStack {
-                    Text("ISO")
-                        .font(.system(size: 12))
-                        .foregroundStyle(.secondary)
-                    Text("\(Int(isoItem.value))")
-                        .foregroundStyle(.primary)
-                    Text("\(fixedISO)")
-                        .foregroundStyle(.red)
-                }
-                DialView(items: Models.ISO.items.reversed(), currentItem: $isoItem)
-                
-                HStack {
-                    Text("Aperture").font(.system(size: 12)).foregroundStyle(.secondary)
-                    Text("f").foregroundStyle(.secondary)
-                    Text(apertureItem.title).foregroundStyle(.primary)
-                    
-                    Text("lens").foregroundStyle(.secondary)
-                    lensListNavigationItem
-                }
-                DialView(items: currentLens.items.reversed(), currentItem: $apertureItem)
+                apertureCtlView
             }
                         
             HStack {

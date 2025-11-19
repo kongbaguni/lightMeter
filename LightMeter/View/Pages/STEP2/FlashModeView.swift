@@ -28,17 +28,31 @@ struct FlashModeView : View {
     @AppStorage("flashGN") var flashGN:Double = 15
     @AppStorage("flashStop") var flashStop:Int = 6
     @AppStorage("flashUseHarfStop") var flashUseHarfStop:Bool = true
-    
+    @AppStorage("usediffuser") var usediffuser:Bool = false
     @AppStorage("filterType") var filterTypeRawValue: Int = 0
     @State var fixedISO:Int = 0
 
     var rightGN:Double {
         let iso = makefilteredISO(iso: isoItem.value)
-        return apertureItem.value * (distanceItem.value * 0.01) * sqrt(100 / iso)
+        let fixDiffuser:Double = usediffuser ? 2.0 : 1.0
+        return apertureItem
+            .value * (distanceItem.value * 0.01) * sqrt(100 / iso) * fixDiffuser
     }
     
     var flashModel:Flash {
         return .init(GN: flashGN, stop: flashStop, isHarfStop: flashUseHarfStop)
+    }
+    
+    var toggleUsediffuserView : some View  {
+        HStack {
+            Text("use diffuser")
+                .font(.system(size: 12))
+                .foregroundStyle(.secondary)
+
+            ImageButtonView(systemName: usediffuser ? "lightswitch.on" : "lightswitch.off" , onClick: {
+                usediffuser.toggle()
+            })
+        }
     }
     
     var bodyListNavigationItem : some View {
@@ -145,7 +159,9 @@ struct FlashModeView : View {
                 } label: {
                     ButtonImageView(systemName: "gearshape")
                 }
+                toggleUsediffuserView
             }
+            
             
         }
     }

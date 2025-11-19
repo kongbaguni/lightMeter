@@ -13,8 +13,7 @@ struct NormalModeView: View {
     @State var cameraManager:LightMeterCameraManager? = nil
     @State var lightMetterValue: Double? =  UserDefaults.shared.double(forKey: "widget_cameraEv")
     @State var controlerEv:Double? = UserDefaults.shared.double(forKey: "widget_settingEv")
-    @State var isPlay:Bool = false
-    
+    @State var isPlay:Bool = false    
     @State var permissionOK:Bool = false
     
     var toggleButton : some View {

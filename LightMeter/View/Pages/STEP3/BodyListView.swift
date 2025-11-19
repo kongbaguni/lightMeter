@@ -13,9 +13,14 @@ struct BodyListView: View {
     @AppStorage("bodySelectIdx") var bodySelectIdx: Int = 0
     
     @State var deleteCustomIdx: Int? = nil
-    @State var isAlert: Bool = false
+    @State var isDeleteSheet: Bool = false
+    
+    var deleteCustomItem: Models.Body? {
+        guard let deleteCustomIdx else { return nil }
+        return customList[deleteCustomIdx]
+    }
 
-    var body: some View {
+    var content: some View {
         List {
             Section("body list") {
                 ForEach(0..<list.count, id:\.self) { idx in
@@ -53,7 +58,6 @@ struct BodyListView: View {
                                 makeDeleteBtn(idx: idx)
                             }
                         }
-
                     }
                 }
             }
@@ -71,26 +75,32 @@ struct BodyListView: View {
         .onChange(of: bodySelectIdx) { oldValue, newValue in
             NotificationCenter.default.post(name: .lightMetterSettingChanged, object: nil)
         }
-        .alert(isPresented: $isAlert) {
-            if let idx = self.deleteCustomIdx {
-                return .init(title: .init("Deletes the selected custom camea body."), primaryButton: .cancel(), secondaryButton: .default(.init("delete"), action: {
-                    let body = customList[idx]
-                    UserDefaults.standard.removeBody(body: body)
-                    customList.remove(at: idx)
-                }))
-            }
-            else {
-                return .init(title: .init("alert"))
-            }
-            
-        }
+        
+        
 
     }
     
+    var body: some View {
+        ZStack {
+            content
+            if isDeleteSheet {
+                DeleteConfirmView(name: deleteCustomItem?.name ?? "") { isConfirm in
+                    if isConfirm {
+                        if let body = deleteCustomItem ,
+                           let idx = deleteCustomIdx {
+                            UserDefaults.standard.removeBody(body:body)
+                            customList.remove(at: idx)
+                        }
+                    }
+                    isDeleteSheet = false
+                }
+            }
+        }
+    }
     func makeDeleteBtn(idx:Int)-> some View {
         Button {
             deleteCustomIdx = idx
-            isAlert = true
+            isDeleteSheet = true
         } label : {
             Image(systemName: "trash")
         }

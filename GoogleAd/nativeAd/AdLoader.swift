@@ -45,22 +45,13 @@ class AdLoader : NSObject {
         loadAd()
         return nil
     }
-    var reqCount = 0
+    
     public func getNativeAd(getAd:@escaping(_ ad:NativeAd)->Void) {
         if let ad = nativeAd {
             getAd(ad)
             return
         }
-        reqCount = reqCount + 1
-        if reqCount > 5 {
-            onError(AdError.loadingFailed)
-            reqCount = 0
-            return
-        }
         loadAd()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {[weak self] in
-            self?.getNativeAd(getAd: getAd)
-        }
     }
     
     override init() {
@@ -86,6 +77,9 @@ extension AdLoader : NativeAdLoaderDelegate {
 #if DEBUG
         self.onError(error)
 #endif
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [weak self] in
+            self?.loadAd()
+        }
     }
     
     func adLoaderDidFinishLoading(_ adLoader: GoogleMobileAds.AdLoader) {

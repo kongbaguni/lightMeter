@@ -11,8 +11,11 @@ struct Distance {
     let max: Int
     var items:[Models.Item] {
         var result: [Models.Item] = []
-        for i in min..<max {
-            let value = Double(i)
+        let step = 5
+        let a = min / step
+        let b = max / step
+        for i in a..<b {
+            let value = Double(i * step)
             let title = String(format: "%0.0fcm", value)
             result.append(.init(value: value, title: title))
         }

@@ -18,7 +18,7 @@ extension Notification.Name {
 struct NativeAdView : View {
     @State var loading = true
     @State var nativeAd:NativeAd? = nil
-    @State var errors:[(err:Error,date:Date)] = []
+    @State var error:(err:Error,date:Date)? = nil
     var body: some View {
         ZStack {
             GeometryReader { proxy in
@@ -27,25 +27,20 @@ struct NativeAdView : View {
                 }
             }
             VStack(alignment: .center) {
-                if errors.count > 0 && nativeAd == nil{
-                    List {
-                        Section("ad error log") {
-                            ForEach(0..<errors.count, id:\.self) { idx in
-                                let err = errors[idx].err
-                                let date = errors[idx].date
-                                HStack {
-                                    Text("\(idx)").foregroundStyle(.secondary)
-                                        .font(.body)
-                                    Text(date.formatted())
-                                        .font(.headline)
-                                        .foregroundStyle(.secondary)
-                                    Text(err.localizedDescription)
-                                        .font(.body)
-                                        .foregroundStyle(.teal)
-                                }
-                            }
+                if nativeAd == nil {
+                    if let error = error {
+                        let err = error.err
+                        let date = error.date
+                        HStack {
+                            Text(date.formatted(date: .omitted, time: .standard))
+                                .font(.headline)
+                                .foregroundStyle(.secondary)
+                            Text(err.localizedDescription)
+                                .font(.body)
+                                .foregroundStyle(.primary)
                         }
                     }
+                
                 } else {
                     ActivityIndicatorView(isVisible: $loading, type: .default()).frame(width: 50, height: 50)
                 }
@@ -59,10 +54,10 @@ struct NativeAdView : View {
             loading = true
             AdLoader.shared.onError = { error in
                 if let err = error {
-                    self.errors.append((err,Date()))
+                    self.error = (err,Date())
                 }
                 else {
-                    self.errors.removeAll()
+                    self.error = nil
                 }
                 loading = false
             }

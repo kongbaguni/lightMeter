@@ -99,58 +99,60 @@ struct FlashModeView : View {
     
     var controllerView : some View {
         VStack {
-            HStack {
-                VStack {
-                    HStack {
-                        Text(String(format: "%0.2f", rightGN))
-                        Text("Flash")
-                            .font(.system(size: 12))
-                            .foregroundStyle(.secondary)
-                        NavigationLink {
-                            FlashSettingView()
-                        } label: {
-                            Text(String(format:"GN%0.2f", Double(flashItem.value)))
+            VStack(alignment: .leading) {
+                HStack {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("Flash")
+                                .font(.system(size: 12))
+                                .foregroundStyle(.secondary)
+                            Text(String(format: "%0.2f", rightGN))
+                            NavigationLink {
+                                FlashSettingView()
+                            } label: {
+                                Text(String(format:"GN%0.2f", Double(flashItem.value)))
+                                    .foregroundStyle(.primary)
+                            }
+                            
+                        }
+                        DialView(items: flashModel.items, currentItem: $flashItem)
+                    }
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("Distance")
+                                .font(.system(size: 12))
+                                .foregroundStyle(.secondary)
+                            Text(String(format:"%0.2fcm", Double(distanceItem.value)))
                                 .foregroundStyle(.primary)
                         }
-
-                        
+                        DialView(items: Distance.defaultDistance.items, currentItem: $distanceItem)
                     }
-                    DialView(items: flashModel.items, currentItem: $flashItem)
                 }
-                VStack {
-                    HStack {
-                        Text("Distance")
-                            .font(.system(size: 12))
-                            .foregroundStyle(.secondary)
-                        Text(String(format:"%0.2fcm", Double(distanceItem.value)))
-                            .foregroundStyle(.primary)
-                    }
-                    DialView(items: Distance.defaultDistance.items, currentItem: $distanceItem)
-                }
-            }
-            
-           
-            
-            HStack {
-                Text("ISO")
-                    .font(.system(size: 12))
-                    .foregroundStyle(.secondary)
-                Text("\(Int(isoItem.value))")
-                    .foregroundStyle(.primary)
-                Text("\(fixedISO)")
-                    .foregroundStyle(.red)
-            }
-            DialView(items: Models.ISO.items.reversed(), currentItem: $isoItem)
-            
-            HStack {
-                Text("Aperture").font(.system(size: 12)).foregroundStyle(.secondary)
-                Text("f").foregroundStyle(.secondary)
-                Text(apertureItem.title).foregroundStyle(.primary)
                 
-                Text("lens").foregroundStyle(.secondary)
-                lensListNavigationItem
+                
+                
+                HStack {
+                    Text("ISO")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
+                    Text("\(Int(isoItem.value))")
+                        .foregroundStyle(.primary)
+                    Text("\(fixedISO)")
+                        .foregroundStyle(.red)
+                }
+                DialView(items: Models.ISO.items.reversed(), currentItem: $isoItem)
+                
+                HStack {
+                    Text("Aperture").font(.system(size: 12)).foregroundStyle(.secondary)
+                    Text("f").foregroundStyle(.secondary)
+                    Text(apertureItem.title).foregroundStyle(.primary)
+                    
+                    Text("lens").foregroundStyle(.secondary)
+                    lensListNavigationItem
+                }
+                DialView(items: currentLens.items.reversed(), currentItem: $apertureItem)
             }
-            DialView(items: currentLens.items.reversed(), currentItem: $apertureItem)
+                        
             HStack {
                 Text("filter")
                     .font(.system(size: 12))
@@ -162,9 +164,7 @@ struct FlashModeView : View {
                 } label: {
                     ButtonImageView(systemName: "gearshape")
                 }
-                
-            }
-            
+            }.padding(.vertical, 8)
             
         }
     }
@@ -188,6 +188,7 @@ struct FlashModeView : View {
                     }
                     VStack {
                         controllerView
+                            .padding(10)
                     }
                 }
                 
@@ -196,11 +197,11 @@ struct FlashModeView : View {
                 VStack {
                     indicaterView
                     controllerView
+                        .padding(10)
                     adView
                 }
             }
         }
-        .padding(10)
         .onAppear {
             
 

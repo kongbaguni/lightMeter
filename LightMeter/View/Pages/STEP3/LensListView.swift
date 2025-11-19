@@ -13,9 +13,16 @@ struct LensListView: View {
     @AppStorage("lensSelectIdx") var lensSelectIdx: Int = 0
     
     @State var deleteCustomIdx: Int? = nil
-    @State var isAlert: Bool = false
+    @State var isDeleteSheet: Bool = false
     
-    var body: some View {
+    var deleteCustomItem: Models.Lens? {
+        if let id = deleteCustomIdx {
+            return customList[id]
+        }
+        return nil
+    }
+    
+    var content: some View {
         List {
             Section("lens list") {
                 ForEach(0..<list.count, id:\.self) { idx in
@@ -69,25 +76,34 @@ struct LensListView: View {
         .onChange(of: lensSelectIdx) { _, newValue in
             NotificationCenter.default.post(name: .lightMetterSettingChanged, object: nil)
         }
-        .alert(isPresented: $isAlert) {
-            if let idx = self.deleteCustomIdx {
-                return .init(title: .init("Deletes the selected custom lens."), primaryButton: .cancel(), secondaryButton: .default(.init("delete"), action: {
-                    let lens = customList[idx]
-                    UserDefaults.standard.removeLens(lens: lens)
-                    customList.remove(at: idx)
-                }))
-            }
-            else {
-                return .init(title: .init("alert"))
-            }
-            
-        }
+       
+        
     }
+    
+    var body: some View {
+        ZStack {
+            content
+            if isDeleteSheet {
+                DeleteConfirmView(name: deleteCustomItem?.name ?? "") { isConfirm in
+                    if isConfirm {
+                        if let lens = deleteCustomItem ,
+                           let idx = deleteCustomIdx {
+                            UserDefaults.standard.removeLens(lens: lens)
+                            customList.remove(at: idx)
+                        }
+                    }
+                    isDeleteSheet = false
+                }
+            }
+        }
+        
+    }
+    
     
     func makeDeleteBtn(idx:Int)-> some View {
         Button {
             deleteCustomIdx = idx
-            isAlert = true
+            isDeleteSheet = true
         } label : {
             Image(systemName: "trash")
         }

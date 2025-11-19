@@ -60,7 +60,6 @@ struct NormalModeView: View {
                         LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv, padding: 20)
                             
                     }
-                    .padding(.horizontal, 10)
                     ControllerView(ev:$controlerEv)
                     HStack (alignment: .bottom) {
                         FilterTypeView()

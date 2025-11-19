@@ -18,24 +18,48 @@ extension Notification.Name {
 struct NativeAdView : View {
     @State var loading = true
     @State var nativeAd:NativeAd? = nil
-    @State var error:Error? = nil
+    @State var errors:[(err:Error,date:Date)] = []
     var body: some View {
         ZStack {
-            if error == nil {
-                GeometryReader { proxy in
-                    if let view = nativeAd?.makeAdView(size: proxy.size) {
-                        view
-                    }
+            GeometryReader { proxy in
+                if let view = nativeAd?.makeAdView(size: proxy.size) {
+                    view
                 }
-                VStack(alignment: .center) {
+            }
+            VStack(alignment: .center) {
+                if errors.count > 0 {
+                    List {
+                        ForEach(0..<errors.count, id:\.self) { idx in
+                            let err = errors[idx].err
+                            let date = errors[idx].date
+                            HStack {
+                                Text("\(idx)").foregroundStyle(.secondary)
+                                    .font(.body)
+                                Text(date.formatted())
+                                    .font(.headline)
+                                    .foregroundStyle(.secondary)
+                                Text(err.localizedDescription)
+                                    .font(.body)
+                                    .foregroundStyle(.teal)
+                            }
+                        }
+                    }
+                } else {
                     ActivityIndicatorView(isVisible: $loading, type: .default()).frame(width: 50, height: 50)
                 }
-                
             }
-        }.onAppear {
+            
+        }
+        .background(
+            Color.teal
+        )
+        .onAppear {
             loading = true
             AdLoader.shared.onError = { error in
-                self.error = error
+                if let err = error {
+                    self.errors.append((err,Date()))
+                    loading = false
+                }
             }
             AdLoader.shared.getNativeAd(getAd: {[self] ad in
                 nativeAd = ad

@@ -153,13 +153,13 @@ struct FlashModeView : View {
                     .font(.system(size: 12))
                     .foregroundStyle(.secondary)
                 FilterTypeView()
-                
+                toggleUsediffuserView
                 NavigationLink {
                     SettingView()
                 } label: {
                     ButtonImageView(systemName: "gearshape")
                 }
-                toggleUsediffuserView
+                
             }
             
             

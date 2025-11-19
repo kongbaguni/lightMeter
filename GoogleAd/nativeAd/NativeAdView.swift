@@ -27,7 +27,7 @@ struct NativeAdView : View {
                 }
             }
             VStack(alignment: .center) {
-                if errors.count > 0 {
+                if errors.count > 0 && nativeAd == nil{
                     List {
                         Section("ad error log") {
                             ForEach(0..<errors.count, id:\.self) { idx in

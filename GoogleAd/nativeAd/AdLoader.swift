@@ -72,7 +72,7 @@ extension AdLoader : NativeAdLoaderDelegate {
     }
     
     func adLoaderDidFinishLoading(_ adLoader: GoogleMobileAds.AdLoader) {
-        print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
+        print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")        
     }
     
     

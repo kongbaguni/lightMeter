@@ -13,6 +13,19 @@ fileprivate let adId = "ca-app-pub-3940256099942544/3986624511"
 fileprivate let adId = "ca-app-pub-7714069006629518/1695095083"
 #endif
 
+enum AdError : Error, LocalizedError {
+    case loadingFailed
+    case unknown
+    var errorDescription: String? {
+        switch self {
+        case .loadingFailed:
+            return NSLocalizedString("loading faild", comment: "ad loading")
+        default:
+            return nil
+        }
+    }
+}
+
 class AdLoader : NSObject {
     static let shared = AdLoader()
         
@@ -39,11 +52,13 @@ class AdLoader : NSObject {
             return
         }
         reqCount = reqCount + 1
-        if reqCount > 10 {
+        if reqCount > 5 {
+            onError(AdError.loadingFailed)
+            reqCount = 0
             return
         }
         loadAd()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10)) {[weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {[weak self] in
             self?.getNativeAd(getAd: getAd)
         }
     }
@@ -68,7 +83,9 @@ class AdLoader : NSObject {
 extension AdLoader : NativeAdLoaderDelegate {
     func adLoader(_ adLoader: GoogleMobileAds.AdLoader, didFailToReceiveAdWithError error: any Error) {
         print("\(#function) \(#line) \(error.localizedDescription)")
+#if DEBUG
         self.onError(error)
+#endif
     }
     
     func adLoaderDidFinishLoading(_ adLoader: GoogleMobileAds.AdLoader) {

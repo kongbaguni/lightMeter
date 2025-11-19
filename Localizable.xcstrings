@@ -786,6 +786,10 @@
         }
       }
     },
+    "loading faild" : {
+      "comment" : "ad loading",
+      "shouldTranslate" : false
+    },
     "make custom body" : {
       "localizations" : {
         "de" : {

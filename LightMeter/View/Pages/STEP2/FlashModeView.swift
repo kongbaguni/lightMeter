@@ -75,10 +75,13 @@ struct FlashModeView : View {
         return iso * factor
     }
     
-    var body: some View {
+    
+    var indicaterView: some View {
+        LightMetterIndicatorView(ev: rightGN, settingEv: flash, padding: 20)
+    }
+    
+    var controllerView : some View {
         VStack {
-            LightMetterIndicatorView(ev: rightGN, settingEv: flash, padding: 20)
-
             HStack {
                 VStack {
                     HStack {
@@ -144,14 +147,41 @@ struct FlashModeView : View {
                 }
             }
             
-            
-#if !targetEnvironment(simulator)
-            NativeAdView()
-                .padding(.bottom, .safeAreaInsetBottom)
-#endif
-
-
         }
+    }
+    
+    var adView : some View {
+#if !targetEnvironment(simulator)
+        NativeAdView()
+            .padding(.bottom, .safeAreaInsetBottom)
+        
+#else
+        EmptyView()
+#endif
+    }
+    var body: some View {
+        GeometryReader { geo in
+            if geo.size.width > geo.size.height {
+                HStack {
+                    VStack {
+                        indicaterView
+                        adView
+                    }
+                    VStack {
+                        controllerView
+                    }
+                }
+                
+            }
+            else {
+                VStack {
+                    indicaterView
+                    controllerView
+                    adView
+                }
+            }
+        }
+        .padding(10)
         .onAppear {
             fixedISO = Int(makefilteredISO(iso: iso))
 

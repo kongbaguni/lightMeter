@@ -29,18 +29,20 @@ struct NativeAdView : View {
             VStack(alignment: .center) {
                 if errors.count > 0 {
                     List {
-                        ForEach(0..<errors.count, id:\.self) { idx in
-                            let err = errors[idx].err
-                            let date = errors[idx].date
-                            HStack {
-                                Text("\(idx)").foregroundStyle(.secondary)
-                                    .font(.body)
-                                Text(date.formatted())
-                                    .font(.headline)
-                                    .foregroundStyle(.secondary)
-                                Text(err.localizedDescription)
-                                    .font(.body)
-                                    .foregroundStyle(.teal)
+                        Section("ad error log") {
+                            ForEach(0..<errors.count, id:\.self) { idx in
+                                let err = errors[idx].err
+                                let date = errors[idx].date
+                                HStack {
+                                    Text("\(idx)").foregroundStyle(.secondary)
+                                        .font(.body)
+                                    Text(date.formatted())
+                                        .font(.headline)
+                                        .foregroundStyle(.secondary)
+                                    Text(err.localizedDescription)
+                                        .font(.body)
+                                        .foregroundStyle(.teal)
+                                }
                             }
                         }
                     }
@@ -58,8 +60,11 @@ struct NativeAdView : View {
             AdLoader.shared.onError = { error in
                 if let err = error {
                     self.errors.append((err,Date()))
-                    loading = false
                 }
+                else {
+                    self.errors.removeAll()
+                }
+                loading = false
             }
             AdLoader.shared.getNativeAd(getAd: {[self] ad in
                 nativeAd = ad

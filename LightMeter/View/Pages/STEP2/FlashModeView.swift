@@ -30,13 +30,16 @@ struct FlashModeView : View {
     @AppStorage("flashUseHarfStop") var flashUseHarfStop:Bool = true
     @AppStorage("usediffuser") var usediffuser:Bool = false
     @AppStorage("filterType") var filterTypeRawValue: Int = 0
-    @State var fixedISO:Int = 0
+    var fixedISO:Int {
+        Int(makefilteredISO(iso: iso))
+    }
 
+    /** 계산된 적정 플래시 밝기 */
     var rightGN:Double {
         let iso = makefilteredISO(iso: isoItem.value)
         let fixDiffuser:Double = usediffuser ? 2.0 : 1.0
         return apertureItem
-            .value * (distanceItem.value * 0.01) * sqrt(100 / iso) * fixDiffuser
+            .value * (distanceItem.value * 0.01) * sqrt(100 / (iso * 3.5)) * fixDiffuser
     }
     
     var flashModel:Flash {
@@ -199,7 +202,7 @@ struct FlashModeView : View {
         }
         .padding(10)
         .onAppear {
-            fixedISO = Int(makefilteredISO(iso: iso))
+            
 
             if isoItem == .empty {
                 isoItem = Models.ISO.items.first!
@@ -254,6 +257,11 @@ struct FlashModeView : View {
         }
         .onChange(of: flashItem) { oldValue, newValue in
             flash = newValue.value
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .lightMetterSettingChanged)) { output in
+            if let lens = Models.Lens.currentLens {
+                currentLens = lens
+            }
         }
         
     }

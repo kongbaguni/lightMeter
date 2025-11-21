@@ -47,6 +47,15 @@ struct FlashSettingView : View {
             }
         }
         .navigationTitle("flash setting")
+        .onChange(of: flashGN) { oldValue, newValue in
+            NotificationCenter.default.post(name: .lightMetterStatusDidChanged, object: nil)
+        }
+        .onChange(of: flashStop) { oldValue, newValue in
+            NotificationCenter.default.post(name: .lightMetterStatusDidChanged, object: nil)
+        }
+        .onChange(of: flashUseHarfStop) { oldValue, newValue in
+            NotificationCenter.default.post(name: .lightMetterStatusDidChanged, object: nil)
+        }
         
         
     }

@@ -18,7 +18,7 @@ extension Notification.Name {
 struct NativeAdView : View {
     @State var loading = true
     @State var nativeAd:NativeAd? = nil
-    @State var error:(err:Error,date:Date)? = nil
+    @State var error:Error? = nil
     var body: some View {
         ZStack {
             GeometryReader { proxy in
@@ -28,43 +28,38 @@ struct NativeAdView : View {
             }
             VStack(alignment: .center) {
                 if nativeAd == nil {
-                    if let error = error {
-                        let err = error.err
-                        let date = error.date
-                        HStack {
-                            Text(date.formatted(date: .omitted, time: .standard))
-                                .font(.headline)
-                                .foregroundStyle(.secondary)
+                    if let err = error {
+                        Button {
+                            loadAd()
+                        } label: {
                             Text(err.localizedDescription)
-                                .font(.body)
-                                .foregroundStyle(.primary)
+                                    .font(.body)
+                                    .foregroundStyle(.primary)
                         }
                     }
                 
-                } else {
-                    ActivityIndicatorView(isVisible: $loading, type: .default()).frame(width: 50, height: 50)
                 }
             }
-            
+            ActivityIndicatorView(isVisible: $loading, type: .default()).frame(width: 50, height: 50)
+
         }
         .background(
             Color.teal
         )
         .onAppear {
-            loading = true
-            AdLoader.shared.onError = { error in
-                if let err = error {
-                    self.error = (err,Date())
-                }
-                else {
-                    self.error = nil
-                }
-                loading = false
-            }
-            AdLoader.shared.getNativeAd(getAd: {[self] ad in
-                nativeAd = ad
-                loading = false
-            })
+            loadAd()
+            
+        }
+    }
+    
+    func loadAd() {
+        loading = true
+        AdLoader.shared.getNativeAd { ad, error in
+            self.error = error
+            self.nativeAd = ad
+            
+        } onDidFinishLoading: {
+            loading = false
         }
     }
 }

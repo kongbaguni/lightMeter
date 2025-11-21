@@ -28,32 +28,10 @@ enum AdError : Error, LocalizedError {
 
 class AdLoader : NSObject {
     static let shared = AdLoader()
-        
-    var onError:(Error?)->Void = { _ in
-                
-    }
-    
+    private var onAdLoaded:(NativeAd?,Error?)->Void = { _,_ in }
+    private var onDidFinishLoading:() -> Void = { }
     private let adLoader:GoogleMobileAds.AdLoader
-        
-    private var nativeAds:[NativeAd] = []
-    
-    public var nativeAd:NativeAd? {
-        if let ad = nativeAds.first {
-            nativeAds.removeFirst()
-            return ad
-        }
-        loadAd()
-        return nil
-    }
-    
-    public func getNativeAd(getAd:@escaping(_ ad:NativeAd)->Void) {
-        if let ad = nativeAd {
-            getAd(ad)
-            return
-        }
-        loadAd()
-    }
-    
+  
     override init() {
         let option = MultipleAdsAdLoaderOptions()
         option.numberOfAds = 4
@@ -62,34 +40,29 @@ class AdLoader : NSObject {
                                     adTypes: [.native], options: [option])
         super.init()
         adLoader.delegate = self
-        loadAd()
     }
     
-    private func loadAd() {
+    public func getNativeAd(getAd:@escaping(NativeAd?,Error?)->Void, onDidFinishLoading:@escaping()->Void) {
+        self.onAdLoaded = getAd
+        self.onDidFinishLoading = onDidFinishLoading
         adLoader.load(.init())
     }
-        
+    
+  
 }
 
 extension AdLoader : NativeAdLoaderDelegate {
     func adLoader(_ adLoader: GoogleMobileAds.AdLoader, didFailToReceiveAdWithError error: any Error) {
-        print("\(#function) \(#line) \(error.localizedDescription)")
-#if DEBUG
-        self.onError(error)
-#endif
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [weak self] in
-            self?.loadAd()
-        }
+        onAdLoaded(nil,error)
     }
     
     func adLoaderDidFinishLoading(_ adLoader: GoogleMobileAds.AdLoader) {
-        print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")        
+        onDidFinishLoading()
     }
     
     
     func adLoader(_ adLoader: GoogleMobileAds.AdLoader, didReceive nativeAd: GoogleMobileAds.NativeAd) {
-        print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
-        nativeAds.append(nativeAd)
+        onAdLoaded(nativeAd,nil)
     }
     
 }

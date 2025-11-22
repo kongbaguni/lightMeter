@@ -40,10 +40,15 @@ struct FlashModeView : View {
          let d = distanceItem.value * 0.01            // cm -> m
          let diffuserFix: Double = usediffuser ? 2.0 : 1.0 // 디퓨저가 1스톱 먹는다고 가정하면 ×2
 
+        var apertureEVFix: Double {
+            return apertureItem.value * 0.1
+        }
+        
          return apertureItem.value
               * d
               * sqrt(100.0 / iso)
               * diffuserFix
+              * apertureEVFix
     }
     
     var flashModel:Flash {

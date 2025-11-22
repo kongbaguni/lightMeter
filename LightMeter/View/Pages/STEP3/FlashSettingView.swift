@@ -7,7 +7,7 @@
 import SwiftUI
 struct FlashSettingView : View {
     @AppStorage("flashGN") var flashGN:Double = 15
-    @AppStorage("flashStop") var flashStop:Int = 6
+    @AppStorage("flashStop") var flashStop:Int = 7
     @AppStorage("flashUseHarfStop") var flashUseHarfStop:Bool = true
 
     @State var focusIdx:Int? = nil

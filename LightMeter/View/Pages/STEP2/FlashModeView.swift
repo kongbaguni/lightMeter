@@ -26,7 +26,7 @@ struct FlashModeView : View {
     @AppStorage("flash") var flash:Double = 0.0
     
     @AppStorage("flashGN") var flashGN:Double = 15
-    @AppStorage("flashStop") var flashStop:Int = 6
+    @AppStorage("flashStop") var flashStop:Int = 7
     @AppStorage("flashUseHarfStop") var flashUseHarfStop:Bool = true
     @AppStorage("usediffuser") var usediffuser:Bool = false
     @AppStorage("filterType") var filterTypeRawValue: Int = 0

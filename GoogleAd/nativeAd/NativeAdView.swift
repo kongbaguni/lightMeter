@@ -32,9 +32,22 @@ struct NativeAdView : View {
                         Button {
                             loadAd()
                         } label: {
-                            Text(err.localizedDescription)
+                            ZStack {
+                                Image(systemName: "camera.sensor.tag.radiowaves.left.and.right")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .padding(100)
+                                    .foregroundStyle(.white)
+                                Text("")
+
+#if DEBUG
+                                Text(err.localizedDescription)
                                     .font(.body)
                                     .foregroundStyle(.primary)
+                                    .padding(10)
+                                    .background(.black.opacity(0.5))
+#endif
+                            }
                         }
                     }
                 

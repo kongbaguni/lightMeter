@@ -11,6 +11,26 @@ import WidgetKit
 struct MainView: View {
     @AppStorage("mainTabIdx") var tabIdx: Int = 0
     
+    
+    func makeButton(isCurrent:Bool, image:String, text:String, onClick:@escaping()->Void) -> some View  {
+        Button {
+            onClick()
+        } label: {
+            VStack {
+                Image(systemName: image)
+                Text(text)
+                    .font(.caption)
+            }.foregroundStyle(isCurrent ? .yellow : .yellow.opacity(0.5))
+        }
+        .disabled(isCurrent)
+        .padding(10)
+        .background {
+            RoundedRectangle(cornerRadius: 5)
+                .fill(isCurrent ? .black.opacity(0.8) : .secondary)
+        }
+        .safeGlassEffect(useInteractive: true, inShape: RoundedRectangle(cornerRadius: 5))
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -24,24 +44,11 @@ struct MainView: View {
                 VStack {
                     Spacer()
                     HStack {
-                        Button {
+                        makeButton(isCurrent: tabIdx == 0, image: "camera.aperture", text: "mode1") {
                             tabIdx = 0
-                        } label: {
-                            Text("mode1")
-                                .font(.caption)
-                                .disabled(tabIdx == 0)
-                                .foregroundStyle(tabIdx == 0 ? .primary : .secondary)
                         }
-                        
-                        Button {
+                        makeButton(isCurrent: tabIdx == 1, image: "bolt.fill", text: "mode2") {
                             tabIdx = 1
-                        } label: {
-                            Text("mode2")
-                                .font(.caption)
-                                .disabled(tabIdx == 1)
-                                .foregroundStyle(tabIdx == 1 ? .primary : .secondary)
-
-
                         }
                     }
                 }

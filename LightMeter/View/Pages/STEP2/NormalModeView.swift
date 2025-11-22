@@ -25,11 +25,13 @@ struct NormalModeView: View {
     }
     
    var evview : some View {
-       if let a = lightMetterValue, let b = controlerEv {
-           EVView(cameraEV: a, settingEV: b)
-       } else {
-           EVView(cameraEV: 0, settingEV: 0)
-       }
+       Group {
+           if let a = lightMetterValue, let b = controlerEv {
+               EVView(cameraEV: a, settingEV: b)
+           } else {
+               EVView(cameraEV: 0, settingEV: 0)
+           }
+       }.padding(.horizontal, 10)
     }
     
     var versionLabel: some View {

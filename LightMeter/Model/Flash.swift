@@ -36,10 +36,12 @@ struct Flash {
         }
         else {
             var x = 1
-            for i in 0..<stop {
-                value = value * 0.5
-                x *= 2
-                result.append(.init(value: value, title: "1/\(x)"))
+            if stop > 1 {
+                for _ in 0..<stop-1 {
+                    value = value * 0.5
+                    x *= 2
+                    result.append(.init(value: value, title: "1/\(x)"))
+                }
             }
         }
         return result

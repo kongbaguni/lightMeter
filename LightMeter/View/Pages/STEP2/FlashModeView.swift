@@ -35,11 +35,15 @@ struct FlashModeView : View {
     }
 
     /** 계산된 적정 플래시 밝기 */
-    var rightGN:Double {
-        let iso = makefilteredISO(iso: isoItem.value)
-        let fixDiffuser:Double = usediffuser ? 2.0 : 1.0
-        return apertureItem
-            .value * (distanceItem.value * 0.01) * sqrt(100 / (iso * 3.5)) * fixDiffuser
+    var rightGN:Double {        
+         let iso = makefilteredISO(iso: isoItem.value) // 필터 스톱 반영된 ISO
+         let d = distanceItem.value * 0.01            // cm -> m
+         let diffuserFix: Double = usediffuser ? 2.0 : 1.0 // 디퓨저가 1스톱 먹는다고 가정하면 ×2
+
+         return apertureItem.value
+              * d
+              * sqrt(100.0 / iso)
+              * diffuserFix
     }
     
     var flashModel:Flash {

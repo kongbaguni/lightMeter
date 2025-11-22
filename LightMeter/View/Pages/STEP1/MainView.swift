@@ -11,6 +11,13 @@ import WidgetKit
 struct MainView: View {
     @AppStorage("mainTabIdx") var tabIdx: Int = 0
     
+    var setting: some View {
+        NavigationLink {
+            SettingView()
+        } label: {
+            ButtonImageView(systemName: "gearshape")
+        }
+    }
     
     func makeButton(isCurrent:Bool, image:String, text:String, onClick:@escaping()->Void) -> some View  {
         Button {
@@ -50,8 +57,10 @@ struct MainView: View {
                         makeButton(isCurrent: tabIdx == 1, image: "bolt.fill", text: "mode2") {
                             tabIdx = 1
                         }
+                        Spacer()
+                        setting
                     }
-                }
+                }.padding(.horizontal, 10)
             }
             
         }.onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { output in

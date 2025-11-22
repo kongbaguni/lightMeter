@@ -7,7 +7,7 @@
 import SwiftUI
 struct FlashSettingView : View {
     @AppStorage("flashGN") var flashGN:Double = 15
-    @AppStorage("flashStop") var flashStop:Int = 7
+    @AppStorage("flashLevel") var flashLevel:Int = 7
     @AppStorage("flashUseHarfStop") var flashUseHarfStop:Bool = true
 
     @State var focusIdx:Int? = nil
@@ -24,7 +24,7 @@ struct FlashSettingView : View {
                 Button {
                     focusIdx = 1
                 } label: {
-                    Text("Flash stop : \(flashStop)")
+                    Text("Flash level : \(flashLevel)")
                 }
                 .foregroundStyle(focusIdx == 1 ? .primary : .secondary)
                 
@@ -39,7 +39,7 @@ struct FlashSettingView : View {
                     case 0:
                         flashGN = value
                     case 1:
-                        flashStop = Int(value)
+                        flashLevel = Int(value)
                     default:
                         break
                     }
@@ -50,7 +50,7 @@ struct FlashSettingView : View {
         .onChange(of: flashGN) { oldValue, newValue in
             NotificationCenter.default.post(name: .lightMetterStatusDidChanged, object: nil)
         }
-        .onChange(of: flashStop) { oldValue, newValue in
+        .onChange(of: flashLevel) { oldValue, newValue in
             NotificationCenter.default.post(name: .lightMetterStatusDidChanged, object: nil)
         }
         .onChange(of: flashUseHarfStop) { oldValue, newValue in

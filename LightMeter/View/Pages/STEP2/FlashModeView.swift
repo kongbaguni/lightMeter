@@ -26,7 +26,7 @@ struct FlashModeView : View {
     @AppStorage("flash") var flash:Double = 0.0
     
     @AppStorage("flashGN") var flashGN:Double = 15
-    @AppStorage("flashStop") var flashStop:Int = 7
+    @AppStorage("flashLevel") var flashLevel:Int = 7
     @AppStorage("flashUseHarfStop") var flashUseHarfStop:Bool = true
     @AppStorage("usediffuser") var usediffuser:Bool = false
     @AppStorage("filterType") var filterTypeRawValue: Int = 0
@@ -52,7 +52,7 @@ struct FlashModeView : View {
     }
     
     var flashModel:Flash {
-        return .init(GN: flashGN, stop: flashStop, isHarfStop: flashUseHarfStop)
+        return .init(GN: flashGN, stop: flashLevel, isHarfStop: flashUseHarfStop)
     }
     
     var toggleUsediffuserView : some View  {
@@ -182,11 +182,6 @@ struct FlashModeView : View {
                     .foregroundStyle(.secondary)
                 FilterTypeView()
                 toggleUsediffuserView
-                NavigationLink {
-                    SettingView()
-                } label: {
-                    ButtonImageView(systemName: "gearshape")
-                }
             }.padding(.vertical, 8)
             
         }

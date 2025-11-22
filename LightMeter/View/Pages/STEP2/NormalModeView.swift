@@ -16,7 +16,8 @@ struct NormalModeView: View {
     @State var isPlay:Bool = false    
     @State var permissionOK:Bool = false
     
-    var toggleButton : some View {
+    /** 측광 버튼 */
+    var meteringButton : some View {
         ImageButtonView(systemName: isPlay ? "light.min" : "light.max") {
             if isPlay == false {
                 isPlay = true
@@ -43,14 +44,6 @@ struct NormalModeView: View {
         }
     }
     
-    var settingsButton: some View {
-        NavigationLink {
-            SettingView()
-        } label: {
-            ButtonImageView(systemName: "gearshape")
-        }
-    }
-    
     var contentView : some View {
         GeometryReader { geometry in
             if geometry.size.width < geometry.size.height {
@@ -63,10 +56,9 @@ struct NormalModeView: View {
                     }
                     ControllerView(ev:$controlerEv)
                     HStack (alignment: .bottom) {
-                        FilterTypeView()
-                        settingsButton
                         LightMetterAutoView()
-                        toggleButton
+                        FilterTypeView()
+                        meteringButton
                     }
                     .padding(.bottom, 20)
                     
@@ -95,9 +87,8 @@ struct NormalModeView: View {
                     }
                     VStack {
                         LightMetterAutoView()
-                        toggleButton
-                        settingsButton
                         FilterTypeView()
+                        meteringButton
                     }
 
                 }

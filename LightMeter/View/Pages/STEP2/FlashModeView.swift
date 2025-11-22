@@ -27,7 +27,7 @@ struct FlashModeView : View {
     
     @AppStorage("flashGN") var flashGN:Double = 15
     @AppStorage("flashLevel") var flashLevel:Int = 7
-    @AppStorage("flashUseHarfStop") var flashUseHarfStop:Bool = true
+    @AppStorage("flashStepInterpolation") var flashStepInterpolation:Int = 0
     @AppStorage("usediffuser") var usediffuser:Bool = false
     @AppStorage("filterType") var filterTypeRawValue: Int = 0
     var fixedISO:Int {
@@ -52,7 +52,7 @@ struct FlashModeView : View {
     }
     
     var flashModel:Flash {
-        return .init(GN: flashGN, stop: flashLevel, isHarfStop: flashUseHarfStop)
+        return .init(GN: flashGN, stop: flashLevel, stepInterpolation: .init(rawValue: flashStepInterpolation) ?? .none)
     }
     
     var toggleUsediffuserView : some View  {

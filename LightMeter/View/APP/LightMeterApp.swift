@@ -36,7 +36,7 @@ struct LightMeterApp: App {
                 case .majorHigherInStore, .minorHigherInStore, .patchHigherInStore:
                     isNeedUpdate = true
                 default:
-                    isNeedUpdate = true
+                    isNeedUpdate = false
                 }
             }
         }

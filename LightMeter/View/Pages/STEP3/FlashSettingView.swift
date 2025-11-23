@@ -6,8 +6,8 @@
 //
 import SwiftUI
 struct FlashSettingView : View {
-    @AppStorage("flashGN") var flashGN:Double = 15
-    @AppStorage("flashLevel") var flashLevel:Double = 7
+    @AppStorage("flashGN") var flashGN:Double = 15.0
+    @AppStorage("flashLevel") var flashLevel:Double = 7.0
     @AppStorage("flashStepInterpolation") var flashStepInterpolation:Int = 0
 
     @State var flashGNItem:Models.Item = .empty

@@ -100,7 +100,7 @@ class LightMeterCameraManager: NSObject, ObservableObject {
                 }
             }
             
-            DispatchQueue.global(qos: .userInitiated).async { [weak session] in
+            Task(priority: .userInitiated) {[weak session] in
                 session?.startRunning()
             }
 
@@ -112,7 +112,7 @@ class LightMeterCameraManager: NSObject, ObservableObject {
     }
     
     private func stopSession() {
-        DispatchQueue.global(qos: .userInitiated).async { [weak session, weak self] in
+        Task(priority: .userInitiated) { [weak session, weak self] in
             session?.stopRunning()
             DispatchQueue.main.async {
                 self?.onStopSession()

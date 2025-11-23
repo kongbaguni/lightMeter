@@ -101,6 +101,47 @@ struct ControllerView: View {
         }
     }
     
+    func initData() {
+        guard Models.EVfix.items.isEmpty == false
+                && Models.ISO.items.isEmpty == false
+                && currentLens.items.isEmpty == false
+                && Models.Body.curentBody?.items.isEmpty == false
+        
+        else {
+            return
+        }
+        
+        evFixItem = Models.EVfix.items.first!
+        for item in Models.EVfix.items {
+            if item.value == evFix {
+                evFixItem = item
+            }
+        }
+        
+        isoItem = Models.ISO.items.first!
+        for item in Models.ISO.items {
+            if item.value == iso {
+                isoItem = item
+            }
+        }
+        
+        apertureItem = currentLens.items.first!
+        for item in currentLens.items {
+            Log.debug(aperture)
+            if item.value == aperture {
+                apertureItem = item
+            }
+        }
+        
+        shutterSpeedItem = currentBody.items.first!
+        for item in currentBody.items {
+            if item.value == shutterSpeed {
+                shutterSpeedItem = item
+            }
+        }
+        
+        calculateEV()
+    }
    
     var body: some View {
         HStack {
@@ -194,46 +235,14 @@ struct ControllerView: View {
         }
         
         .onAppear {
-            if evFixItem == .empty {
-                for item in Models.EVfix.items {
-                    if item.value == evFix {
-                        evFixItem = item
-                    }
-                }
-            }
-            if isoItem == .empty {
-                isoItem = Models.ISO.items.first!
-                for item in Models.ISO.items {
-                    if item.value == iso {
-                        isoItem = item
-                    }
-                }
-            }
-            
-            if apertureItem == .empty {
-                for item in currentLens.items {
-                    Log.debug(aperture)
-                    if item.value == aperture {
-                        apertureItem = item
-                    }
-                }
-                if apertureItem == .empty {
-                    apertureItem = currentLens.items.first!
-                }
-            }
-            
-            if shutterSpeedItem == .empty {
-                for item in currentBody.items {
-                    if item.value == shutterSpeed {
-                        shutterSpeedItem = item
-                    }
-                }
-                if shutterSpeedItem == .empty {
-                    shutterSpeedItem = currentBody.items.first!
-                }
-            }
-            calculateEV()
+            initData()
         }
+        .onReceive(NotificationCenter.default.publisher(for: .lightMetterSettingChanged), perform: { output in
+            Task {
+                try? await Task.sleep(for:.seconds(2))
+                initData()
+            }
+        })
         
         .onReceive(NotificationCenter.default.publisher(for: .lightMetterSelectNext)) { output in
             

@@ -8,6 +8,33 @@
 import Foundation
 extension UserDefaults {
     //MARK: Custom Bodys
+    func fixIds() {
+        var bodys = loadCustomBodys()
+        var newBodys: [Models.Body] = []
+        for (idx, body) in bodys.enumerated() {
+            newBodys.append(
+            Models
+                .Body(
+                    id: idx,
+                    brand: body.brand,
+                    name: body.name,
+                    shutterSpeeds: body.shutterSpeeds
+                )
+            )
+        }
+        saveCustomBodys(newBodys)
+        
+        var lens = loadCustomLens()
+        var newLens: [Models.Lens] = []
+        for (idx, lens) in lens.enumerated() {
+            newLens.append(.init(
+                id: idx,
+                brand: lens.brand,
+                name: lens.name,
+                apertures: lens.apertures))
+        }
+    }
+    
     func loadCustomBodys()->[Models.Body] {
         guard let str = string(forKey: "customBodys"), let data = str.data(using: .utf8) else {
             return []
@@ -44,7 +71,7 @@ extension UserDefaults {
     
     func removeBody(body:Models.Body) {
         var bodys = loadCustomBodys()
-        while let idx = bodys.firstIndex(where: { item in
+        if let idx = bodys.firstIndex(where: { item in
             return item.id == item.id
         }) {
             bodys.remove(at: idx)
@@ -89,7 +116,7 @@ extension UserDefaults {
     
     func removeLens(lens:Models.Lens) {
         var lenss = loadCustomLens()
-        while let idx = lenss.firstIndex(where: { item in
+        if let idx = lenss.firstIndex(where: { item in
             return lens.id == item.id
         }) {
             lenss.remove(at: idx)

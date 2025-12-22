@@ -18,6 +18,9 @@ struct CustomBodyMakeView: View {
 
     var body: some View {
         ScrollView {
+#if DEBUG
+            Text(String(format:"id : %d", id))
+#endif 
             HStack {
                 Text("Brand")
                 TextField(text: $brand) {

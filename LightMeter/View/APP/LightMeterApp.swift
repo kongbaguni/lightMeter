@@ -25,6 +25,7 @@ struct LightMeterApp: App {
                 
             }
         }
+        UserDefaults.standard.fixIds()
 #endif
     }
     

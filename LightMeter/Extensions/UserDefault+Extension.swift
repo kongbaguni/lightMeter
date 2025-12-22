@@ -79,6 +79,16 @@ extension UserDefaults {
         saveCustomBodys(bodys)
     }
     
+    func editBody(body: Models.Body) {
+        var bodys = loadCustomBodys()
+        if let id = bodys.firstIndex(where: { item in
+            item.id == body.id
+        }) {            
+            bodys[id] = body
+            saveCustomBodys(bodys)
+        }
+    }
+    
     // MARK: CustomLens
     func loadCustomLens()->[Models.Lens] {
         guard let str = string(forKey: "customLens"), let data = str.data(using: .utf8) else {
@@ -122,5 +132,15 @@ extension UserDefaults {
             lenss.remove(at: idx)
         }
         saveCustomLens(lenss)
+    }
+    
+    func editLens(lens: Models.Lens) {
+        var lenss = loadCustomLens()
+        if let id = lenss.firstIndex(where: { item in
+            item.id == lens.id
+        }) {
+            lenss[id] = lens
+            saveCustomLens(lenss)
+        }
     }
 }

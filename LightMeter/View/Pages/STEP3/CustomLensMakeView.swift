@@ -97,11 +97,8 @@ struct CustomLensMakeView: View {
     }
     
     func save() {
-        let newlens:Models.Lens = .init(id:id, brand: brand, name: model, apertures: apertureList)
-        if let lens = self.lens {
-            UserDefaults.standard.removeLens(lens: lens)
-        }
-        UserDefaults.standard.addLens(lens: newlens)
+        let newlens:Models.Lens = .init(id:id, brand: brand, name: model, apertures: apertureList)       
+        UserDefaults.standard.editLens(lens: newlens)
         dismiss()
     }
 }

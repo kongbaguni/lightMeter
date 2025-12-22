@@ -98,10 +98,7 @@ struct CustomBodyMakeView: View {
     
     func save() {        
         let newbody:Models.Body = .init(id:id, brand: brand, name: model, shutterSpeeds: shutterSpeedList)
-        if let body = self.bodyData {
-            UserDefaults.standard.removeBody(body: body)
-        }
-        UserDefaults.standard.addBody(body: newbody)
+        UserDefaults.standard.editBody(body: newbody)
         dismiss()
     }
 }

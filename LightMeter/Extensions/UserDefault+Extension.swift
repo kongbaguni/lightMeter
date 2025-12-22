@@ -79,14 +79,16 @@ extension UserDefaults {
         saveCustomBodys(bodys)
     }
     
-    func editBody(body: Models.Body) {
+    func editBody(body: Models.Body)->Bool {
         var bodys = loadCustomBodys()
         if let id = bodys.firstIndex(where: { item in
             item.id == body.id
         }) {            
             bodys[id] = body
             saveCustomBodys(bodys)
+            return true
         }
+        return false
     }
     
     // MARK: CustomLens
@@ -134,13 +136,15 @@ extension UserDefaults {
         saveCustomLens(lenss)
     }
     
-    func editLens(lens: Models.Lens) {
+    func editLens(lens: Models.Lens)->Bool {
         var lenss = loadCustomLens()
         if let id = lenss.firstIndex(where: { item in
             item.id == lens.id
         }) {
             lenss[id] = lens
             saveCustomLens(lenss)
+            return true
         }
+        return false
     }
 }

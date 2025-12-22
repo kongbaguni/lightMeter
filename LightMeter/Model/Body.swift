@@ -8,6 +8,9 @@ import AVFoundation
 
 extension Models {
     struct Body : Codable {
+        static func == (lhs: Models.Body, rhs: Models.Body) -> Bool {
+            lhs.id == rhs.id
+        }
         let id : Int
         let brand : String
         let name : String

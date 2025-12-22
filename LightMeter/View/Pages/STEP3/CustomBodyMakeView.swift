@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomBodyMakeView: View {
     let bodyData:Models.Body?
-    @State var id:Int = UserDefaults.standard.loadCustomLens().count
+    @State var id:Int = UserDefaults.standard.loadCustomBodys().count
     @State var brand:String = ""
     @State var model:String = ""
     @State var shutterSpeedList:[String] = []

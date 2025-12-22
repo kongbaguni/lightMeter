@@ -71,8 +71,8 @@ extension UserDefaults {
     
     func removeBody(body:Models.Body) {
         var bodys = loadCustomBodys()
-        if let idx = bodys.firstIndex(where: { item in
-            return item.id == item.id
+        while let idx = bodys.firstIndex(where: { item in
+            return item.id == body.id
         }) {
             bodys.remove(at: idx)
         }
@@ -116,7 +116,7 @@ extension UserDefaults {
     
     func removeLens(lens:Models.Lens) {
         var lenss = loadCustomLens()
-        if let idx = lenss.firstIndex(where: { item in
+        while let idx = lenss.firstIndex(where: { item in
             return lens.id == item.id
         }) {
             lenss.remove(at: idx)

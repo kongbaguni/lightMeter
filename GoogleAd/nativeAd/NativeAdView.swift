@@ -21,13 +21,9 @@ struct NativeAdView : View {
     @State var error:(err:Error,date:Date)? = nil
     var body: some View {
         ZStack {
-            GeometryReader { proxy in
-                if let view = nativeAd?.makeAdView(size: proxy.size) {
-                    view
-                }
-            }
             VStack(alignment: .center) {
                 if nativeAd == nil {
+                    ActivityIndicatorView(isVisible: $loading, type: .default()).frame(width: 50, height: 50)
                     if let error = error {
                         let err = error.err
                         let date = error.date
@@ -40,9 +36,13 @@ struct NativeAdView : View {
                                 .foregroundStyle(.primary)
                         }
                     }
-                
-                } else {
-                    ActivityIndicatorView(isVisible: $loading, type: .default()).frame(width: 50, height: 50)
+                }
+                else {
+                    GeometryReader { proxy in
+                        if let view = nativeAd?.makeAdView(size: proxy.size) {
+                            view
+                        }
+                    }
                 }
             }
             

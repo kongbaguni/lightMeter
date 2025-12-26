@@ -74,12 +74,7 @@ class AdLoader : NSObject {
 extension AdLoader : NativeAdLoaderDelegate {
     func adLoader(_ adLoader: GoogleMobileAds.AdLoader, didFailToReceiveAdWithError error: any Error) {
         print("\(#function) \(#line) \(error.localizedDescription)")
-#if DEBUG
         self.onError(error)
-#endif
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [weak self] in
-            self?.loadAd()
-        }
     }
     
     func adLoaderDidFinishLoading(_ adLoader: GoogleMobileAds.AdLoader) {

@@ -27,13 +27,13 @@ struct MainView: View {
                 Image(systemName: image)
                 Text(text)
                     .font(.caption)
-            }.foregroundStyle(isCurrent ? .yellow : .yellow.opacity(0.5))
+            }.foregroundStyle(isCurrent ? .white : .secondary.opacity(0.3))
         }
         .disabled(isCurrent)
         .padding(10)
         .background {
             RoundedRectangle(cornerRadius: 5)
-                .fill(isCurrent ? .black.opacity(0.8) : .secondary)
+                .fill(isCurrent ? Color.black.opacity(0.7) : Color.black.opacity(0.5))
         }
         .safeGlassEffect(useInteractive: true, inShape: RoundedRectangle(cornerRadius: 5))
     }
@@ -60,7 +60,16 @@ struct MainView: View {
                         Spacer()
                         setting
                     }
-                }.padding(.horizontal, 10)
+                    .padding(10)
+                    .background {
+                        RoundedRectangle(cornerRadius: 5).fill(
+                            Color.black.opacity(0.4)
+                        )
+                    }
+                    .safeGlassEffect(inShape: RoundedRectangle(cornerRadius: 5))
+                    .padding(10)
+                }
+//                .padding(.horizontal, 10)
             }
             
         }.onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { output in

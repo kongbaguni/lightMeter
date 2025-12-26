@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct NumPadView: View {
-    let confirm:(Double)->()
-    
+    @Binding var value:Double
     @State var str: String = ""
     let numbers:[[AnyHashable]] = [[7,8,9],[4,5,6],[1,2,3],[0,".","D"]]
     
@@ -17,7 +16,7 @@ struct NumPadView: View {
         Button {
             processBtn(value: value)
         } label: {
-            Text("\(value)")
+            Text(verbatim: String(describing: value))
                 .font(.system(size: 32, weight: .bold))
                 .foregroundColor(.primary)
                 .frame(width: 60, height: 60)
@@ -38,12 +37,12 @@ struct NumPadView: View {
                     }
                 }
             }
-            Button {
-                confirm(NSString(string: str).doubleValue)
-                str = ""
-            } label: {
-                Text("Confirm")
-            }
+        }
+        .onAppear {
+            str = "\(value)"
+        }
+        .onChange(of: str) { oldValue, newValue in
+            value = NSString(string: newValue).doubleValue
         }
     }
     
@@ -69,8 +68,6 @@ struct NumPadView: View {
 }
 
 #Preview {
-    NumPadView { double in
-        print(double)
-        
-    }
+    NumPadView(value:.constant(0.0))
 }
+

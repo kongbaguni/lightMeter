@@ -8,6 +8,9 @@ import Foundation
 
 extension Models {
     struct Lens : Codable {
+        static func == (lhs: Lens, rhs: Lens) -> Bool {
+            lhs.id == rhs.id
+        }
         let id : Int
         let brand : String
         let name : String

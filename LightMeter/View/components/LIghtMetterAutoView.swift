@@ -58,7 +58,8 @@ struct LightMetterAutoView : View {
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: .lightMetterStatusDidChanged)) { output in
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                Task { @MainActor in
+                    try? await Task.sleep(for: .milliseconds(100))
                     autoSelectProcess(status: output.object as? LightMetterIndicatorView.Status ?? .off)
                 }
             }
@@ -68,7 +69,8 @@ struct LightMetterAutoView : View {
                 }
                 let modeBackup = autoMode
                 autoMode = .pause
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                Task { @MainActor in
+                    try? await Task.sleep(for: .seconds(2))
                     autoMode = modeBackup
                 }
             }

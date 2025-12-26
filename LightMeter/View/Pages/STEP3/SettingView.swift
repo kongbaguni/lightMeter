@@ -13,7 +13,12 @@ struct SettingView: View {
     
     @State var testItem:Models.Item = .init(value: 5, title: "5")
     @AppStorage("hapticFeedbackSetting") var hapticFeedbackSetting:Int = 0
-
+    @AppStorage("flashGN") var flashGN:Double = 15
+    var selectedFlashGN: some View {
+        Text(String(format: "GN%.0f", flashGN))
+            .foregroundStyle(.secondary)
+            .bold()
+    }
     @AppStorage("filterType") var filterTypeRawValue: Int = 0
     var selectedFilter: FilterType {
         FilterType(rawValue: filterTypeRawValue) ?? .clear
@@ -65,10 +70,17 @@ struct SettingView: View {
             FlashSettingView()
         } label : {
             HStack {
-                Text("flash setting")                
+                Text("flash setting")
+                selectedFlashGN
             }
         }
     }
+    
+    func reload() {
+        currentBody = Models.Body.curentBody!
+        currentLens = Models.Lens.currentLens!
+    }
+    
     var body: some View {
         List {
             Section {
@@ -117,6 +129,12 @@ struct SettingView: View {
             }
         }
         .navigationTitle("setting")
+        .onAppear {
+            reload()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .lightMetterSettingChanged)) { out in
+            reload()
+        }
     }
 }
 

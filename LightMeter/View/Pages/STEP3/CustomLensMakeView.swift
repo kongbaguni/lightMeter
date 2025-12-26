@@ -18,6 +18,9 @@ struct CustomLensMakeView: View {
 
     var body: some View {
         ScrollView {
+#if DEBUG
+            Text(String(format:"id : %d", id))
+#endif 
             HStack {
                 Text("Brand")
                 TextField(text: $brand) {
@@ -94,11 +97,10 @@ struct CustomLensMakeView: View {
     }
     
     func save() {
-        let newlens:Models.Lens = .init(id:id, brand: brand, name: model, apertures: apertureList)
-        if let lens = self.lens {
-            UserDefaults.standard.removeLens(lens: lens)
+        let newlens:Models.Lens = .init(id:id, brand: brand, name: model, apertures: apertureList)       
+        if !UserDefaults.standard.editLens(lens: newlens) {
+            UserDefaults.standard.addLens(lens: newlens)
         }
-        UserDefaults.standard.addLens(lens: newlens)
         dismiss()
     }
 }

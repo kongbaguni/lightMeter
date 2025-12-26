@@ -76,7 +76,8 @@ fileprivate func userMessagePlatformPrompt(complete:@escaping()->Void) {
 struct GoogleAdPrompt {
     static func promptWithDelay(complete:@escaping()->Void) {
         // contentView.init 등에서 호출할 때 1초 딜레이를 주어야 알람창이 뜬다.
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+        Task { @MainActor in
+            try? await Task.sleep(for: .seconds(1))
             requestTrackingAuthorization {
                 userMessagePlatformPrompt {
                     complete()

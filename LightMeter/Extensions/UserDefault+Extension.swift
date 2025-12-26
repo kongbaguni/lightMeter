@@ -8,6 +8,33 @@
 import Foundation
 extension UserDefaults {
     //MARK: Custom Bodys
+    func fixIds() {
+        var bodys = loadCustomBodys()
+        var newBodys: [Models.Body] = []
+        for (idx, body) in bodys.enumerated() {
+            newBodys.append(
+            Models
+                .Body(
+                    id: idx,
+                    brand: body.brand,
+                    name: body.name,
+                    shutterSpeeds: body.shutterSpeeds
+                )
+            )
+        }
+        saveCustomBodys(newBodys)
+        
+        var lens = loadCustomLens()
+        var newLens: [Models.Lens] = []
+        for (idx, lens) in lens.enumerated() {
+            newLens.append(.init(
+                id: idx,
+                brand: lens.brand,
+                name: lens.name,
+                apertures: lens.apertures))
+        }
+    }
+    
     func loadCustomBodys()->[Models.Body] {
         guard let str = string(forKey: "customBodys"), let data = str.data(using: .utf8) else {
             return []
@@ -45,11 +72,23 @@ extension UserDefaults {
     func removeBody(body:Models.Body) {
         var bodys = loadCustomBodys()
         while let idx = bodys.firstIndex(where: { item in
-            return item.id == item.id
+            return item.id == body.id
         }) {
             bodys.remove(at: idx)
         }
         saveCustomBodys(bodys)
+    }
+    
+    func editBody(body: Models.Body)->Bool {
+        var bodys = loadCustomBodys()
+        if let id = bodys.firstIndex(where: { item in
+            item.id == body.id
+        }) {            
+            bodys[id] = body
+            saveCustomBodys(bodys)
+            return true
+        }
+        return false
     }
     
     // MARK: CustomLens
@@ -95,5 +134,17 @@ extension UserDefaults {
             lenss.remove(at: idx)
         }
         saveCustomLens(lenss)
+    }
+    
+    func editLens(lens: Models.Lens)->Bool {
+        var lenss = loadCustomLens()
+        if let id = lenss.firstIndex(where: { item in
+            item.id == lens.id
+        }) {
+            lenss[id] = lens
+            saveCustomLens(lenss)
+            return true
+        }
+        return false
     }
 }

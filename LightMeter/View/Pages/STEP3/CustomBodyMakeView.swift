@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomBodyMakeView: View {
     let bodyData:Models.Body?
-    @State var id:Int = UserDefaults.standard.loadCustomLens().count
+    @State var id:Int = UserDefaults.standard.loadCustomBodys().count
     @State var brand:String = ""
     @State var model:String = ""
     @State var shutterSpeedList:[String] = []
@@ -18,6 +18,9 @@ struct CustomBodyMakeView: View {
 
     var body: some View {
         ScrollView {
+#if DEBUG
+            Text(String(format:"id : %d", id))
+#endif 
             HStack {
                 Text("Brand")
                 TextField(text: $brand) {
@@ -95,10 +98,9 @@ struct CustomBodyMakeView: View {
     
     func save() {        
         let newbody:Models.Body = .init(id:id, brand: brand, name: model, shutterSpeeds: shutterSpeedList)
-        if let body = self.bodyData {
-            UserDefaults.standard.removeBody(body: body)
+        if !UserDefaults.standard.editBody(body: newbody) {
+            UserDefaults.standard.addBody(body: newbody)
         }
-        UserDefaults.standard.addBody(body: newbody)
         dismiss()
     }
 }

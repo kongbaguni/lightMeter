@@ -15,15 +15,7 @@ struct LightMeterApp: App {
     
     @State var versionCheckResult: StoreVersion.VersionDifferenceCheckResult? = nil
     
-    var isNeedUpdate:Bool {
-        switch versionCheckResult?.difference {
-        case .majorHigherInStore, .minorHigherInStore, .patchHigherInStore:
-            return true
-        default:
-            return false
-        }
-    }
-    
+    @State var isNeedUpdate:Bool = false
     init() {
 #if !targetEnvironment(simulator)
         FirebaseApp.configure()
@@ -33,37 +25,64 @@ struct LightMeterApp: App {
                 
             }
         }
+        UserDefaults.standard.fixIds()
 #endif
+    }
+    
+    func checkupdate() {
+        StoreVersion.compareAppVersion(appId: .appId, currentVersion: .currentAppVersion) { result in
+            Task { @MainActor in
+                versionCheckResult = result
+                switch versionCheckResult?.difference {
+                case .majorHigherInStore, .minorHigherInStore, .patchHigherInStore:
+                    isNeedUpdate = true
+                default:
+                    isNeedUpdate = false
+                }
+            }
+        }
     }
     
     var body: some Scene {
         WindowGroup {
-            if isNeedUpdate {
-                VStack {
-                    Text("Please update the app")
-                        .font(.title)
-                    Spacer().frame(height: 50)
-                    Divider()
-                    Text("store version : " + (versionCheckResult?.storeVersion ?? "unknown"))
-                    Text("current version : " + (versionCheckResult?.currentVersion ?? "unknown"))
-                    Divider()
-                    Spacer().frame(height: 50)
-                    Button {
-                        let appStoreUrl = "itms-apps://itunes.apple.com/app/" + .appId
-                        UIApplication.shared.open(URL(string: appStoreUrl)!)
-                    } label: {
-                        Text("goto app store")
-                    }
-                }.padding()
-            } else {
-                MainView()
-                    .onAppear {
-                        StoreVersion.compareAppVersion(appId: .appId, currentVersion: .currentAppVersion) { result in
-                            Task { @MainActor in
-                                 versionCheckResult = result
-                            }
-                        }
-                    }
+            Group {
+                if isNeedUpdate {
+                    VStack {
+                        Text("Please update the app")
+                            .font(.title)
+                            .foregroundStyle(.primary)
+                        Text("A new version of the app has been released on the App Store.")
+                            .font(.headline)
+                            .foregroundStyle(.secondary)
+                        Spacer().frame(height: 50)
+                        Divider()
+                        let currentVersion = versionCheckResult?.currentVersion ?? "unknown"
+                        let storeVersion = versionCheckResult?.storeVersion ?? "unknown"
+                        
+                        Text(String(format: NSLocalizedString("store version : %@", comment: "update view"), storeVersion))
+                        Text(String(format: NSLocalizedString("current version : %@", comment: "update view"), currentVersion))
+                        Divider()
+                        Spacer().frame(height: 50)
+                        
+                        Button {
+                            let appStoreUrl = "itms-apps://itunes.apple.com/app/" + .appId
+                            UIApplication.shared.open(URL(string: appStoreUrl)!)
+                        } label: {
+                            Text("goto app store")
+                        }.padding(.vertical, 5)
+                        
+                        Button {
+                            isNeedUpdate = false
+                        } label: {
+                            Text("Do it next time")
+                        }.padding(.vertical, 5)
+                        
+                    }.padding()
+                } else {
+                    MainView()
+                }
+            }.onAppear {
+                checkupdate()
             }
         }
     

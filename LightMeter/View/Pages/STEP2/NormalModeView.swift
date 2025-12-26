@@ -16,7 +16,8 @@ struct NormalModeView: View {
     @State var isPlay:Bool = false    
     @State var permissionOK:Bool = false
     
-    var toggleButton : some View {
+    /** 측광 버튼 */
+    var meteringButton : some View {
         ImageButtonView(systemName: isPlay ? "light.min" : "light.max") {
             if isPlay == false {
                 isPlay = true
@@ -25,11 +26,13 @@ struct NormalModeView: View {
     }
     
    var evview : some View {
-       if let a = lightMetterValue, let b = controlerEv {
-           EVView(cameraEV: a, settingEV: b)
-       } else {
-           EVView(cameraEV: 0, settingEV: 0)
-       }
+       Group {
+           if let a = lightMetterValue, let b = controlerEv {
+               EVView(cameraEV: a, settingEV: b)
+           } else {
+               EVView(cameraEV: 0, settingEV: 0)
+           }
+       }.padding(.horizontal, 10)
     }
     
     var versionLabel: some View {
@@ -38,14 +41,6 @@ struct NormalModeView: View {
                 .foregroundStyle(.secondary)
             Text(Bundle.main.version ?? "0.0.0")
                 .foregroundStyle(.primary)
-        }
-    }
-    
-    var settingsButton: some View {
-        NavigationLink {
-            SettingView()
-        } label: {
-            ButtonImageView(systemName: "gearshape")
         }
     }
     
@@ -61,10 +56,9 @@ struct NormalModeView: View {
                     }
                     ControllerView(ev:$controlerEv)
                     HStack (alignment: .bottom) {
-                        FilterTypeView()
-                        settingsButton
                         LightMetterAutoView()
-                        toggleButton
+                        FilterTypeView()
+                        meteringButton
                     }
                     .padding(.bottom, 20)
                     
@@ -93,9 +87,8 @@ struct NormalModeView: View {
                     }
                     VStack {
                         LightMetterAutoView()
-                        toggleButton
-                        settingsButton
                         FilterTypeView()
+                        meteringButton
                     }
 
                 }

@@ -50,7 +50,7 @@ class GoogleAd : NSObject {
         loadAd { [weak self] error in
             self?.requsetAd = false
             if error != nil {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     complete(error)
                 }
                 return
@@ -69,7 +69,7 @@ extension GoogleAd : FullScreenContentDelegate {
     func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("google ad \(#function)")
         print(error.localizedDescription)
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.callback(error)
         }
     }
@@ -83,8 +83,7 @@ extension GoogleAd : FullScreenContentDelegate {
     //광고 종료
     func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
         print("google ad \(#function)")
-//        UserDefaults.standard.lastGoogleAdWatchTime = Date()
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.callback(nil)
         }
     }

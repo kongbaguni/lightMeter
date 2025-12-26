@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct FlashModeView : View {
-    @State var currentBody:Models.Body = Models.Body.curentBody!
     @State var currentLens:Models.Lens = Models.Lens.currentLens!
 
     @State var isoItem: Models.Item = .empty
@@ -26,24 +25,35 @@ struct FlashModeView : View {
     @AppStorage("flash") var flash:Double = 0.0
     
     @AppStorage("flashGN") var flashGN:Double = 15
-    @AppStorage("flashStop") var flashStop:Int = 6
-    @AppStorage("flashUseHarfStop") var flashUseHarfStop:Bool = true
+    @AppStorage("flashLevel") var flashLevel:Int = 7
+    @AppStorage("flashStepInterpolation") var flashStepInterpolation:Int = 0
     @AppStorage("usediffuser") var usediffuser:Bool = false
     @AppStorage("filterType") var filterTypeRawValue: Int = 0
+    
+    @State var flashModel:Flash? = nil
     var fixedISO:Int {
         Int(makefilteredISO(iso: iso))
     }
 
     /** 계산된 적정 플래시 밝기 */
-    var rightGN:Double {
-        let iso = makefilteredISO(iso: isoItem.value)
-        let fixDiffuser:Double = usediffuser ? 2.0 : 1.0
-        return apertureItem
-            .value * (distanceItem.value * 0.01) * sqrt(100 / (iso * 3.5)) * fixDiffuser
+    var rightGN:Double {        
+         let iso = makefilteredISO(iso: isoItem.value) // 필터 스톱 반영된 ISO
+         let d = distanceItem.value * 0.01            // cm -> m
+         let diffuserFix: Double = usediffuser ? 2.0 : 1.0 // 디퓨저가 1스톱 먹는다고 가정하면 ×2
+
+        var apertureEVFix: Double {
+            return apertureItem.value * 0.1
+        }
+        
+         return apertureItem.value
+              * d
+              * sqrt(100.0 / iso)
+              * diffuserFix
+              * apertureEVFix
     }
     
-    var flashModel:Flash {
-        return .init(GN: flashGN, stop: flashStop, isHarfStop: flashUseHarfStop)
+    func makeFlash() {
+        flashModel = .init(GN: flashGN, stop: flashLevel, stepInterpolation: .init(rawValue: flashStepInterpolation) ?? .none)
     }
     
     var toggleUsediffuserView : some View  {
@@ -58,19 +68,6 @@ struct FlashModeView : View {
         }
     }
     
-    var bodyListNavigationItem : some View {
-        NavigationLink {
-            BodyListView()
-        } label: {
-            HStack {
-                Text(currentBody.brand)
-                    .bold()
-                    .foregroundStyle(.primary)
-                Text(currentBody.name)
-                    .foregroundStyle(.secondary)
-            }
-        }
-    }
     
     var lensListNavigationItem : some View {
         NavigationLink {
@@ -112,7 +109,7 @@ struct FlashModeView : View {
                 }
                 
             }
-            DialView(items: flashModel.items, currentItem: $flashItem)
+            DialView(items: flashModel?.items ?? [], currentItem: $flashItem)
         }
     }
     
@@ -173,11 +170,6 @@ struct FlashModeView : View {
                     .foregroundStyle(.secondary)
                 FilterTypeView()
                 toggleUsediffuserView
-                NavigationLink {
-                    SettingView()
-                } label: {
-                    ButtonImageView(systemName: "gearshape")
-                }
             }.padding(.vertical, 8)
             
         }
@@ -192,6 +184,65 @@ struct FlashModeView : View {
         EmptyView()
 #endif
     }
+    
+    func initData() {
+        if isoItem == .empty {
+            isoItem = Models.ISO.items.first!
+            for item in Models.ISO.items {
+                if item.value == iso {
+                    isoItem = item
+                }
+            }
+        }
+        
+        if apertureItem == .empty {
+            
+            for item in currentLens.items {
+                Log.debug(aperture)
+                if item.value == aperture {
+                    apertureItem = item
+                }
+            }
+            if apertureItem == .empty {
+                apertureItem = currentLens.items.first!
+            }
+        } else if currentLens.items.isEmpty == false && currentLens.items.contains(apertureItem) == false {
+            apertureItem = currentLens.items.first!
+        }
+        
+        if distanceItem == .empty {
+            let items = Distance.defaultDistance.items
+            distanceItem = items.first!
+            for item in items {
+                if item.value == distance {
+                    distanceItem = item
+                    break
+                }
+            }
+        }
+        makeFlash()
+        if let flashModel = flashModel {
+            if flashModel.items.isEmpty == false && flashModel.items.contains(flashItem) == false {
+                flashItem = flashModel.items.first!
+            }
+            if flashItem == .empty {
+                for item in flashModel.items {
+                    if item.value == flash {
+                        flashItem = item
+                        break
+                    }
+                }
+            }
+        }
+    }
+    
+    func loadData() {
+        if let lens = Models.Lens.currentLens {
+            currentLens = lens
+        }
+        initData()
+    }
+    
     var body: some View {
         GeometryReader { geo in
             if geo.size.width > geo.size.height {
@@ -217,49 +268,9 @@ struct FlashModeView : View {
             }
         }
         .onAppear {
-            
+            initData()
 
-            if isoItem == .empty {
-                isoItem = Models.ISO.items.first!
-                for item in Models.ISO.items {
-                    if item.value == iso {
-                        isoItem = item
-                    }
-                }
-            }
-            
-            if apertureItem == .empty {
-                for item in currentLens.items {
-                    Log.debug(aperture)
-                    if item.value == aperture {
-                        apertureItem = item
-                    }
-                }
-                if apertureItem == .empty {
-                    apertureItem = currentLens.items.first!
-                }
-            }
-            
-            if distanceItem == .empty {
-                let items = Distance.defaultDistance.items
-                distanceItem = items.first!
-                for item in items {
-                    if item.value == distance {
-                        distanceItem = item
-                        break
-                    }
-                }
-            }
-            
-            if flashItem == .empty {
-                flashItem = flashModel.items.first!
-                for item in flashModel.items {
-                    if item.value == flash {
-                        flashItem = item
-                        break
-                    }
-                }
-            }
+         
         }
         .onChange(of: isoItem) { oldValue, newValue in
             iso = newValue.value
@@ -274,10 +285,9 @@ struct FlashModeView : View {
             flash = newValue.value
         }
         .onReceive(NotificationCenter.default.publisher(for: .lightMetterSettingChanged)) { output in
-            if let lens = Models.Lens.currentLens {
-                currentLens = lens
-            }
+            loadData()
         }
+        
         
     }
 }

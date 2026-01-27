@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var cameraManager:LightMeterCameraManager? = nil
-    @State var lightMetterValue: Double? = nil
+    @State var cameraEv: Double? = nil
     @State var controlerEv:Double? = nil
     @State var isPlay:Bool = false
     var toggleButton : some View {
@@ -21,7 +21,7 @@ struct ContentView: View {
     }
     
    var evview : some View {
-       if let a = lightMetterValue, let b = controlerEv {
+       if let a = cameraEv, let b = controlerEv {
            EVView(cameraEV: a, settingEV: b)
        } else {
            EVView(cameraEV: 0, settingEV: 0)
@@ -52,11 +52,11 @@ struct ContentView: View {
                     HStack {
                         evview
                         Spacer()
-                        LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv, padding: 20)
+                        LightMetterIndicatorView(ev: cameraEv, settingEv: controlerEv, padding: 20)
                             .padding(10)
                     }
                     .padding(.horizontal, 10)
-                    ControllerView(ev:$controlerEv)
+                    ControllerView(ev:$controlerEv, cameraEvValue: $cameraEv)
                     HStack (alignment: .bottom) {
                         toggleButton
                     }
@@ -69,12 +69,12 @@ struct ContentView: View {
                         HStack {
                             evview
                             Spacer()
-                            LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv, padding: 20)
+                            LightMetterIndicatorView(ev: cameraEv, settingEv: controlerEv, padding: 20)
                                 .padding(10)
                         }
                     }
                     ScrollView {
-                        ControllerView(ev:$controlerEv)
+                        ControllerView(ev:$controlerEv, cameraEvValue: $cameraEv)
                     }
                     VStack {
                         toggleButton
@@ -87,7 +87,7 @@ struct ContentView: View {
         .onAppear {
             isPlay = cameraManager?.isRunning ?? false
             cameraManager = LightMeterCameraManager { value in
-                self.lightMetterValue = value
+                self.cameraEv = value
                 UserDefaults.shared.set(cameraEv: value)
             } onStopSession: {
                 self.isPlay = false

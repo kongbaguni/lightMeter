@@ -48,7 +48,7 @@ extension Models {
         var items:[Models.Item] {
             shutterSpeeds.reversed().map { str in
                 return .init(value: convert(str: str).seconds, title: str)
-            }
+            } + [.init(value: 0.0, title: "B")]
         }
         
         static var bodys:[Body] = []

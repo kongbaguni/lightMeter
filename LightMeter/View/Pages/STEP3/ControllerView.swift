@@ -10,8 +10,11 @@ import SwiftUI
 struct ControllerView: View {
     // 밝기 보정
     let evFixOffset:CGFloat = 0
-    
+    /** 계산된 ev 값*/
     @Binding var ev:Double?
+    /** 카메라가 측정한 ev 값*/
+    @Binding var cameraEvValue:Double?
+    
     @State var currentBody:Models.Body = Models.Body.curentBody!
     @State var currentLens:Models.Lens = Models.Lens.currentLens!
     
@@ -30,6 +33,8 @@ struct ControllerView: View {
     
     @State var fixedISO:Int = 0
     
+    @State var bulbShutterSpeed:Double = 0.0
+    
     func makefilteredISO(iso:Double)->Double {
         let type = FilterType(rawValue: filterTypeRawValue) ?? .clear
         let factor = pow(2.0, -type.stop)
@@ -39,11 +44,10 @@ struct ControllerView: View {
     var autoMode:Models.AutoMode {
         return .init(rawValue: autoModeValue)!
     }
-           
+   
     func calculateEV(aperture: Double, shutter: Double, iso: Double) -> Double? {
-        if iso == 0 || shutter == 0 || aperture == 0 {
-            return nil
-        }
+        guard iso > 0 && shutter > 0 && aperture > 0  else { return nil }
+        
         let newISO = makefilteredISO(iso: iso)
         let evBase = log2(pow(aperture, 2) / shutter)
         let isoCompensation = log2(newISO / 100)
@@ -62,6 +66,20 @@ struct ControllerView: View {
         }
         if evFixItem != .empty {
             ev = calculateEV(aperture: aperture, shutter: shutterSpeed, iso: iso)
+        }
+        if shutterSpeedItem.title == "B" {
+            if cameraEvValue != nil {
+                var test = abs(ev ?? 0.0 - cameraEvValue!)
+                Log.debug("camera Bulb cev", cameraEvValue, "current ev", ev ?? 0.0, test )
+                bulbShutterSpeed = 0.0
+                while test > 0.5 && bulbShutterSpeed < 6000 {
+                    bulbShutterSpeed += 1
+                    ev = calculateEV(aperture: aperture, shutter: bulbShutterSpeed, iso: iso)
+//                    self.shutterSpeed = shutterSpeed
+                    test = abs(ev ?? 0.0 - cameraEvValue!)
+                    Log.debug("camera bulb shutterSpeed speed", bulbShutterSpeed)
+                }
+            }
         }
         if let ev = ev {
             UserDefaults.shared.set(
@@ -188,7 +206,11 @@ struct ControllerView: View {
                 HStack {
                     Text("ShutterSpeed").font(.system(size: 12))
                         .foregroundStyle(.secondary)
-                    Text(shutterSpeedItem.title).foregroundStyle(.primary)
+                    if shutterSpeedItem.title == "B" {
+                        Text("\(Int(bulbShutterSpeed))").foregroundStyle(.primary)
+                    } else {
+                        Text(shutterSpeedItem.title).foregroundStyle(.primary)
+                    }
                     Text("sec").foregroundStyle(.secondary)
                     Text("body").foregroundStyle(.secondary)
                     bodyListNavigationItem
@@ -303,5 +325,5 @@ struct ControllerView: View {
 }
 
 #Preview {
-    ControllerView(ev: .constant(0.0))
+    ControllerView(ev: .constant(0.0), cameraEvValue: .constant(0.0))
 }

@@ -54,7 +54,7 @@ struct NormalModeView: View {
                         LightMetterIndicatorView(ev: lightMetterValue, settingEv: controlerEv, padding: 20)
                             
                     }
-                    ControllerView(ev:$controlerEv)
+                    ControllerView(ev:$controlerEv, cameraEvValue: $lightMetterValue)
                     HStack (alignment: .bottom) {
                         LightMetterAutoView()
                         FilterTypeView()
@@ -83,7 +83,7 @@ struct NormalModeView: View {
 #endif
                     }
                     ScrollView {
-                        ControllerView(ev:$controlerEv)
+                        ControllerView(ev:$controlerEv, cameraEvValue: $lightMetterValue)
                     }
                     VStack {
                         LightMetterAutoView()

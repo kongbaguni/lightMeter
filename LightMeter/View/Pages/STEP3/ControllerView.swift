@@ -70,9 +70,16 @@ struct ControllerView: View {
         if shutterSpeedItem.title == "B" {
             if cameraEvValue != nil {
                 var test = abs(ev ?? 0.0 - cameraEvValue!)
-                Log.debug("camera Bulb cev", cameraEvValue, "current ev", ev ?? 0.0, test )
+                Log
+                    .debug(
+                        "camera Bulb cev",
+                        cameraEvValue ?? "none",
+                        "current ev",
+                        ev ?? 0.0,
+                        test
+                    )
                 bulbShutterSpeed = 0.0
-                while test > 0.5 && bulbShutterSpeed < 6000 {
+                while test > 0.5 {
                     bulbShutterSpeed += 1
                     ev = calculateEV(aperture: aperture, shutter: bulbShutterSpeed, iso: iso)
 //                    self.shutterSpeed = shutterSpeed

@@ -47,10 +47,13 @@ struct NativeAdView : View {
                     }
                 
                 }
+                else {
+                    nativeAd?.makeAdView(size: .init(width: 372, height: 250))
+                }
             }
             ActivityIndicatorView(isVisible: $loading, type: .default()).frame(width: 50, height: 50)
-
         }
+        .frame(width: 372, height: 250)
         .background(
             Color.teal
         )

@@ -89,6 +89,9 @@ struct ContentView: View {
             cameraManager = LightMeterCameraManager { value in
                 self.cameraEv = value
                 UserDefaults.shared.set(cameraEv: value)
+                NotificationCenter.default
+                    .post(name: .lightMetterEvDidChanged, object: nil)
+
             } onStopSession: {
                 self.isPlay = false
             }

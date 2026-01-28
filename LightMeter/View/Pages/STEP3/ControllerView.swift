@@ -54,6 +54,28 @@ struct ControllerView: View {
         return evBase - isoCompensation + evFix + evFixOffset
     }
     
+    func calculateBulbShutter(
+        targetEV: Double,
+        aperture: Double,
+        iso: Double
+    ) -> Double {
+        guard aperture > 0, iso > 0 else {
+            return 0.0
+        }
+
+        let newISO = makefilteredISO(iso: iso)
+        let compensation = evFix + evFixOffset
+        let isoTerm = log2(newISO / 100)
+
+        let denominator = pow(
+            2,
+            targetEV + isoTerm - compensation
+        )
+
+        let shutter = pow(aperture, 2) / denominator
+        return shutter
+    }
+    
     private func calculateEV() {
         if apertureItem != .empty {
             aperture = apertureItem.value
@@ -68,25 +90,15 @@ struct ControllerView: View {
             ev = calculateEV(aperture: aperture, shutter: shutterSpeed, iso: iso)
         }
         if shutterSpeedItem.title == "B" {
-            if cameraEvValue != nil {
-                var test = abs(ev ?? 0.0 - cameraEvValue!)
-                Log
-                    .debug(
-                        "camera Bulb cev",
-                        cameraEvValue ?? "none",
-                        "current ev",
-                        ev ?? 0.0,
-                        test
-                    )
-                bulbShutterSpeed = 0.0
-                while test > 0.5 {
-                    bulbShutterSpeed += 1
-                    ev = calculateEV(aperture: aperture, shutter: bulbShutterSpeed, iso: iso)
-//                    self.shutterSpeed = shutterSpeed
-                    test = abs(ev ?? 0.0 - cameraEvValue!)
-                    Log.debug("camera bulb shutterSpeed speed", bulbShutterSpeed)
-                }
+            if let cameraEvValue:Double = self.cameraEvValue {
+                bulbShutterSpeed = calculateBulbShutter(
+                    targetEV: cameraEvValue,
+                    aperture: aperture,
+                    iso: iso
+                )
+                ev = calculateEV(aperture: aperture, shutter: bulbShutterSpeed, iso: iso)
             }
+
         }
         if let ev = ev {
             UserDefaults.shared.set(
@@ -270,6 +282,7 @@ struct ControllerView: View {
             Task {
                 try? await Task.sleep(for:.seconds(2))
                 initData()
+                calculateEV()
             }
         })
         
@@ -328,6 +341,10 @@ struct ControllerView: View {
                 break
             }
         }
+        .onReceive(
+            NotificationCenter.default.publisher(for: .lightMetterEvDidChanged)) { output in
+                calculateEV()
+            }
     }
 }
 

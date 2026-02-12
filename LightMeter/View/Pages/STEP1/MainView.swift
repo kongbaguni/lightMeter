@@ -44,8 +44,12 @@ struct MainView: View {
                 switch tabIdx {
                 case 0:
                     NormalModeView()
-                default:
+                case 1:
                     FlashModeView()
+                case 2:
+                    RangeModeView()
+                default:
+                    EmptyView()
                 }
                 
                 VStack {
@@ -57,6 +61,10 @@ struct MainView: View {
                         makeButton(isCurrent: tabIdx == 1, image: "bolt.fill", text: "mode2") {
                             tabIdx = 1
                         }
+                        makeButton(isCurrent: tabIdx == 2, image: "ruler.fill", text: "mode3") {
+                            tabIdx = 2
+                        }
+
                         Spacer()
                         setting
                     }

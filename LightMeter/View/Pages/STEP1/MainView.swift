@@ -27,13 +27,18 @@ struct MainView: View {
                 Image(systemName: image)
                 Text(text)
                     .font(.caption)
-            }.foregroundStyle(isCurrent ? .white : .secondary.opacity(0.3))
+            }.foregroundStyle(isCurrent ? .white : .white.opacity(0.3))
         }
         .disabled(isCurrent)
         .padding(10)
+        .frame(height: 65)
         .background {
             RoundedRectangle(cornerRadius: 5)
-                .fill(isCurrent ? Color.black.opacity(0.7) : Color.black.opacity(0.5))
+                .fill(
+                    isCurrent
+                    ? Color.mint.opacity(0.7)
+                    : Color.gray.opacity(0.5)
+                )
         }
         .safeGlassEffect(useInteractive: true, inShape: RoundedRectangle(cornerRadius: 5))
     }

@@ -21,6 +21,7 @@ struct DistancePanel: View {
             
             Text(displayText)
                 .font(.system(size: 52, weight: .medium, design: .rounded))
+                .foregroundColor(.white)
         }
     }
     

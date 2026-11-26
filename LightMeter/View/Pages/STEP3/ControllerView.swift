@@ -139,15 +139,19 @@ struct ControllerView: View {
     }
     
     func initData() {
-        guard Models.EVfix.items.isEmpty == false
-                && Models.ISO.items.isEmpty == false
-                && currentLens.items.isEmpty == false
-                && Models.Body.curentBody?.items.isEmpty == false
-        
+        guard let selectedBody = Models.Body.curentBody,
+              let selectedLens = Models.Lens.currentLens,
+              Models.EVfix.items.isEmpty == false,
+              Models.ISO.items.isEmpty == false,
+              selectedLens.items.isEmpty == false,
+              selectedBody.items.isEmpty == false
         else {
             return
         }
-        
+
+        currentBody = selectedBody
+        currentLens = selectedLens
+
         evFixItem = Models.EVfix.items.first!
         for item in Models.EVfix.items {
             if item.value == evFix {
@@ -278,13 +282,9 @@ struct ControllerView: View {
         .onAppear {
             initData()
         }
-        .onReceive(NotificationCenter.default.publisher(for: .lightMetterSettingChanged), perform: { output in
-            Task {
-                try? await Task.sleep(for:.seconds(2))
-                initData()
-                calculateEV()
-            }
-        })
+        .onReceive(NotificationCenter.default.publisher(for: .lightMetterSettingChanged)) { _ in
+            initData()
+        }
         
         .onReceive(NotificationCenter.default.publisher(for: .lightMetterSelectNext)) { output in
             

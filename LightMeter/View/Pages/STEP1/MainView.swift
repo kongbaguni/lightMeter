@@ -10,7 +10,7 @@ import WidgetKit
 
 struct MainView: View {
     @AppStorage("mainTabIdx") var tabIdx: Int = 0
-    
+
     var setting: some View {
         NavigationLink {
             SettingView()
@@ -18,7 +18,7 @@ struct MainView: View {
             ButtonImageView(systemName: "gearshape")
         }
     }
-    
+
     func makeButton(isCurrent:Bool, image:String, text:String, onClick:@escaping()->Void) -> some View  {
         Button {
             onClick()
@@ -42,50 +42,52 @@ struct MainView: View {
         }
         .safeGlassEffect(useInteractive: true, inShape: RoundedRectangle(cornerRadius: 5))
     }
-    
-    var body: some View {
-        NavigationStack {
-            ZStack {
-                switch tabIdx {
-                case 0:
-                    NormalModeView()
-                case 1:
-                    FlashModeView()
-                case 2:
-                    RangeModeView()
-                default:
-                    EmptyView()
-                }
-                
-                VStack {
-                    Spacer()
-                    HStack {
-                        makeButton(isCurrent: tabIdx == 0, image: "camera.aperture", text: "mode1") {
-                            tabIdx = 0
-                        }
-                        makeButton(isCurrent: tabIdx == 1, image: "bolt.fill", text: "mode2") {
-                            tabIdx = 1
-                        }
-                        makeButton(isCurrent: tabIdx == 2, image: "ruler.fill", text: "mode3") {
-                            tabIdx = 2
-                        }
 
-                        Spacer()
-                        setting
-                    }
-                    .padding(10)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5).fill(
-                            Color.black.opacity(0.4)
-                        )
-                    }
-                    .safeGlassEffect(inShape: RoundedRectangle(cornerRadius: 5))
-                    .padding(10)
-                }
-//                .padding(.horizontal, 10)
+
+    var main: some View {
+        VStack {
+            switch tabIdx {
+            case 0:
+                NormalModeView()
+            case 1:
+                FlashModeView()
+            case 2:
+                RangeModeView()
+            default:
+                EmptyView()
             }
-            
-        }.onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { output in
+            sidebar
+        }
+    }
+
+    var sidebar : some View {
+        HStack {
+            Spacer()
+            makeButton(isCurrent: tabIdx==0, image: "camera.aperture", text: "camera") {
+                tabIdx = 0
+            }
+
+            makeButton(isCurrent: tabIdx==1, image: "bolt.fill", text: "bolt") {
+                tabIdx = 1
+            }
+
+            makeButton(isCurrent: tabIdx==2, image: "ruler.fill", text: "ruler") {
+                tabIdx = 2
+            }
+
+
+            Spacer()
+            setting
+        }
+
+    }
+    var body: some View {
+        NavigationSplitView {
+            main
+        } detail: {
+            PlaceHolderView()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { output in
             WidgetCenter.shared.reloadTimelines(ofKind: "widget")
         }
     }

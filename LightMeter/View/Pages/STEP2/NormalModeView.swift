@@ -32,7 +32,8 @@ struct NormalModeView: View {
            } else {
                EVView(cameraEV: 0, settingEV: 0)
            }
-       }.padding(.horizontal, 10)
+       }
+       .padding(20)
     }
     
     var versionLabel: some View {

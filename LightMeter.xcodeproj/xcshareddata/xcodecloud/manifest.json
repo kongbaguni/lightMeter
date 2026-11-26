@@ -1,0 +1,9 @@
+{
+  "id" : "ee0c25c2-504b-4d23-83ca-838c8cc5f639",
+  "targets" : [
+    {
+      "id" : "411F88F2-2937-4E9E-9DA5-A5EE14FAE6DB",
+      "name" : "LightMeter"
+    }
+  ]
+}
